@@ -2,7 +2,7 @@ library(shiny)
 library(shinydashboard)
 
 ui <- dashboardPage(
-  dashboardHeader(title = "Basic dashboard"),
+  dashboardHeader(title = "Basic dashboard MTA"),
   dashboardSidebar(
     sidebarMenu(
       sidebarSearchForm(textId = "searchText", buttonId = "searchButton",

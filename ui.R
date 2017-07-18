@@ -3,7 +3,7 @@ library(shinydashboard)
 
 
 
-ui <- dashboardPage(
+dashboardPage(
   dashboardHeader(title = "Multi-Touch Attribution"),
   dashboardSidebar(
     sidebarMenu(

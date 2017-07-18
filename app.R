@@ -18,4 +18,4 @@ server <- function(input,output)
     tags$head(tags$script(src = "http://code.highcharts.com/modules/funnel.js"))
     return(h1)})
 }
-shinyApp(ui,server)
+shinyApp(ui=ui,server=server)

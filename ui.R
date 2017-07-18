@@ -23,12 +23,14 @@ ui <- dashboardPage(
       tabItem(tabName = "sumdashboard",
               fluidRow(
                 # A static infoBox
-                infoBox("Budget", 250000, icon = icon("list"),color = "purple",width = 2),
-                infoBox("Budget Used", 50000, icon = icon("thumbs-up"),color = "yellow",width = 2),
-                infoBox("Conversion",120000, icon = icon("credit-card"),width = 2),
-                infoBox("Cost per Conversions", paste0(120000), icon = icon("credit-card"),width = 3),
-                infoBox("Revenue Generated", paste0(120000), icon = icon("credit-card"),width = 3)
+                box(title = "Budget", 250000,width = 2, background = "maroon"),
+                box(title = "Budget Used", 50000,width = 2, background = "maroon"),
+                box(title = "Conversion",120000,width = 2, background = "maroon"),
+                box(title = "Cost per Conversions",3.6,width = 2, background = "maroon"),
+                box(title = "Revenue Generated", paste0(120000),width = 2, background = "maroon"),
+                box(title = "Revenue Generated", paste0(120000),width = 2, background = "maroon")
               ),
+              
               fluidRow(
                 box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
                 

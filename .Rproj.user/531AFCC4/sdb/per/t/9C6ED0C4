@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\nlibrary(shinydashboard)\n\nserver <- function(input, output) {\n  set.seed(122)\n  histdata <- rnorm(500)\n  \n  output$plot1 <- renderPlot({\n    data <- histdata[seq_len(input$slider)]\n    hist(data)\n  })\n}",
+    "created" : 1500374976464.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3837188136",
+    "id" : "9C6ED0C4",
+    "lastKnownWriteTime" : 1500374886,
+    "last_content_update" : 1500374886,
+    "path" : "~/Documents/GitHub/Multi-touch-Attribution/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

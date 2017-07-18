@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\nlibrary(shinydashboard)\n\nui <- dashboardPage(\n  dashboardHeader(title = \"Basic dashboard MTA\"),\n  dashboardSidebar(\n    sidebarMenu(\n      sidebarSearchForm(textId = \"searchText\", buttonId = \"searchButton\",\n                        label = \"Search...\"),\n      menuItem(\"Budget Allocated\", tabName = \"dashboard\", icon = icon(\"dashboard\")),\n      menuItem(\"Budget Used\", tabName = \"widgets\", icon = icon(\"th\")),\n      menuItem(\"Conversion\", icon = icon(\"file-code-o\"), \n               href = \"https://i2decisions.com\"),\n      menuItem(\"Cost per Conversions\", tabName = \"widgets\", icon = icon(\"th\")),\n      menuItem(\"Revenue Generated\", tabName = \"widgets\", icon = icon(\"th\"))\n      \n    )\n  ),\n  \n  dashboardBody(\n    \n    tabItems(\n      # First tab content\n      tabItem(tabName = \"dashboard\",\n              fluidRow(\n                # A static infoBox\n                infoBox(\"Budget Allocated\", 250000, icon = icon(\"list\"),color = \"purple\"),\n                infoBox(\"Budget Used\", 50000, icon = icon(\"thumbs-up\", lib = \"glyphicon\"),\n                        color = \"yellow\"),\n                infoBox(\"Conversion\", paste0(120000), icon = icon(\"credit-card\")),\n                infoBox(\"Cost per Conversions\", paste0(120000), icon = icon(\"credit-card\")),\n                infoBox(\"Revenue Generated\", paste0(120000), icon = icon(\"credit-card\"))\n              ),\n              fluidRow(\n                box(title=\"Histogram\",status=\"primary\",solidHeader = TRUE,collapsible = TRUE,plotOutput(\"plot1\",height=250)),\n                \n                box(title=\"Inputs\",status = \"warning\",solidHeader = TRUE,\n                  \"Box content here\", br(), \"More box content\",\n                  sliderInput(\"slider\", \"Slider input:\", 1, 100, 50),\n                  textInput(\"text\", \"Text input:\")\n                )\n              ),\n              fluidRow(\n                tabBox(\n                  title = \"First tabBox\",\n                  # The id lets us use input$tabset1 on the server to find the current tab\n                  id = \"tabset1\", height = \"250px\",\n                  tabPanel(\"Tab1\", \"First tab content\"),\n                  tabPanel(\"Tab2\", \"Tab content 2\")\n                )\n              )\n      ),\n      \n      \n      # Second tab content\n      tabItem(tabName = \"widgets\",\n              h2(\"Widgets tab content\")\n      )\n    )\n  )\n)",
+    "created" : 1500374977572.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3975838418",
+    "id" : "B48789E1",
+    "lastKnownWriteTime" : 1500374445,
+    "last_content_update" : 1500374445,
+    "path" : "~/Documents/GitHub/Multi-touch-Attribution/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

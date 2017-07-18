@@ -25,9 +25,9 @@ ui <- dashboardPage(
                 # A static infoBox
                 infoBox("Budget", 250000, icon = icon("dollar"),color = "purple",width = 2),
                 infoBox("Budget Used", 50000, icon = icon("hourglass-end"),color = "orange",width = 2),
-                infoBox("Conversion",120000, icon = icon("credit-card"),color = "green", width = 2),
+                infoBox("Conversion",120000, icon = icon("history"),color = "green", width = 2),
                 infoBox("Cost per Conversions", paste0(120000), icon = icon("credit-card"), color = "blue",width = 3),
-                infoBox("Revenue Generated", paste0(120000), icon = icon("credit-card"),color = "teal", width = 3)
+                infoBox("Revenue Generated", paste0(120000), icon = icon("bell"),color = "teal", width = 3)
               ),
               fluidRow(
                 box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),

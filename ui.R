@@ -132,27 +132,24 @@ ui <- dashboardPage(skin = "purple",
 #------------------------------------------------------------------------------------------------------------------------------------
 tabItem(tabName = "channelreport",
         
+        column(4,
         dateRangeInput('dateRange',
-                       label = 'Date range input: yyyy-mm-dd',
+                       label = '      Date range input: yyyy-mm-dd',
                        start = Sys.Date() - 2, end = Sys.Date() + 2
-        ),
+        ), offset = 9),
         
         fluidRow(
-          box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
           
-          box(title="Inputs",status = "warning",solidHeader = TRUE,
-              "Box content here", br(), "More box content",
-              sliderInput("slider", "Slider input:", 1, 100, 50),
-              textInput("text", "Text input:")
-          )
+          box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=280),width=8),
+          box(title="Channel Performance - Trend",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=280),width=8)
+          
         )
-),
+        
+        
+        )
+
+     )
 #------------------------------------------------------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------------------------------------------------------
-      # Second tab content
-      tabItem(tabName = "widgets",
-              h2("Widgets tab content")
-      )
     )
   )
-)

@@ -4,7 +4,9 @@ library(shinydashboard)
 
 ui <- dashboardPage(skin = "purple",
   dashboardHeader(title = "Multi-Touch Attribution"),
+  
   dashboardSidebar(
+
     sidebarMenu(
       menuItem("Summary Dashboard", tabName = "sumdashboard", icon = icon("bar-chart")),
       menuItem("Attribution Dashboard", tabName = "attrdashboard", icon = icon("list-alt")),
@@ -12,7 +14,37 @@ ui <- dashboardPage(skin = "purple",
       menuItem("Campaign Performance", tabName = "campaignreport", icon = icon("pie-chart")),
       menuItem("Path Report", tabName = "pathreport", icon = icon("arrows-alt"))
       
-    )
+      
+    ),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    br(),
+    sidebarUserPanel("Powered By : I2 Decisions", subtitle = NULL, image = NULL),
+    ## sidebarUserPanel(NULL,image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
+    img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=400,width=400)
   ),
   
   dashboardBody(
@@ -48,7 +80,7 @@ ui <- dashboardPage(skin = "purple",
                 )
               )
       ),
-################################################
+################################################################################################################################################
       tabItem(tabName = "attrdashboard",
               
               dateRangeInput('dateRange',
@@ -75,10 +107,10 @@ ui <- dashboardPage(skin = "purple",
                 )
               )
       ),
-################################################
+################################################################################################################################################
 
-##########################
-##########################
+#------------------------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------------------------------------
 tabItem(tabName = "channelreport",
         
         dateRangeInput('dateRange',
@@ -96,8 +128,8 @@ tabItem(tabName = "channelreport",
           )
         )
 ),
-##########################
-##########################
+#------------------------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------------------------------------
       # Second tab content
       tabItem(tabName = "widgets",
               h2("Widgets tab content")

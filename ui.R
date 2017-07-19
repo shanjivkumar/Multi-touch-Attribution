@@ -52,6 +52,11 @@ ui <- dashboardPage(skin = "purple",
 
       tabItem(tabName = "attrdashboard",
               
+              dateRangeInput('dateRange',
+                             label = 'Date range input: yyyy-mm-dd',
+                             start = Sys.Date() - 2, end = Sys.Date() + 2
+              ),
+              
               fluidRow(
                 box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
                 

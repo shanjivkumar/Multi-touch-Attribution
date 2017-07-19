@@ -6,6 +6,7 @@ server <- function(input, output) {
   histdata <- rnorm(500)
   
  
+  
   output$table <- renderDataTable(iris)
   
   output$plot1 <- renderPlot({

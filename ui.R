@@ -1,10 +1,15 @@
+#install.packages("shinythemes")
 library(shiny)
 library(shinydashboard)
+#library(shinythemes)
+library(DT)
 
 
 ui <- dashboardPage(skin = "purple",
   dashboardHeader(title = "Multi-Touch Attribution"),
   
+  
+
   dashboardSidebar(
 
     sidebarMenu(
@@ -43,9 +48,27 @@ ui <- dashboardPage(skin = "purple",
     br(),
     br(),
     sidebarUserPanel("Powered By : I2 Decisions", subtitle = NULL, image = NULL),
-    ## sidebarUserPanel(NULL,image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
+    sidebarUserPanel("www.i2decisions.com",image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
 
+
+<<<<<<< HEAD
     img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=40)
+=======
+<<<<<<< HEAD
+
+    
+
+    img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=100)
+
+    ##img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=40)
+=======
+    
+
+    ##img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=100)
+
+>>>>>>> 6b7690492ac44f443e2aa9fa387f8db5f115e6d8
+
+>>>>>>> ae71f06821a9b26099d0afc294b187bca129f378
 
   ),
   
@@ -78,6 +101,7 @@ ui <- dashboardPage(skin = "purple",
                 )
               ),
               fluidRow(
+                
                 tabBox(
                   title = "First tabBox",
                   # The id lets us use input$tabset1 on the server to find the current tab
@@ -86,44 +110,57 @@ ui <- dashboardPage(skin = "purple",
                   tabPanel("Tab2", "Tab content 2")
                 )
               )
+              
       ),
 ################################################################################################################################################
-      tabItem(tabName = "attrdashboard",
-              navbarPage("Multi-Touch Attribution",
-                         tabPanel("Summary Dashboard"),
-                         tabPanel("Attribution Dashboard"),
-                         tabPanel("Channel Performance")),
+      
+tabItem(tabName = "attrdashboard",
+             ## navbarPage("Multi-Touch Attribution",
+                        ## tabPanel("Summary Dashboard"),
+                        ## tabPanel("Attribution Dashboard"),
+                        ## tabPanel("Channel Performance")),
               
-              dateRangeInput('dateRange',
-                             label = 'Date range - "yyyy-mm-dd"',
-                             start = Sys.Date() - 2, end = Sys.Date() + 2
-              ),
-              
-              fluidRow(
-                box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
+       # fluidPage(theme = "bootstrap.css"),
+        #  fluidPage(theme = shinytheme("cyborg")),
+
+             # dateRangeInput('dateRange',
+                            # label = 'Date range - "yyyy-mm-dd"',
+                            # start = Sys.Date() - 2, end = Sys.Date() + 2
+             # ),
+        
+              #fluidRow(
+                #box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
                 
          
                 
-                box(title="Inputs",status = "warning",solidHeader = TRUE,
-                    "Box content here", br(), "More box content",
-                    sliderInput("slider", "Slider input:", 1, 100, 50),
-                    textInput("text", "Text input:")
-                )
-              ),
-              fluidRow(
-                tabBox(
-                  title = "First tabBox",
-                  # The id lets us use input$tabset1 on the server to find the current tab
-                  id = "tabset1", height = "250px",
-                  tabPanel("Tab1", "First tab content"),
-                  tabPanel("Tab2", "Tab content 2")
-                )
-              ),
-              fluidRow(dataTableOutput('table'))
-      ),
+                #box(title="Inputs",status = "warning",solidHeader = TRUE,
+                    #"Box content here", br(), "More box content",
+                   # sliderInput("slider", "Slider input:", 1, 100, 50),
+                   # textInput("text", "Text input:")
+                #)
+              #),
+             # fluidRow(
+             #   tabBox(
+             #     title = "First tabBox",
+             #     # The id lets us use input$tabset1 on the server to find the current tab
+             #     id = "tabset1", height = "250px",
+             #     tabPanel("Tab1", "First tab content"),
+             #     tabPanel("Tab2", "Tab content 2")
+             #   )
+             # ),
+            # dataTableOutput('mytable'),
+       
+         basicPage(
+         h2("The mtcars data"),
+         DT::dataTableOutput("mytable")
+         
+         
+              #fluidPage(downloadButton("report", "Generate report"))
+      )
+  ),
 ################################################################################################################################################
 
-#------------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------Channel report---------------------------------------------------------
 #------------------------------------------------------------------------------------------------------------------------------------
 tabItem(tabName = "channelreport",
         
@@ -141,12 +178,9 @@ tabItem(tabName = "channelreport",
               textInput("text", "Text input:")
           )
         )
-),
+
 #------------------------------------------------------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------------------------------------------------------
-      # Second tab content
-      tabItem(tabName = "widgets",
-              h2("Widgets tab content")
       )
     )
   )

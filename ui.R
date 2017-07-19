@@ -29,13 +29,14 @@ ui <- dashboardPage(
                 infoBox("Cost per Conversions", paste0(120000), icon = icon("credit-card"), color = "blue",width = 3),
                 infoBox("Revenue Generated", paste0(120000), icon = icon("dollar"),color = "maroon", width = 3)
               ),
+              
               fluidRow(
                 box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
                 
                 box(title="Inputs",status = "warning",solidHeader = TRUE,
-                  "Box content here", br(), "More box content",
-                  sliderInput("slider", "Slider input:", 1, 100, 50),
-                  textInput("text", "Text input:")
+                    "Box content here", br(), "More box content",
+                    sliderInput("slider", "Slider input:", 1, 100, 50),
+                    textInput("text", "Text input:")
                 )
               ),
               fluidRow(
@@ -49,25 +50,26 @@ ui <- dashboardPage(
               )
       ),
       tabItem(tabName = "attrdashboard",
-     
-       fluidRow(
-         box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
-         
-         box(title="Inputs",status = "warning",solidHeader = TRUE,
-             "Box content here", br(), "More box content",
-             sliderInput("slider", "Slider input:", 1, 100, 50),
-             textInput("text", "Text input:")
-         )
-       ),
-       fluidRow(
-         tabBox(
-           title = "First tabBox",
-           # The id lets us use input$tabset1 on the server to find the current tab
-           id = "tabset1", height = "250px",
-           tabPanel("Tab1", "First tab content"),
-           tabPanel("Tab2", "Tab content 2")
-         )
-       )
+              
+              
+              fluidRow(
+                box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
+                
+                box(title="Inputs",status = "warning",solidHeader = TRUE,
+                    "Box content here", br(), "More box content",
+                    sliderInput("slider", "Slider input:", 1, 100, 50),
+                    textInput("text", "Text input:")
+                )
+              ),
+              fluidRow(
+                tabBox(
+                  title = "First tabBox",
+                  # The id lets us use input$tabset1 on the server to find the current tab
+                  id = "tabset1", height = "250px",
+                  tabPanel("Tab1", "First tab content"),
+                  tabPanel("Tab2", "Tab content 2")
+                )
+              )
       )
       ,
       

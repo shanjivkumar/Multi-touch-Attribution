@@ -49,6 +49,7 @@ ui <- dashboardPage(
                 )
               )
       ),
+
       tabItem(tabName = "attrdashboard",
               
               dateRangeInput('dateRange',

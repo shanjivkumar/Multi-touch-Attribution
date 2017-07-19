@@ -49,7 +49,7 @@ ui <- dashboardPage(skin = "purple",
                 )
               )
       ),
-
+################################################
       tabItem(tabName = "attrdashboard",
               
               dateRangeInput('dateRange',
@@ -75,10 +75,30 @@ ui <- dashboardPage(skin = "purple",
                   tabPanel("Tab2", "Tab content 2")
                 )
               )
-      )
-      ,
-      
-      
+      ),
+################################################
+
+##########################
+##########################
+tabItem(tabName = "channelreport",
+        
+        dateRangeInput('dateRange',
+                       label = 'Date range input: yyyy-mm-dd',
+                       start = Sys.Date() - 2, end = Sys.Date() + 2
+        ),
+        
+        fluidRow(
+          box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
+          
+          box(title="Inputs",status = "warning",solidHeader = TRUE,
+              "Box content here", br(), "More box content",
+              sliderInput("slider", "Slider input:", 1, 100, 50),
+              textInput("text", "Text input:")
+          )
+        )
+),
+##########################
+##########################
       # Second tab content
       tabItem(tabName = "widgets",
               h2("Widgets tab content")

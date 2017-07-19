@@ -1,18 +1,16 @@
 library(shiny)
 library(shinydashboard)
+library(data.table)
+library(datasets)
+library(DT)
 
 server <- function(input, output) {
-  set.seed(122)
-  histdata <- rnorm(500)
-
-  output$value <- 90
   
- 
   
-  output$table <- renderDataTable(iris)
+  output$mytable = DT::renderDataTable({mtcars})
   
-  output$plot1 <- renderPlot({
-    data <- histdata[seq_len(input$slider)]
-    hist(data)
-  })
+  ##output$table <- renderTable(iris)
+  ##output$mytable <- renderDataTable({iris})
+  
+    
 }

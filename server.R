@@ -4,18 +4,10 @@ library(ggplot2)
 library(data.table)
 library(datasets)
 library(DT)
-buget<-read.csv("/Users/harishrajendran/Documents/GitHub/Multi-touch-Attribution/Budget.csv")
-
-
-server <- function(input, output) {
-  set.seed(122)
-  histdata <- rnorm(500)
+buget<-read.csv("D:/i2Decisions/17. Multi-touch attribution/2. Codes/Multi-touch-Attribution/Budget.csv")
 
 
  
-  
-  output$table <- renderDataTable(iris)
-
 server <- function(input,output){
   output$plot2<-renderPlot({
     ggplot(data=buget,aes(x=date,y=roi))+geom_bar(stat="identity")})

@@ -45,29 +45,20 @@ ui <- dashboardPage(skin = "purple",
     sidebarUserPanel("Powered By : I2 Decisions", subtitle = NULL, image = NULL),
     ## sidebarUserPanel(NULL,image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
 
-<<<<<<< HEAD
-    
-
-    img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=100)
-=======
     img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=40)
->>>>>>> 16e333e496ed37e6bb77708d5709b1a410dd945c
 
   ),
   
   dashboardBody(
     
-<<<<<<< HEAD
-  
-=======
->>>>>>> 16e333e496ed37e6bb77708d5709b1a410dd945c
+
     tabItems(
       
       # First tab content
       tabItem(tabName = "sumdashboard",
-              
               fluidRow(
                 # A static infoBox
+                
                 box(tags$b("Budget"),br(), 250000,width = 2, background = "olive"),
                 box(tags$b("Budget Used"),br(), 50000,width = 2, background = "olive"),
                 box(tags$b("Conversion"),br(),120000,width = 2, background = "olive"),
@@ -76,6 +67,8 @@ ui <- dashboardPage(skin = "purple",
                 box(tags$b("Revenue Generated"),br(), paste0(120000),width = 2, background = "olive")
               ),
               fluidRow(
+                box(plotOutput("plot2")),
+                box(plotOutput("plot3")),
                 box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
                 
                 box(title="Inputs",status = "warning",solidHeader = TRUE,

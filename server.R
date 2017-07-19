@@ -4,7 +4,7 @@ library(ggplot2)
 library(data.table)
 library(datasets)
 library(DT)
-buget<-read.csv("D:/i2Decisions/17. Multi-touch attribution/2. Codes/Multi-touch-Attribution/Budget.csv")
+buget<-read.csv("/Users/harishrajendran/Documents/GitHub/Multi-touch-Attribution/Budget.csv")
 
 
 server <- function(input, output) {
@@ -40,4 +40,4 @@ server <- function(input,output){
 
 
 
->>>>>>> 4f80526a066e966bc0b95cb4ea60dce0ff8bdb4e
+

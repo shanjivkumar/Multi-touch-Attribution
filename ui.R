@@ -104,6 +104,29 @@ ui <- dashboardPage(skin = "purple",
 ################################################################################################################################################
       
 tabItem(tabName = "attrdashboard",
+        
+        #///////////////////////////////////////////////////////
+        frow1 <- fluidRow(
+          tabBox(
+            title = "Data Viewer"
+            ,width = 12
+            ,id = "dataTabBox"
+            ,tabPanel(
+              title = "Sales by Model"
+              ,dataTableOutput("mytable1")
+            )
+            ,tabPanel(
+              title = "Sales by Quarter"
+              ,dataTableOutput("mytable2")
+            )
+            ,tabPanel(
+              title = "Prior Year Sales"
+              ,dataTableOutput("mytable3")
+            )
+          )
+        )
+        
+        #///////////////////////////////////////////////////////////
              ## navbarPage("Multi-Touch Attribution",
                         ## tabPanel("Summary Dashboard"),
                         ## tabPanel("Attribution Dashboard"),
@@ -119,13 +142,10 @@ tabItem(tabName = "attrdashboard",
         
               #fluidRow(
                 #box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
-                
-         
-                
-                #box(title="Inputs",status = "warning",solidHeader = TRUE,
-                    #"Box content here", br(), "More box content",
-                   # sliderInput("slider", "Slider input:", 1, 100, 50),
-                   # textInput("text", "Text input:")
+                  #box(title="Inputs",status = "warning",solidHeader = TRUE,
+                  #"Box content here", br(), "More box content",
+                  # sliderInput("slider", "Slider input:", 1, 100, 50),
+                  # textInput("text", "Text input:")
                 #)
               #),
              # fluidRow(
@@ -139,13 +159,12 @@ tabItem(tabName = "attrdashboard",
              # ),
             # dataTableOutput('mytable'),
        
-         basicPage(
-         h2("The mtcars data"),
-         DT::dataTableOutput("mytable")
+        # fluidPage(
+        # h2("The mtcars data"),
+        # dataTableOutput("mytable")
          
-         
-              #fluidPage(downloadButton("report", "Generate report"))
-      )
+        #fluidPage(downloadButton("report", "Generate report"))
+      #)
   ),
 ################################################################################################################################################
 

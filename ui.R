@@ -3,7 +3,7 @@ library(shinydashboard)
 
 
 
-ui <- dashboardPage(
+ui <- dashboardPage(skin = "purple",
   dashboardHeader(title = "Multi-Touch Attribution"),
   dashboardSidebar(
     sidebarMenu(
@@ -23,13 +23,13 @@ ui <- dashboardPage(
       tabItem(tabName = "sumdashboard",
               fluidRow(
                 # A static infoBox
-                infoBox("Budget", value = textOutput("value"), icon = icon("dollar"),color = "purple",width = 2),
-                infoBox("Budget Used", 25000, icon = icon("hourglass-end"),color = "orange",width = 2),
-                infoBox("Conversion",120000, icon = icon("history"),color = "green", width = 2),
-                infoBox("Cost per Conversions", paste0(120000), icon = icon("credit-card"), color = "blue",width = 3),
-                infoBox("Revenue Generated", paste0(120000), icon = icon("dollar"),color = "maroon", width = 3)
+                box(tags$b("Budget"),br(), 250000,width = 2, background = "olive"),
+                box(tags$b("Budget Used"),br(), 50000,width = 2, background = "olive"),
+                box(tags$b("Conversion"),br(),120000,width = 2, background = "olive"),
+                box(tags$b("Cost per Conversions"),br(),3.6,width = 2, background = "olive"),
+                box(tags$b("Revenue Generated"),br(), paste0(120000),width = 2, background = "olive"),
+                box(tags$b("Revenue Generated"),br(), paste0(120000),width = 2, background = "olive")
               ),
-              
               fluidRow(
                 box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
                 
@@ -51,11 +51,6 @@ ui <- dashboardPage(
       ),
 
       tabItem(tabName = "attrdashboard",
-              
-              dateRangeInput('dateRange',
-                                                          label = 'Date range input: yyyy-mm-dd',
-                                                          start = Sys.Date() - 2, end = Sys.Date() + 2
-                                          ),
               
               fluidRow(
                 box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),

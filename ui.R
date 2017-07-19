@@ -29,6 +29,7 @@ ui <- dashboardPage(
                 infoBox("Cost per Conversions", paste0(120000), icon = icon("credit-card"), color = "blue",width = 3),
                 infoBox("Revenue Generated", paste0(120000), icon = icon("bell"),color = "teal", width = 3)
               ),
+              
               fluidRow(
                 box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
                 
@@ -49,6 +50,7 @@ ui <- dashboardPage(
               )
       ),
       tabItem(tabName = "attrdashboard",
+              
               
               fluidRow(
                 box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),

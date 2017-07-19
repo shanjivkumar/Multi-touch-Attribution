@@ -81,6 +81,7 @@ ui <- dashboardPage(skin = "purple",
                 )
               ),
               fluidRow(
+                
                 tabBox(
                   title = "First tabBox",
                   # The id lets us use input$tabset1 on the server to find the current tab
@@ -89,6 +90,7 @@ ui <- dashboardPage(skin = "purple",
                   tabPanel("Tab2", "Tab content 2")
                 )
               )
+              
       ),
 ################################################################################################################################################
       tabItem(tabName = "attrdashboard",
@@ -122,7 +124,7 @@ ui <- dashboardPage(skin = "purple",
                   tabPanel("Tab2", "Tab content 2")
                 )
               ),
-              fluidRow(dataTableOutput('table'))
+              fluidPage(downloadButton("report", "Generate report"))
       ),
 ################################################################################################################################################
 

@@ -8,6 +8,7 @@ server <- function(input, output) {
   output$value <- 90
   
  
+  
   output$table <- renderDataTable(iris)
   
   output$plot1 <- renderPlot({

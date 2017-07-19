@@ -2,7 +2,6 @@ library(shiny)
 library(shinydashboard)
 
 
-
 ui <- dashboardPage(skin = "purple",
   dashboardHeader(title = "Multi-Touch Attribution"),
   dashboardSidebar(

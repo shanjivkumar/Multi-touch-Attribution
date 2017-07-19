@@ -48,14 +48,22 @@ ui <- dashboardPage(skin = "purple",
     br(),
     br(),
     sidebarUserPanel("Powered By : I2 Decisions", subtitle = NULL, image = NULL),
-    ## sidebarUserPanel(NULL,image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
+    sidebarUserPanel("www.i2decisions.com",image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
 
+
+<<<<<<< HEAD
 
     
 
     img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=100)
 
     ##img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=40)
+=======
+    
+
+    ##img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=100)
+
+>>>>>>> 6b7690492ac44f443e2aa9fa387f8db5f115e6d8
 
 
   ),
@@ -146,7 +154,7 @@ tabItem(tabName = "attrdashboard",
   ),
 ################################################################################################################################################
 
-#------------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------Channel report---------------------------------------------------------
 #------------------------------------------------------------------------------------------------------------------------------------
 tabItem(tabName = "channelreport",
         

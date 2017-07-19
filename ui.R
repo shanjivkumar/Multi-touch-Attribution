@@ -3,6 +3,7 @@ library(shiny)
 library(shinydashboard)
 #library(shinythemes)
 library(DT)
+library(ggplot2)
 
 
 ui <- dashboardPage(skin = "purple",
@@ -84,15 +85,9 @@ ui <- dashboardPage(skin = "purple",
                 box(tags$b("Revenue Generated"),br(), paste0(120000),width = 2, background = "olive")
               ),
               fluidRow(
-                box(plotOutput("plot2")),
-                box(plotOutput("plot3")),
-                box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
+                box(plotOutput("plot2", height = 250)),
+                box(plotOutput("plot3", height = 250))
                 
-                box(title="Inputs",status = "warning",solidHeader = TRUE,
-                    "Box content here", br(), "More box content",
-                    sliderInput("slider", "Slider input:", 1, 100, 50),
-                    textInput("text", "Text input:")
-                )
               ),
               fluidRow(
                 

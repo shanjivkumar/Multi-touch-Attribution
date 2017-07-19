@@ -8,7 +8,7 @@ buget<-read.csv("D:/i2Decisions/17. Multi-touch attribution/2. Codes/Multi-touch
 
 server <- function(input,output){
   output$plot2<-renderPlot({
-    ggplot(data=buget,aes(x=date,y=roi))+geom_bar(stat="identity")},height = 400,width = 400)
+    ggplot(data=buget,aes(x=date,y=roi))+geom_bar(stat="identity")})
   output$plot3 <- renderPlot({
     hist(buget$roi)
   output$mytable1 = renderDataTable(buget)
@@ -16,7 +16,10 @@ server <- function(input,output){
   output$mytable3 = renderDataTable(buget)
   
   })
+
 }
+
+
 
 
 

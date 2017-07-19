@@ -21,6 +21,7 @@ ui <- dashboardPage(skin = "purple",
     tabItems(
       # First tab content
       tabItem(tabName = "sumdashboard",
+              
               fluidRow(
                 # A static infoBox
                 box(tags$b("Budget"),br(), 250000,width = 2, background = "olive"),
@@ -51,14 +52,20 @@ ui <- dashboardPage(skin = "purple",
       ),
 ################################################################################################################################################
       tabItem(tabName = "attrdashboard",
+              navbarPage("Multi-Touch Attribution",
+                         tabPanel("Summary Dashboard"),
+                         tabPanel("Attribution Dashboard"),
+                         tabPanel("Channel Performance")),
               
               dateRangeInput('dateRange',
-                             label = 'Date range input: yyyy-mm-dd',
+                             label = 'Date range - "yyyy-mm-dd"',
                              start = Sys.Date() - 2, end = Sys.Date() + 2
               ),
               
               fluidRow(
                 box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
+                
+         
                 
                 box(title="Inputs",status = "warning",solidHeader = TRUE,
                     "Box content here", br(), "More box content",
@@ -74,7 +81,8 @@ ui <- dashboardPage(skin = "purple",
                   tabPanel("Tab1", "First tab content"),
                   tabPanel("Tab2", "Tab content 2")
                 )
-              )
+              ),
+              fluidRow(dataTableOutput('table'))
       ),
 ################################################################################################################################################
 

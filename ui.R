@@ -44,7 +44,7 @@ ui <- dashboardPage(skin = "purple",
     br(),
     sidebarUserPanel("Powered By : I2 Decisions", subtitle = NULL, image = NULL),
     ## sidebarUserPanel(NULL,image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
-    img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=400,width=400)
+    img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=40)
   ),
   
   dashboardBody(

@@ -13,7 +13,7 @@ server <- function(input,output){
     hist(buget$roi)
     output$mytable1 = renderDataTable(buget)
     output$mytable2 = renderDataTable(buget)
-    output$mytable3 = renderDataTable(buget)
+    output$mytable3 = renderDataTable(iris)
     #
   })
   

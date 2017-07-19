@@ -109,10 +109,11 @@ ui <- dashboardPage(skin = "purple",
                                 frow1 <- fluidRow(
                                   tabBox(
                                     title = "Data Viewer"
-                                    ,width = 12
+                                    ,width = 9
                                     ,id = "dataTabBox"
                                     ,tabPanel(
-                                      title = "Sales by Model"
+                                      title = "Sales by Model",
+                                      width = 4
                                       ,dataTableOutput("mytable1")
                                     )
                                     ,tabPanel(

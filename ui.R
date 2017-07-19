@@ -45,22 +45,19 @@ ui <- dashboardPage(skin = "purple",
     sidebarUserPanel("Powered By : I2 Decisions", subtitle = NULL, image = NULL),
     ## sidebarUserPanel(NULL,image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
 
-<<<<<<< HEAD
+
     
 
     img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=100)
-=======
-    img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=40)
->>>>>>> 16e333e496ed37e6bb77708d5709b1a410dd945c
+
+    ##img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=40)
+
 
   ),
   
   dashboardBody(
     
-<<<<<<< HEAD
-  
-=======
->>>>>>> 16e333e496ed37e6bb77708d5709b1a410dd945c
+
     tabItems(
       
       # First tab content

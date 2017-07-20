@@ -11,6 +11,10 @@ server <- function(input,output){
     ggplot(data=buget,aes(x=date,y=roi))+geom_bar(stat="identity")})
   output$plot3 <- renderPlot({
     hist(buget$roi)
+  output$plot1<-renderPlot({
+    ggplot(data=buget,aes(x=date,y=roi))+geom_bar(stat="identity")})
+  output$plot4<-renderPlot({
+    ggplot(data=buget,aes(x=date,y=roi))+geom_bar(stat="identity")})
     output$mytable1 = renderDataTable(buget)
    # output$mytable2 = renderDataTable(buget)
    # output$mytable3 = renderDataTable(iris)

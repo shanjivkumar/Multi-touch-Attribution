@@ -49,20 +49,11 @@ ui <- dashboardPage(skin = "purple",
                       br(),
                       br(),
                       sidebarUserPanel("Powered By : I2 Decisions", subtitle = NULL, image = NULL),
-                      sidebarUserPanel("www.i2decisions.com",image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png"),
+                      sidebarUserPanel("www.i2decisions.com",image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
                       
                       
                       
-                      img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=40)
-                      
-                      
-                      
-                      
-                      
-                      ##img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=40)
-                      
-                      
-                      ##img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=100)
+                     
                       
                       
                     ),
@@ -184,14 +175,16 @@ ui <- dashboardPage(skin = "purple",
                                 ),
                                 
                                 fluidRow(
-                                  box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
+                                  column(width = 10, 
+                                  box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 10,plotOutput("plot1",height=300)),
+                                  box(tags$b("Budget"),br(), 250000,width = 2, background = "olive") ,
+                                  box(tags$b("Budget"),br(), 250000,width = 2, background = "olive") 
+                                  )),
                                   
-                                  box(title="Inputs",status = "warning",solidHeader = TRUE,
-                                      "Box content here", br(), "More box content",
-                                      sliderInput("slider", "Slider input:", 1, 100, 50),
-                                      textInput("text", "Text input:")
-                                  )
-                                )
+                                fluidRow(
+                                  column(width = 12, 
+                                  box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 8,plotOutput("plot4",height=300))
+                                ))
                                 #
                                 #------------------------------------------------------------------------------------------------------------------------------------
                                 #------------------------------------------------------------------------------------------------------------------------------------

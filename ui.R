@@ -44,7 +44,7 @@ ui <- dashboardPage(skin = "purple",
                       br(),
                       sidebarUserPanel("Powered By : I2 Decisions", subtitle = NULL, image = NULL),
                       sidebarUserPanel("www.i2decisions.com",image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
-                      ),
+                    ),
                     dashboardBody(
                       tabItems(
                         # First tab content
@@ -65,7 +65,8 @@ ui <- dashboardPage(skin = "purple",
                                   frow1 <- bootstrapPage(
                                     column(6,
                                            dataTableOutput("mytable2", width="100%"))  ##Table we're trying to display##
-                                  )
+                                  ),
+                                  box(plotOutput("plot4", height = 250))
                                 )#,
                                 #fluidRow(
                                 #  
@@ -165,24 +166,54 @@ ui <- dashboardPage(skin = "purple",
                         #------------------------------------------------------------------------------------------------------------------------------------
                         tabItem(tabName = "channelreport",
                                 
-                                dateRangeInput('dateRange',
-                                               label = 'Date range input: yyyy-mm-dd',
+                                column (width = 3,offset = 9,
+                                        dateRangeInput('dateRange',
+                                               label = tags$b("Date range :  YYYY-MM-DD"),
                                                start = Sys.Date() - 2, end = Sys.Date() + 2
-                                ),
+                                )),
                                 
                                 fluidRow(
-                                  box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
-                                  
-                                  box(title="Inputs",status = "warning",solidHeader = TRUE,
-                                      "Box content here", br(), "More box content",
-                                      sliderInput("slider", "Slider input:", 1, 100, 50),
-                                      textInput("text", "Text input:")
-                                  )
-                                )
+                                  column(width = 9, 
+                                         box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
+                                         #box(tags$b("Budget"),br(), 250000,width = 2,offset = 9, background = "olive") ,
+                                         #box(tags$b("Budget"),br(), 250000,width = 2,offset = 9, background = "olive") 
+                                  ),
+                                  column(width = 3, br(),
+                                         #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
+                                         box(selectInput("Monthlychannel", label = "Month",
+                                                                                choices = c("Awareness", "Engagement", "ROI"))
+                                             ,width = 8,offset =2) ,
+                                         box(selectInput("quarterlychannel", label = "Quarter",
+                                                        choices = c("Awareness", "Engagement", "ROI"))
+                                            ,width = 8,offset =2) ,
+                                         box(selectInput("yearlychannel", label = "Year",
+                                                         choices = c("Awareness", "Engagement", "ROI"))
+                                             ,width = 8,offset =2) 
+                                         
+                                         
+                                         )),
+                                
+                                fluidRow(
+                                  column(width = 8, 
+                                         box(title="Channel Performance - Trend",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot6",height=300))
+                                  ),
+                                column(width = 4, br(),
+                                       #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
+                                       box(selectInput("objective$channel", label = "Objective",
+                                                       choices = c("Awareness", "Engagement", "ROI"))
+                                           ,width = 8,offset =2) ,
+                                       box(selectInput("type$channel", label = "Channel Type",
+                                                       choices = c("Awareness", "Engagement", "ROI"))
+                                           ,width = 8,offset =2) ,
+                                       box(selectInput("kpi$channel", label = "KPI",
+                                                       choices = c("Awareness", "Engagement", "ROI"))
+                                           ,width = 8,offset =2) )
                                 #
                                 #------------------------------------------------------------------------------------------------------------------------------------
                                 #------------------------------------------------------------------------------------------------------------------------------------
                         )
                       )
                     )
+     )
 )
+

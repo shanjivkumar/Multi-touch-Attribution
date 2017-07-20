@@ -65,7 +65,8 @@ ui <- dashboardPage(skin = "purple",
                                   frow1 <- bootstrapPage(
                                     column(6,
                                            dataTableOutput("mytable2", width="100%"))  ##Table we're trying to display##
-                                  )
+                                  ),
+                                  box(plotOutput("plot4", height = 250))
                                 )#,
                                 #fluidRow(
                                 #  

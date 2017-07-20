@@ -107,6 +107,7 @@ ui <- dashboardPage(skin = "purple",
                                 
                                 #///////////////////////////////////////////////////////
                                 frow1 <- fluidRow(
+<<<<<<< HEAD
                                   tabBox(
                                     title = "Data Viewer"
                                     ,width = 12
@@ -125,6 +126,32 @@ ui <- dashboardPage(skin = "purple",
                                     )
                                   )
                                 )
+=======
+                                  column(10,align ='center', h1('Attribution'),
+                                  dataTableOutput("mytable1", width="100%"))  ##Table we're trying to display##
+                                ),
+                                 ### Below lines are used to create tabs within a page
+                                
+                                 #tabBox(
+                                 #   title = "Data Viewer"
+                                 #   ,width = 9
+                                 #   ,id = "dataTabBox"
+                                 #   ,tabPanel(
+                                 #     title = "Sales by Model",
+                                 #     width = 4,
+                                 #     dataTableOutput("mytable1")  ##Table we're trying to display##
+                                 #   )
+                                    #,tabPanel(
+                                      #title = "Sales by Quarter"
+                                      #,dataTableOutput("mytable2")
+                                    #)
+                                   # ,tabPanel(
+                                    #  title = "Prior Year Sales"
+                                    #  ,dataTableOutput("mytable3")
+                                    #)
+                                  
+                                
+>>>>>>> e8012d414a7b7f975225766a8591e5566781de75
                                 
                                 #///////////////////////////////////////////////////////////
                                 ## navbarPage("Multi-Touch Attribution",

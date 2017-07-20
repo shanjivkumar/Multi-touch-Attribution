@@ -63,8 +63,8 @@ ui <- dashboardPage(skin = "purple",
                                   box(plotOutput("plot2", height = 250)),
                                   box(plotOutput("plot3", height = 250)),
                                   frow1 <- fluidRow(
-                                    column(2,
-                                           dataTableOutput("mytable2", width="80%"))  ##Table we're trying to display##
+                                    column(6,
+                                           dataTableOutput("mytable2", width="100%"))  ##Table we're trying to display##
                                   )
                                 )#,
                                 #fluidRow(

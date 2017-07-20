@@ -62,7 +62,7 @@ ui <- dashboardPage(skin = "purple",
                                 fluidRow(
                                   box(plotOutput("plot2", height = 250)),
                                   box(plotOutput("plot3", height = 250)),
-                                  frow1 <- fluidRow(
+                                  frow1 <- bootstrapPage(
                                     column(6,
                                            dataTableOutput("mytable2", width="100%"))  ##Table we're trying to display##
                                   )
@@ -84,7 +84,7 @@ ui <- dashboardPage(skin = "purple",
                         tabItem(tabName = "attrdashboard",
                                 
                                 #///////////////////////////////////////////////////////
-                                frow1 <- fluidRow(
+                                frow1 <- basicPage(
                                   column(10,align ='center', h1('Attribution'),
                                          dataTableOutput("mytable1", width="100%"))  ##Table we're trying to display##
                                 ),

@@ -44,7 +44,7 @@ ui <- dashboardPage(skin = "purple",
                       br(),
                       sidebarUserPanel("Powered By : I2 Decisions", subtitle = NULL, image = NULL),
                       sidebarUserPanel("www.i2decisions.com",image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
-<<<<<<< HEAD
+
                       
                       
                       
@@ -53,9 +53,7 @@ ui <- dashboardPage(skin = "purple",
                       
                     ),
                     
-=======
                       ),
->>>>>>> 86325ccea72c95416eb1e88ed02a28091aa1a9a3
                     dashboardBody(
                       tabItems(
                         # First tab content

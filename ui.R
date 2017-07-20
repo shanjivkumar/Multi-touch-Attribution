@@ -1,7 +1,7 @@
 #install.packages("shinythemes")
 library(shiny)
 library(shinydashboard)
-#library(shinythemes)
+library(shinythemes)
 library(DT)
 library(ggplot2)
 
@@ -83,10 +83,17 @@ ui <- dashboardPage(skin = "purple",
                         
                         tabItem(tabName = "attrdashboard",
                                 
+                                frow1 <- fluidRow(column(4,align ='center', h1('Selection')),
+                                      sidebarPanel(
+                                  selectInput("Objective", "Choose an objective:",
+                                              choices = c("Awareness", "Engagement", "ROI")),
+                                  
+                                  numericInput("obs", "Observations:", 10)
+                                )),
                                 #///////////////////////////////////////////////////////
-                                frow1 <- basicPage(
-                                  column(10,align ='center', h1('Attribution'),
-                                         dataTableOutput("mytable1", width="100%"))  ##Table we're trying to display##
+                                frow2 <- fluidRow(
+                                  column(8,align ='center', h1('Attribution'),
+                                         dataTableOutput("mytable1", width="100%"), theme = shinytheme("cyborg"))  ##Table we're trying to display##
                                 ),
                                 ### Below lines are used to create tabs within a page
                                 

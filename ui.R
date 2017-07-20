@@ -165,14 +165,16 @@ ui <- dashboardPage(skin = "purple",
                                 ),
                                 
                                 fluidRow(
-                                  box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
-                                  
-                                  box(title="Inputs",status = "warning",solidHeader = TRUE,
-                                      "Box content here", br(), "More box content",
-                                      sliderInput("slider", "Slider input:", 1, 100, 50),
-                                      textInput("text", "Text input:")
-                                  )
-                                )
+                                  column(width = 10, 
+                                         box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 10,plotOutput("plot1",height=300)),
+                                         box(tags$b("Budget"),br(), 250000,width = 2, background = "olive") ,
+                                         box(tags$b("Budget"),br(), 250000,width = 2, background = "olive") 
+                                  )),
+                                
+                                fluidRow(
+                                  column(width = 12, 
+                                         box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 8,plotOutput("plot6",height=300))
+                                  ))
                                 #
                                 #------------------------------------------------------------------------------------------------------------------------------------
                                 #------------------------------------------------------------------------------------------------------------------------------------

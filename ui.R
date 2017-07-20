@@ -107,8 +107,8 @@ ui <- dashboardPage(skin = "purple",
                                 
                                 #///////////////////////////////////////////////////////
                                 frow1 <- fluidRow(
-                                  column(2,
-                                  dataTableOutput("mytable1", width="80%"))  ##Table we're trying to display##
+                                  column(10,align ='center', h1('Attribution'),
+                                  dataTableOutput("mytable1", width="100%"))  ##Table we're trying to display##
                                 ),
                                  ### Below lines are used to create tabs within a page
                                 

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #install.packages("shinythemes")
 library(shiny)
 library(shinydashboard)
@@ -45,16 +44,7 @@ ui <- dashboardPage(skin = "purple",
                       br(),
                       sidebarUserPanel("Powered By : I2 Decisions", subtitle = NULL, image = NULL),
                       sidebarUserPanel("www.i2decisions.com",image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
-
-                      
-                      
-                      
-                     
-                      
-                      
                     ),
-                    
-                      ),
                     dashboardBody(
                       tabItems(
                         # First tab content
@@ -175,16 +165,14 @@ ui <- dashboardPage(skin = "purple",
                                 ),
                                 
                                 fluidRow(
-                                  column(width = 10, 
-                                  box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 10,plotOutput("plot1",height=300)),
-                                  box(tags$b("Budget"),br(), 250000,width = 2, background = "olive") ,
-                                  box(tags$b("Budget"),br(), 250000,width = 2, background = "olive") 
-                                  )),
+                                  box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
                                   
-                                fluidRow(
-                                  column(width = 12, 
-                                  box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 8,plotOutput("plot4",height=300))
-                                ))
+                                  box(title="Inputs",status = "warning",solidHeader = TRUE,
+                                      "Box content here", br(), "More box content",
+                                      sliderInput("slider", "Slider input:", 1, 100, 50),
+                                      textInput("text", "Text input:")
+                                  )
+                                )
                                 #
                                 #------------------------------------------------------------------------------------------------------------------------------------
                                 #------------------------------------------------------------------------------------------------------------------------------------
@@ -192,5 +180,3 @@ ui <- dashboardPage(skin = "purple",
                       )
                     )
 )
-=======
->>>>>>> e52e95622714c7598a03754cb5cfbc4b0c5969a8

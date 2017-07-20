@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #install.packages("shinythemes")
 library(shiny)
 library(shinydashboard)
@@ -191,3 +192,5 @@ ui <- dashboardPage(skin = "purple",
                       )
                     )
 )
+=======
+>>>>>>> e52e95622714c7598a03754cb5cfbc4b0c5969a8

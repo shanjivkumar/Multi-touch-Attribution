@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 library(shiny)
 library(shinydashboard)
 library(ggplot2)
@@ -47,3 +48,5 @@ server <- function(input,output){
   }
 
 
+=======
+>>>>>>> e52e95622714c7598a03754cb5cfbc4b0c5969a8

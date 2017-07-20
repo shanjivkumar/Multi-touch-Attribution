@@ -159,26 +159,54 @@ ui <- dashboardPage(skin = "purple",
                         #------------------------------------------------------------------------------------------------------------------------------------
                         tabItem(tabName = "channelreport",
                                 
-                                dateRangeInput('dateRange',
-                                               label = 'Date range input: yyyy-mm-dd',
+                                column (width = 3,offset = 9,
+                                        dateRangeInput('dateRange',
+                                               label = tags$b("Date range :  YYYY-MM-DD"),
                                                start = Sys.Date() - 2, end = Sys.Date() + 2
-                                ),
+                                )),
                                 
                                 fluidRow(
-                                  column(width = 10, 
-                                         box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 10,plotOutput("plot1",height=300)),
-                                         box(tags$b("Budget"),br(), 250000,width = 2, background = "olive") ,
-                                         box(tags$b("Budget"),br(), 250000,width = 2, background = "olive") 
-                                  )),
+                                  column(width = 9, 
+                                         box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
+                                         #box(tags$b("Budget"),br(), 250000,width = 2,offset = 9, background = "olive") ,
+                                         #box(tags$b("Budget"),br(), 250000,width = 2,offset = 9, background = "olive") 
+                                  ),
+                                  column(width = 3, br(),
+                                         #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
+                                         box(selectInput("Monthlychannel", label = "Month",
+                                                                                choices = c("Awareness", "Engagement", "ROI"))
+                                             ,width = 8,offset =2) ,
+                                         box(selectInput("quarterlychannel", label = "Quarter",
+                                                        choices = c("Awareness", "Engagement", "ROI"))
+                                            ,width = 8,offset =2) ,
+                                         box(selectInput("yearlychannel", label = "Year",
+                                                         choices = c("Awareness", "Engagement", "ROI"))
+                                             ,width = 8,offset =2) 
+                                         
+                                         
+                                         )),
                                 
                                 fluidRow(
-                                  column(width = 12, 
-                                         box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 8,plotOutput("plot6",height=300))
-                                  ))
+                                  column(width = 8, 
+                                         box(title="Channel Performance - Trend",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot6",height=300))
+                                  ),
+                                column(width = 4, br(),
+                                       #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
+                                       box(selectInput("objective$channel", label = "Objective",
+                                                       choices = c("Awareness", "Engagement", "ROI"))
+                                           ,width = 8,offset =2) ,
+                                       box(selectInput("type$channel", label = "Channel Type",
+                                                       choices = c("Awareness", "Engagement", "ROI"))
+                                           ,width = 8,offset =2) ,
+                                       box(selectInput("kpi$channel", label = "KPI",
+                                                       choices = c("Awareness", "Engagement", "ROI"))
+                                           ,width = 8,offset =2) )
                                 #
                                 #------------------------------------------------------------------------------------------------------------------------------------
                                 #------------------------------------------------------------------------------------------------------------------------------------
                         )
                       )
                     )
+     )
 )
+

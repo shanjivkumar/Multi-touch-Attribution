@@ -107,46 +107,38 @@ ui <- dashboardPage(skin = "purple",
                                 
                                 #///////////////////////////////////////////////////////
                                 frow1 <- fluidRow(
-                                  column(2,
-                                  dataTableOutput("mytable1", width="80%"))  ##Table we're trying to display##
-                                ),
-                                 ### Below lines are used to create tabs within a page
+                                  tabBox(
+                                    title = "Data Viewer"
+                                    ,width = 12
+                                    ,id = "dataTabBox"
+                                    ,tabPanel(
+                                      title = "Sales by Model"
+                                      ,dataTableOutput("mytable1")
+                                    )
+                                    ,tabPanel(
+                                      title = "Sales by Quarter"
+                                      ,dataTableOutput("mytable2")
+                                    )
+                                    ,tabPanel(
+                                      title = "Prior Year Sales"
+                                      ,dataTableOutput("mytable3")
+                                    )
+                                  )
+                                )
                                 
-                                 #tabBox(
-                                 #   title = "Data Viewer"
-                                 #   ,width = 9
-                                 #   ,id = "dataTabBox"
-                                 #   ,tabPanel(
-                                 #     title = "Sales by Model",
-                                 #     width = 4,
-                                 #     dataTableOutput("mytable1")  ##Table we're trying to display##
-                                 #   )
-                                    #,tabPanel(
-                                      #title = "Sales by Quarter"
-                                      #,dataTableOutput("mytable2")
-                                    #)
-                                   # ,tabPanel(
-                                    #  title = "Prior Year Sales"
-                                    #  ,dataTableOutput("mytable3")
-                                    #)
-                                  
-                                
-                                
-                                #//////Below lines can be used to create navigation bars within a page/////////////////////////////////////////////////////
+                                #///////////////////////////////////////////////////////////
                                 ## navbarPage("Multi-Touch Attribution",
                                 ## tabPanel("Summary Dashboard"),
                                 ## tabPanel("Attribution Dashboard"),
                                 ## tabPanel("Channel Performance")),
                                 
-                                 fluidPage(theme = "bootstrap.css") ###----Themes for the page----###
-                                # fluidPage(theme = shinytheme("cyborg")),
+                                # fluidPage(theme = "bootstrap.css"),
+                                #  fluidPage(theme = shinytheme("cyborg")),
                                 
                                 # dateRangeInput('dateRange',
                                 # label = 'Date range - "yyyy-mm-dd"',
                                 # start = Sys.Date() - 2, end = Sys.Date() + 2
                                 # ),
-                                
-                                #-----HIstogram------#
                                 
                                 #fluidRow(
                                 #box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
@@ -174,7 +166,7 @@ ui <- dashboardPage(skin = "purple",
                                 #fluidPage(downloadButton("report", "Generate report"))
                                 #)
                         ),
-                        ###############-------END of Attributoin dashboard-------------------------#############################################################################################
+                        ################################################################################################################################################
                         
                         #--------------------------------------------------Channel report---------------------------------------------------------
                         #------------------------------------------------------------------------------------------------------------------------------------

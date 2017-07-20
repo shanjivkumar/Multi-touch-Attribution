@@ -12,8 +12,8 @@ server <- function(input,output){
   output$plot3 <- renderPlot({
     hist(buget$roi)
     output$mytable1 = renderDataTable(buget)
-   # output$mytable2 = renderDataTable(buget)
-   # output$mytable3 = renderDataTable(iris)
+    output$mytable2 = renderDataTable(buget)
+    output$mytable3 = renderDataTable(iris)
     #
   })
   

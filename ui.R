@@ -106,8 +106,10 @@ ui <- dashboardPage(skin = "purple",
                         tabItem(tabName = "attrdashboard",
                                 
                                 #///////////////////////////////////////////////////////
-                                frow1 <- fluidRow(dataTableOutput("mytable1")),  ##Table we're trying to display##
-                                  
+                                frow1 <- fluidRow(
+                                  column(2,
+                                  dataTableOutput("mytable1", width="80%"))  ##Table we're trying to display##
+                                ),
                                  ### Below lines are used to create tabs within a page
                                 
                                  #tabBox(

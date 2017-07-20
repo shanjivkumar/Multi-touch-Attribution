@@ -8,19 +8,13 @@ library(ggplot2)
 
 ui <- dashboardPage(skin = "purple",
                     dashboardHeader(title = "Multi-Touch Attribution"),
-                    
-                    
-                    
                     dashboardSidebar(
-                      
                       sidebarMenu(
                         menuItem("Summary Dashboard", tabName = "sumdashboard", icon = icon("bar-chart")),
                         menuItem("Attribution Dashboard", tabName = "attrdashboard", icon = icon("list-alt")),
                         menuItem("Channel Performance", tabName = "channelreport", icon = icon("line-chart")),
                         menuItem("Campaign Performance", tabName = "campaignreport", icon = icon("pie-chart")),
                         menuItem("Path Report", tabName = "pathreport", icon = icon("arrows-alt"))
-                        
-                        
                       ),
                       br(),
                       br(),
@@ -49,29 +43,10 @@ ui <- dashboardPage(skin = "purple",
                       br(),
                       br(),
                       sidebarUserPanel("Powered By : I2 Decisions", subtitle = NULL, image = NULL),
-                      sidebarUserPanel("www.i2decisions.com",image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png"),
-                      
-                      
-                      
-                      img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=40)
-                      
-                      
-                      
-                      
-                      
-                      ##img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=40)
-                      
-                      
-                      ##img(src="AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png",height=40,width=100)
-                      
-                      
-                    ),
-                    
+                      sidebarUserPanel("www.i2decisions.com",image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
+                      ),
                     dashboardBody(
-                      
-                      
                       tabItems(
-                        
                         # First tab content
                         tabItem(tabName = "sumdashboard",
                                 fluidRow(
@@ -86,19 +61,22 @@ ui <- dashboardPage(skin = "purple",
                                 ),
                                 fluidRow(
                                   box(plotOutput("plot2", height = 250)),
-                                  box(plotOutput("plot3", height = 250))
-                                  
-                                ),
-                                fluidRow(
-                                  
-                                  tabBox(
-                                    title = "First tabBox",
-                                    # The id lets us use input$tabset1 on the server to find the current tab
-                                    id = "tabset1", height = "250px",
-                                    tabPanel("Tab1", "First tab content"),
-                                    tabPanel("Tab2", "Tab content 2")
+                                  box(plotOutput("plot3", height = 250)),
+                                  frow1 <- fluidRow(
+                                    column(2,
+                                           dataTableOutput("mytable2", width="80%"))  ##Table we're trying to display##
                                   )
-                                )
+                                )#,
+                                #fluidRow(
+                                #  
+                                #  tabBox(
+                                #    title = "First tabBox",
+                                #    # The id lets us use input$tabset1 on the server to find the current tab
+                                #    id = "tabset1", height = "250px",
+                                #    tabPanel("Tab1", "First tab content"),
+                                #    tabPanel("Tab2", "Tab content 2")
+                                #  )
+                                #)
                                 
                         ),
                         ################################################################################################################################################
@@ -107,65 +85,46 @@ ui <- dashboardPage(skin = "purple",
                                 
                                 #///////////////////////////////////////////////////////
                                 frow1 <- fluidRow(
-<<<<<<< HEAD
-                                  tabBox(
-                                    title = "Data Viewer"
-                                    ,width = 12
-                                    ,id = "dataTabBox"
-                                    ,tabPanel(
-                                      title = "Sales by Model"
-                                      ,dataTableOutput("mytable1")
-                                    )
-                                    ,tabPanel(
-                                      title = "Sales by Quarter"
-                                      ,dataTableOutput("mytable2")
-                                    )
-                                    ,tabPanel(
-                                      title = "Prior Year Sales"
-                                      ,dataTableOutput("mytable3")
-                                    )
-                                  )
-                                )
-=======
                                   column(10,align ='center', h1('Attribution'),
-                                  dataTableOutput("mytable1", width="100%"))  ##Table we're trying to display##
+                                         dataTableOutput("mytable1", width="100%"))  ##Table we're trying to display##
                                 ),
-                                 ### Below lines are used to create tabs within a page
+                                ### Below lines are used to create tabs within a page
                                 
-                                 #tabBox(
-                                 #   title = "Data Viewer"
-                                 #   ,width = 9
-                                 #   ,id = "dataTabBox"
-                                 #   ,tabPanel(
-                                 #     title = "Sales by Model",
-                                 #     width = 4,
-                                 #     dataTableOutput("mytable1")  ##Table we're trying to display##
-                                 #   )
-                                    #,tabPanel(
-                                      #title = "Sales by Quarter"
-                                      #,dataTableOutput("mytable2")
-                                    #)
-                                   # ,tabPanel(
-                                    #  title = "Prior Year Sales"
-                                    #  ,dataTableOutput("mytable3")
-                                    #)
-                                  
+                                #tabBox(
+                                #   title = "Data Viewer"
+                                #   ,width = 9
+                                #   ,id = "dataTabBox"
+                                #   ,tabPanel(
+                                #     title = "Sales by Model",
+                                #     width = 4,
+                                #     dataTableOutput("mytable1")  ##Table we're trying to display##
+                                #   )
+                                #,tabPanel(
+                                #title = "Sales by Quarter"
+                                #,dataTableOutput("mytable2")
+                                #)
+                                # ,tabPanel(
+                                #  title = "Prior Year Sales"
+                                #  ,dataTableOutput("mytable3")
+                                #)
                                 
->>>>>>> e8012d414a7b7f975225766a8591e5566781de75
                                 
-                                #///////////////////////////////////////////////////////////
+                                
+                                #//////Below lines can be used to create navigation bars within a page/////////////////////////////////////////////////////
                                 ## navbarPage("Multi-Touch Attribution",
                                 ## tabPanel("Summary Dashboard"),
                                 ## tabPanel("Attribution Dashboard"),
                                 ## tabPanel("Channel Performance")),
                                 
-                                # fluidPage(theme = "bootstrap.css"),
-                                #  fluidPage(theme = shinytheme("cyborg")),
+                                fluidPage(theme = "bootstrap.css") ###----Themes for the page----###
+                                # fluidPage(theme = shinytheme("cyborg")),
                                 
                                 # dateRangeInput('dateRange',
                                 # label = 'Date range - "yyyy-mm-dd"',
                                 # start = Sys.Date() - 2, end = Sys.Date() + 2
                                 # ),
+                                
+                                #-----HIstogram------#
                                 
                                 #fluidRow(
                                 #box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
@@ -193,7 +152,7 @@ ui <- dashboardPage(skin = "purple",
                                 #fluidPage(downloadButton("report", "Generate report"))
                                 #)
                         ),
-                        ################################################################################################################################################
+                        ###############-------END of Attributoin dashboard-------------------------#############################################################################################
                         
                         #--------------------------------------------------Channel report---------------------------------------------------------
                         #------------------------------------------------------------------------------------------------------------------------------------

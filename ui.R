@@ -173,16 +173,9 @@ ui <- dashboardPage(skin = "purple",
                                 )),
                                 
                                 fluidRow(
-<<<<<<< HEAD
-                                  box(title="Histogram",status="primary",solidHeader = TRUE,collapsible = TRUE,plotOutput("plot1",height=250)),
-                                  
-                                  box(title="Inputs",status = "warning",solidHeader = TRUE,
-                                      "Box content here", br(), "More box content",
-                                      sliderInput("slider", "Slider input:", 1, 100, 50),
-                                      textInput("text", "Text input:")
-                                  )
-                                )
-=======
+
+                            
+
                                   column(width = 9, 
                                          box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                          #box(tags$b("Budget"),br(), 250000,width = 2,offset = 9, background = "olive") ,
@@ -218,13 +211,14 @@ ui <- dashboardPage(skin = "purple",
                                        box(selectInput("kpi$channel", label = "KPI",
                                                        choices = c("Awareness", "Engagement", "ROI"))
                                            ,width = 8,offset =2) )
->>>>>>> 8860b928378c50208fa5d61052d20028895f6eb4
+
                                 #
                                 #------------------------------------------------------------------------------------------------------------------------------------
                                 #------------------------------------------------------------------------------------------------------------------------------------
                         )
                       )
                     )
-     )
+            )  
 )
+
 

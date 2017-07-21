@@ -181,7 +181,7 @@ ui <- dashboardPage(skin = "purple",
                                          #box(tags$b("Budget"),br(), 250000,width = 2,offset = 9, background = "olive") ,
                                          #box(tags$b("Budget"),br(), 250000,width = 2,offset = 9, background = "olive") 
                                   ),
-                                  column(width = 3, br(),
+                                  column(align='center',width = 3, br(),
                                          #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                          box(selectInput("Monthlychannel", label = "Month",
                                                                                 choices = c("Awareness", "Engagement", "ROI"))
@@ -200,9 +200,9 @@ ui <- dashboardPage(skin = "purple",
                                   column(width = 8, 
                                          box(title="Channel Performance - Trend",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot6",height=300))
                                   ),
-                                column(width = 4, br(),
+                                column(align='center', width = 4, br(),
                                        #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
-                                       box(selectInput("objective$channel", label = "Objective",
+                                       box(align ='left',checkboxGroupInput("objective$channel", label = h6("Objective"),selected = NULL, 
                                                        choices = c("Awareness", "Engagement", "ROI"))
                                            ,width = 8,offset =2) ,
                                        box(selectInput("type$channel", label = "Channel Type",
@@ -210,7 +210,9 @@ ui <- dashboardPage(skin = "purple",
                                            ,width = 8,offset =2) ,
                                        box(selectInput("kpi$channel", label = "KPI",
                                                        choices = c("Awareness", "Engagement", "ROI"))
-                                           ,width = 8,offset =2) )
+                                           ,width = 8,offset =2)
+                                       
+                                       )
 
                                 #
                                 #------------------------------------------------------------------------------------------------------------------------------------

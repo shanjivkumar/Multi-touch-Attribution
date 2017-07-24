@@ -7,7 +7,7 @@ library(ggplot2)
 library(plotly)
 
 
-ui <- dashboardPage(skin = "red",
+ui <- dashboardPage(skin = "green",
                     dashboardHeader(title = "Multi-Touch Attribution"),
                     dashboardSidebar(
                       sidebarMenu(
@@ -85,19 +85,24 @@ ui <- dashboardPage(skin = "red",
                         
                         tabItem(tabName = "attrdashboard",
                                 
-                                fluidRow(
+                               fluidRow(
                                   
                                 sidebarPanel(width=3,
-                                  selectInput("Objective", "Choose an objective:",
-                                              choices = c("Awareness", "Engagement", "ROI")),
-                                  numericInput("obs", "Observations:", 10))
-                                ,
-                                mainPanel(dataTableOutput("mytable1", width="100%"),
+                                             column (width = 12,
+                                                     dateRangeInput('dateRange',
+                                                                    label = tags$b("Date range :  YYYY-MM-DD"),
+                                                                    start = Sys.Date() - 2, end = Sys.Date() + 2
+                                                     )),
+                                                selectInput("Objective", "Choose an objective:",
+                                                choices = c("Awareness", "Engagement", "ROI")),
+                                                numericInput("obs", "Observations:", 10)
+                                  ),
+                                  mainPanel(dataTableOutput("mytable1", width="100%"),
+                                  box(plotOutput("plot10", height = 300, width=300))
                                 
-                                box(plotOutput("plot10", height = 250, width=450)))
-                                
-                                )
-                                
+                               )                                      
+                                 
+                        )
                         ),
                                 
                                # frow <- basicPage(

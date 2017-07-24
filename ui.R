@@ -85,15 +85,21 @@ ui <- dashboardPage(skin = "red",
                         
                         tabItem(tabName = "attrdashboard",
                                 
-                                
-                                sidebarPanel(
+                                fluidRow(
+                                  
+                                sidebarPanel(width=3,
                                   selectInput("Objective", "Choose an objective:",
                                               choices = c("Awareness", "Engagement", "ROI")),
-                                  numericInput("obs", "Observations:", 10)
-                                ),
+                                  numericInput("obs", "Observations:", 10))
+                                ,
+                                mainPanel(dataTableOutput("mytable1", width="100%"),
                                 
-                                dataTableOutput("mytable1", width="80%")
-                      
+                                box(plotOutput("plot10", height = 250, width=450)))
+                                
+                                )
+                                
+                        ),
+                                
                                # frow <- basicPage(
                                  # column(6,align ='left', h1('Attribution'),
                                            ##Table we're trying to display##
@@ -165,7 +171,7 @@ ui <- dashboardPage(skin = "red",
                                 
                                 #fluidPage(downloadButton("report", "Generate report"))
                                 #)
-                        ),
+                        
                         ###############-------END of Attributoin dashboard-------------------------#############################################################################################
                         
                         #--------------------------------------------------Channel report---------------------------------------------------------

@@ -4,9 +4,10 @@ library(shinydashboard)
 library(shinythemes)
 library(DT)
 library(ggplot2)
+library(plotly)
 
 
-ui <- dashboardPage(skin = "purple",
+ui <- dashboardPage(skin = "red",
                     dashboardHeader(title = "Multi-Touch Attribution"),
                     dashboardSidebar(
                       sidebarMenu(
@@ -84,18 +85,23 @@ ui <- dashboardPage(skin = "purple",
                         
                         tabItem(tabName = "attrdashboard",
                                 
-                                frow1 <- fluidRow(column(4,align ='center', h1('Selection')),
-                                      sidebarPanel(
+                                
+                                sidebarPanel(
                                   selectInput("Objective", "Choose an objective:",
                                               choices = c("Awareness", "Engagement", "ROI")),
-                                  
                                   numericInput("obs", "Observations:", 10)
-                                )),
-                                #///////////////////////////////////////////////////////
-                                frow2 <- fluidRow(
-                                  column(8,align ='center', h1('Attribution'),
-                                         dataTableOutput("mytable1", width="100%"), theme = shinytheme("cyborg"))  ##Table we're trying to display##
                                 ),
+                                
+                                dataTableOutput("mytable1", width="80%")
+                      
+                               # frow <- basicPage(
+                                 # column(6,align ='left', h1('Attribution'),
+                                           ##Table we're trying to display##
+                               # ,
+                                #column(6,align ='right', h2('Selection'),
+                                    
+                                #///////////////////////////////////////////////////////
+                                
                                 ### Below lines are used to create tabs within a page
                                 
                                 #tabBox(
@@ -124,7 +130,7 @@ ui <- dashboardPage(skin = "purple",
                                 ## tabPanel("Attribution Dashboard"),
                                 ## tabPanel("Channel Performance")),
                                 
-                                fluidPage(theme = "bootstrap.css") ###----Themes for the page----###
+                                #fluidPage(theme = "bootstrap.css") ###----Themes for the page----###
                                 # fluidPage(theme = shinytheme("cyborg")),
                                 
                                 # dateRangeInput('dateRange',

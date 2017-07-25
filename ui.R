@@ -91,13 +91,16 @@ ui <- dashboardPage(skin = "green",
                                   
                                 sidebarPanel(width=3,
                                              column (width = 12,
-                                                     dateRangeInput('dateRange',
-                                                                    label = tags$b("Date range :  YYYY-MM-DD"),
-                                                                    start = Sys.Date() - 2, end = Sys.Date() + 2
-                                                     )),
-                                                selectInput("Objective", "Choose an objective:",
-                                                choices = c("Awareness", "Engagement", "ROI")),
-                                                numericInput("obs", "Observations:", 10)
+                                              dateRangeInput('dateRange',
+                                              label = tags$b("Date range :  YYYY-MM-DD"),
+                                              start = Sys.Date() - 2, end = Sys.Date() + 2
+                                             )),
+                                              selectInput("Objective", "Choose an objective:",
+                                              choices = c("Awareness", "Engagement", "ROI")),
+                                              numericInput("obs", "Observations:", 10),
+                                             sliderInput("Budget", label = h4("Budget"), min = 0, max = 100000, value = 50),
+                                             sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = 75)
+                                             #sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = c(25, 75))
                                   ),
                                   mainPanel(dataTableOutput("mytable1", width="100%"),
                                   box(plotOutput("plot10", height = 300, width=300))

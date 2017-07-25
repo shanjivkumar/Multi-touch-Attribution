@@ -10,16 +10,12 @@ buget<-read.csv("Budget.csv")
 channelpath<-read.csv("Channel path.csv")
 
 server <- function(input,output){
- 
-<<<<<<< HEAD
   output$plot2 <- renderPlotly({
     plot_ly(buget, x = ~roi, y = ~no.of.conversions,type="bar")})
   
   output$plot2 <- renderPlotly({
     plot_ly(buget, x = ~roi, y = ~no.of.conversions,type="bar")})
  
-=======
->>>>>>> 20fc5f8ec78b4524f6ecad99b547244ea2f3ebf7
   output$plot3 <- renderPlot({
     ggplot(data=buget,aes(x=factor(date),y=no.of.conversions,group=channel)) +
       geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("# Of Conversions") + 

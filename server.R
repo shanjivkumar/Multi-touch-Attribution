@@ -10,21 +10,44 @@ buget<-read.csv("Budget.csv")
 channelpath<-read.csv("Channel path.csv")
 
 server <- function(input,output){
+
+
   output$plot2 <- renderPlotly({
     plot_ly(buget, x = ~roi, y = ~no.of.conversions,type="bar")})
+  
+  output$plot2 <- renderPlotly({
+    plot_ly(buget, x = ~roi, y = ~no.of.conversions,type="bar")})
+ 
   output$plot3 <- renderPlot({
+    ggplot(data=buget,aes(x=factor(date),y=no.of.conversions,group=channel)) +
+      geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("# Of Conversions") + 
+      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
+      ggtitle("No of conversions vs channels")
+  })
+ 
+  output$plot2 <- renderPlot({
     ggplot(data=buget,aes(x=factor(date),y=roi,fill=channel)) +  
       geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
-      xlab("Date") + theme(legend.position="bottom" 
-                           ,plot.title = element_text(size=15, face="bold")) + 
+      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
   })
+ 
+  output$plot10 <- renderPlot({
+    ggplot(data=buget,aes(x=factor(date),y=roi,fill=channel)) +  
+      geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
+      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
+      ggtitle("Top 5 Channels")
+  })
+  
   
   output$mytable1 = renderDataTable(buget)
   
   output$mytable2 = renderDataTable(channelpath)
+  
   output$plot4<-renderPlot({
-    ggplot(data=buget,aes(x=date,y=roi))+geom_bar(stat="identity")})
+    ggplot(data=buget,aes(x=(date))) +
+      geom_line(aes(y=roi,colour="roi"))+geom_point(aes(y=roi,colour="roi"))+geom_line(aes(y=marketing.budget,colour="marketing.budget"))
+  })
   
   # output$mytable2 = renderDataTable(buget)
   # output$mytable3 = renderDataTable(iris)

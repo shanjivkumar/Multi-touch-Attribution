@@ -4,9 +4,11 @@ library(shinydashboard)
 library(shinythemes)
 library(DT)
 library(ggplot2)
+library(plotly)
+buget<-read.csv("Budget.csv")
+channelpath<-read.csv("Channel path.csv")
 
-
-ui <- dashboardPage(skin = "purple",
+ui <- dashboardPage(skin = "green",
                     dashboardHeader(title = "Multi-Touch Attribution"),
                     dashboardSidebar(
                       sidebarMenu(
@@ -52,21 +54,22 @@ ui <- dashboardPage(skin = "purple",
                                 fluidRow(
                                   # A static infoBox
                                   
-                                  box(tags$b("Budget"),br(), 250000,width = 2, background = "olive"),
+                                  box(tags$b("Budget Allocated"),br(), buget$marketing.budget,width = 2, background = "olive"),
                                   box(tags$b("Budget Used"),br(), 50000,width = 2, background = "olive"),
-                                  box(tags$b("Conversion"),br(),120000,width = 2, background = "olive"),
-                                  box(tags$b("Cost per Conversions"),br(),3.6,width = 2, background = "olive"),
-                                  box(tags$b("Revenue Generated"),br(), paste0(120000),width = 2, background = "olive"),
-                                  box(tags$b("Revenue Generated"),br(), paste0(120000),width = 2, background = "olive")
+                                  box(tags$b("Conversion"),br(),buget$no.of.conversions,width = 2, background = "olive"),
+                                  box(tags$b("Cost per Conversions"),br(),buget$Cost.per.conversion,width = 2, background = "olive"),
+                                  box(tags$b("Revenue Generated"),br(), buget$roi,width = 2, background = "olive"),
+                                  box(tags$b("Revenue Generated"),br(), buget$roi,width = 2, background = "olive")
                                 ),
                                 fluidRow(
+                                  box(plotOutput("plot4", height = 250)),
                                   box(plotOutput("plot2", height = 250)),
                                   box(plotOutput("plot3", height = 250)),
                                   frow1 <- bootstrapPage(
                                     column(6,
                                            dataTableOutput("mytable2", width="100%"))  ##Table we're trying to display##
-                                  ),
-                                  box(plotOutput("plot4", height = 250))
+                                  )
+
                                 )#,
                                 #fluidRow(
                                 #  
@@ -84,18 +87,37 @@ ui <- dashboardPage(skin = "purple",
                         
                         tabItem(tabName = "attrdashboard",
                                 
-                                frow1 <- fluidRow(column(4,align ='center', h1('Selection')),
-                                      sidebarPanel(
-                                  selectInput("Objective", "Choose an objective:",
-                                              choices = c("Awareness", "Engagement", "ROI")),
+                               fluidRow(
                                   
-                                  numericInput("obs", "Observations:", 10)
-                                )),
+                                sidebarPanel(width=3,
+                                             column (width = 12,
+                                              dateRangeInput('dateRange',
+                                              label = tags$b("Date range :  YYYY-MM-DD"),
+                                              start = Sys.Date() - 2, end = Sys.Date() + 2
+                                             )),
+                                              selectInput("Objective", "Choose an objective:",
+                                              choices = c("Awareness", "Engagement", "ROI")),
+                                              numericInput("obs", "Observations:", 10),
+                                             sliderInput("Budget", label = h4("Budget"), min = 0, max = 100000, value = 50),
+                                             sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = 75)
+                                             #sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = c(25, 75))
+                                  ),
+                                  mainPanel(dataTableOutput("mytable1", width="100%"),
+                                  box(plotOutput("plot10", height = 300, width=300))
+                                
+                               )                                      
+                                 
+                        )
+                        ),
+                                
+                               # frow <- basicPage(
+                                 # column(6,align ='left', h1('Attribution'),
+                                           ##Table we're trying to display##
+                               # ,
+                                #column(6,align ='right', h2('Selection'),
+                                    
                                 #///////////////////////////////////////////////////////
-                                frow2 <- fluidRow(
-                                  column(8,align ='center', h1('Attribution'),
-                                         dataTableOutput("mytable1", width="100%"), theme = shinytheme("cyborg"))  ##Table we're trying to display##
-                                ),
+                                
                                 ### Below lines are used to create tabs within a page
                                 
                                 #tabBox(
@@ -124,7 +146,7 @@ ui <- dashboardPage(skin = "purple",
                                 ## tabPanel("Attribution Dashboard"),
                                 ## tabPanel("Channel Performance")),
                                 
-                                fluidPage(theme = "bootstrap.css") ###----Themes for the page----###
+                                #fluidPage(theme = "bootstrap.css") ###----Themes for the page----###
                                 # fluidPage(theme = shinytheme("cyborg")),
                                 
                                 # dateRangeInput('dateRange',
@@ -159,7 +181,7 @@ ui <- dashboardPage(skin = "purple",
                                 
                                 #fluidPage(downloadButton("report", "Generate report"))
                                 #)
-                        ),
+                        
                         ###############-------END of Attributoin dashboard-------------------------#############################################################################################
                         
                         #--------------------------------------------------Channel report---------------------------------------------------------

@@ -45,10 +45,8 @@ server <- function(input,output){
   output$mytable2 = renderDataTable(channelpath)
   
   output$plot4<-renderPlot({
-    ggplot(data=buget,aes(x=factor(date),y=roi,group=channel)) +
-      geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("$ROI") + 
-      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-      ggtitle("ROI & Marketing budget")
+    ggplot(data=buget,aes(x=(date))) +
+      geom_line(aes(y=roi,colour="roi"))+geom_point(aes(y=roi,colour="roi"))+geom_line(aes(y=marketing.budget,colour="marketing.budget"))
   })
   
   # output$mytable2 = renderDataTable(buget)

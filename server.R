@@ -13,6 +13,9 @@ server <- function(input,output){
  
   output$plot2 <- renderPlotly({
     plot_ly(buget, x = ~roi, y = ~no.of.conversions,type="bar")})
+  
+  output$plot2 <- renderPlotly({
+    plot_ly(buget, x = ~roi, y = ~no.of.conversions,type="bar")})
  
   output$plot3 <- renderPlot({
     ggplot(data=buget,aes(x=factor(date),y=roi,fill=channel)) +  

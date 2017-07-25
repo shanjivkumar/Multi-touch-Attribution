@@ -5,7 +5,8 @@ library(shinythemes)
 library(DT)
 library(ggplot2)
 library(plotly)
-
+buget<-read.csv("Budget.csv")
+channelpath<-read.csv("Channel path.csv")
 
 ui <- dashboardPage(skin = "green",
                     dashboardHeader(title = "Multi-Touch Attribution"),
@@ -53,12 +54,12 @@ ui <- dashboardPage(skin = "green",
                                 fluidRow(
                                   # A static infoBox
                                   
-                                  box(tags$b("Budget"),br(), 250000,width = 2, background = "olive"),
+                                  box(tags$b("Budget Allocated"),br(), buget$marketing.budget,width = 2, background = "olive"),
                                   box(tags$b("Budget Used"),br(), 50000,width = 2, background = "olive"),
-                                  box(tags$b("Conversion"),br(),120000,width = 2, background = "olive"),
-                                  box(tags$b("Cost per Conversions"),br(),3.6,width = 2, background = "olive"),
-                                  box(tags$b("Revenue Generated"),br(), paste0(120000),width = 2, background = "olive"),
-                                  box(tags$b("Revenue Generated"),br(), paste0(120000),width = 2, background = "olive")
+                                  box(tags$b("Conversion"),br(),buget$no.of.conversions,width = 2, background = "olive"),
+                                  box(tags$b("Cost per Conversions"),br(),buget$Cost.per.conversion,width = 2, background = "olive"),
+                                  box(tags$b("Revenue Generated"),br(), buget$roi,width = 2, background = "olive"),
+                                  box(tags$b("Revenue Generated"),br(), buget$roi,width = 2, background = "olive")
                                 ),
                                 fluidRow(
                                   box(plotOutput("plot4", height = 250)),

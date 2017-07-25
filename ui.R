@@ -61,13 +61,14 @@ ui <- dashboardPage(skin = "green",
                                   box(tags$b("Revenue Generated"),br(), paste0(120000),width = 2, background = "olive")
                                 ),
                                 fluidRow(
+                                  box(plotOutput("plot4", height = 250)),
                                   box(plotOutput("plot2", height = 250)),
                                   box(plotOutput("plot3", height = 250)),
                                   frow1 <- bootstrapPage(
                                     column(6,
                                            dataTableOutput("mytable2", width="100%"))  ##Table we're trying to display##
-                                  ),
-                                  box(plotOutput("plot4", height = 250))
+                                  )
+
                                 )#,
                                 #fluidRow(
                                 #  

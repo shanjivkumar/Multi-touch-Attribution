@@ -39,6 +39,16 @@ server <- function(input,output){
       ggtitle("Top 5 Channels")
   })
   
+  ##Sample try
+  output$phonePlot <- renderPlot({
+    
+    # Render a barplot
+    barplot(WorldPhones[,input$region]*1000, 
+            main=input$region,
+            ylab="Number of Telephones",
+            xlab="Year")
+  })
+}
   
   output$mytable1 = renderDataTable(buget)
   

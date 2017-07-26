@@ -99,15 +99,17 @@ ui <- dashboardPage(skin = "green",
                                               choices = c("Awareness", "Engagement", "ROI")),
                                               numericInput("obs", "Observations:", 10),
                                              sliderInput("Budget", label = h4("Budget"), min = 0, max = 100000, value = 50),
-                                             sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = 75)
+                                             sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = 75),
+                                             selectInput("region", "Region:", choices=colnames(WorldPhones))
                                              #sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = c(25, 75))
                                   ),
                                   mainPanel(dataTableOutput("mytable1", width="100%"),
-                                  box(plotOutput("plot10", height = 300, width=300))
-                                
+                                  box(plotOutput("plot10", height = 300, width=300)),
+                                  plotOutput("phonePlot")
                                )                                      
                                  
                         )
+                        
                         ),
                                 
                                # frow <- basicPage(

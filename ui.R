@@ -190,7 +190,7 @@ ui <- dashboardPage(skin = "green",
                         #------------------------------------------------------------------------------------------------------------------------------------
                         tabItem(tabName = "channelreport",
                                 
-                                column (width = 3,offset = 9,
+                                column (align='center',width = 3,offset = 9,
                                         dateRangeInput('dateRange',
                                                label = tags$b("Date range :  YYYY-MM-DD"),
                                                start = Sys.Date() - 2, end = Sys.Date() + 2
@@ -202,8 +202,7 @@ ui <- dashboardPage(skin = "green",
 
                                   column(width = 9, 
                                          box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
-                                         #box(tags$b("Budget"),br(), 250000,width = 2,offset = 9, background = "olive") ,
-                                         #box(tags$b("Budget"),br(), 250000,width = 2,offset = 9, background = "olive") 
+                                         
                                   ),
                                   column(align='center',width = 3, br(),
                                          #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
@@ -226,8 +225,8 @@ ui <- dashboardPage(skin = "green",
                                   ),
                                 column(align='center', width = 4, br(),
                                        #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
-                                       box(align ='left',checkboxGroupInput("objective$channel", label = h6("Objective"),selected = NULL, 
-                                                       choices = c("Awareness", "Engagement", "ROI"))
+                                       box(selectInput("objective$channel", label = "Objective",
+                                                                     choices = c("Awareness", "Engagement", "ROI"))
                                            ,width = 8,offset =2) ,
                                        box(selectInput("type$channel", label = "Channel Type",
                                                        choices = c("Awareness", "Engagement", "ROI"))

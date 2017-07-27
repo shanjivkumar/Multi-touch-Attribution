@@ -5,6 +5,10 @@ library(shinythemes)
 library(DT)
 library(ggplot2)
 library(plotly)
+library(dplyr)
+library(zoo)
+
+
 buget<-read.csv("Budget.csv")
 channelpath<-read.csv("Channel path.csv")
 
@@ -78,10 +82,9 @@ ui <- dashboardPage(skin = "green",
                                       
                                     )),
                                     ### Sumary dashboard - Quarter tab
-                                    tabPanel("Quarter",                                 
+                                    tabPanel("Quarter",  
                                              fluidRow(
                                                # A static infoBox
-                                               
                                                box(tags$b("Budget Allocated"),br(), sum(buget$marketing.budget),width = 2, background = "olive"),
                                                box(tags$b("Budget Used"),br(), 50000,width = 2, background = "olive"),
                                                box(tags$b("Conversion"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),

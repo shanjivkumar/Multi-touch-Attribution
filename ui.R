@@ -97,7 +97,28 @@ ui <- dashboardPage(skin = "green",
                                                         dataTableOutput("summaryquarterplot4", width="100%"))  ##Table we're trying to display##
                                                )
                                                
-                                             ))))
+                                             )),
+                                    tabPanel("Year",                                 
+                                             fluidRow(
+                                               # A static infoBox
+                                               
+                                               box(tags$b("Budget Allocated"),br(), sum(buget$marketing.budget),width = 2, background = "olive"),
+                                               box(tags$b("Budget Used"),br(), 50000,width = 2, background = "olive"),
+                                               box(tags$b("Conversion"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
+                                               box(tags$b("Cost per Conversions"),br(),sum(buget$Cost.per.conversion),width = 2, background = "olive"),
+                                               box(tags$b("Revenue Generated"),br(), sum(buget$roi),width = 2, background = "olive")
+                                             ),
+                                             fluidRow(
+                                               box(plotOutput("summaryyearplot1", height = 250)),
+                                               box(plotOutput("summaryyearplot2", height = 250)),
+                                               box(plotOutput("summaryyearplot3", height = 250)),
+                                               frow1 <- bootstrapPage(
+                                                 column(6,
+                                                        dataTableOutput("summaryyearplot4", width="100%"))  ##Table we're trying to display##
+                                               )
+                                               
+                                             ))
+                                    ))
                                 #,
                                 #fluidRow(
                                 #  

@@ -104,8 +104,7 @@ ui <- dashboardPage(skin = "green",
                                              #sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = c(25, 75))
                                   ),
                                   mainPanel(dataTableOutput("mytable1", width="100%"),
-                                  box(plotOutput("plot10", height = 300, width=300)),
-                                  plotOutput("phonePlot")
+                                  box(plotOutput("plot10", height = 300, width=300))
                                )                                      
                                  
                         )

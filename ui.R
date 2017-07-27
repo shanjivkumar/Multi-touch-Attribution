@@ -200,7 +200,7 @@ ui <- dashboardPage(skin = "green",
                             
 
                                   column(width = 9, 
-                                         box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
+                                         box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly1",height=300))
                                          
                                   ),
                                   column(align='center',width = 3, br(),
@@ -220,7 +220,7 @@ ui <- dashboardPage(skin = "green",
                                 
                                 fluidRow(
                                   column(width = 8, 
-                                         box(title="Channel Performance - Trend",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot6",height=300))
+                                         box(title="Channel Performance - Trend",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly2",height=300))
                                   ),
                                 column(align='center', width = 4, br(),
                                        #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))

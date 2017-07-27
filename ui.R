@@ -52,25 +52,34 @@ ui <- dashboardPage(skin = "green",
                         # First tab content
                         tabItem(tabName = "sumdashboard",
                                 fluidRow(
-                                  # A static infoBox
-                                  
-                                  box(tags$b("Budget Allocated"),br(), buget$marketing.budget,width = 2, background = "olive"),
-                                  box(tags$b("Budget Used"),br(), 50000,width = 2, background = "olive"),
-                                  box(tags$b("Conversion"),br(),buget$no.of.conversions,width = 2, background = "olive"),
-                                  box(tags$b("Cost per Conversions"),br(),buget$Cost.per.conversion,width = 2, background = "olive"),
-                                  box(tags$b("Revenue Generated"),br(), buget$roi,width = 2, background = "olive"),
-                                  box(tags$b("Revenue Generated"),br(), buget$roi,width = 2, background = "olive")
-                                ),
-                                fluidRow(
-                                  box(plotOutput("plot4", height = 250)),
-                                  box(plotOutput("plot2", height = 250)),
-                                  box(plotOutput("plot3", height = 250)),
-                                  frow1 <- bootstrapPage(
-                                    column(6,
-                                           dataTableOutput("mytable2", width="100%"))  ##Table we're trying to display##
+                                  tabBox(
+                                    title = "Summary Dashboard",
+                                    # The id lets us use input$tabset1 on the server to find the current tab
+                                    id = "tabset1", height = "650px",width = "500px",
+                                    tabPanel("Month",                                 
+                                             fluidRow(
+                                      # A static infoBox
+                                      
+                                      box(tags$b("Budget Allocated"),br(), sum(buget$marketing.budget),width = 2, background = "olive"),
+                                      box(tags$b("Budget Used"),br(), 50000,width = 2, background = "olive"),
+                                      box(tags$b("Conversion"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
+                                      box(tags$b("Cost per Conversions"),br(),sum(buget$Cost.per.conversion),width = 2, background = "olive"),
+                                      box(tags$b("Revenue Generated"),br(), sum(buget$roi),width = 2, background = "olive")
+                                    ),
+                                    fluidRow(
+                                      box(plotOutput("plot4", height = 250)),
+                                      box(plotOutput("plot2", height = 250)),
+                                      box(plotOutput("plot3", height = 250)),
+                                      frow1 <- bootstrapPage(
+                                        column(6,
+                                               dataTableOutput("mytable2", width="100%"))  ##Table we're trying to display##
+                                      )
+                                      
+                                    )),
+                                    tabPanel("Quarter", "Quarter wise content will be displayed here")
                                   )
-
-                                )#,
+                                )
+                                #,
                                 #fluidRow(
                                 #  
                                 #  tabBox(

@@ -39,15 +39,32 @@ server <- function(input,output){
       ggtitle("Top 5 Channels")
   })
   
+<<<<<<< HEAD
  
+=======
+  ##Sample try
+  output$phonePlot <- renderPlot({
+    
+    # Render a barplot
+    barplot(WorldPhones[,input$region]*1000, 
+            main=input$region,
+            ylab="Number of Telephones",
+            xlab="Year")
+  })
+
+>>>>>>> b66ff0f98a23caa6d6795339a26bab7449703108
   
   output$mytable1 = renderDataTable(buget)
   
   output$mytable2 = renderDataTable(channelpath)
   
-  output$plot4<-renderPlot({
-    ggplot(data=buget,aes(x=(date))) +
-      geom_line(aes(y=roi,colour="roi"))+geom_point(aes(y=roi,colour="roi"))+geom_line(aes(y=marketing.budget,colour="marketing.budget"))
+  output$plot4 <- renderPlot({
+
+    ggplot(buget) +
+      geom_bar(aes(x = date, weight = roi)) +
+      geom_line(aes(x = as.numeric(date), y = marketing.budget))+
+      theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"))+
+      ggtitle("ROI & Marketing budget")
   })
   
   # output$mytable2 = renderDataTable(buget)

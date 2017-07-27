@@ -11,7 +11,8 @@ channelpath<-read.csv("Channel path.csv")
 
 server <- function(input,output){
 
-
+########### Summary tab #########
+########### Month Report #########
   output$summarymonthplot1 <- renderPlot({
     
     ggplot(buget) +
@@ -36,7 +37,32 @@ server <- function(input,output){
   })
   
   output$summarymonthplot4 = renderDataTable(channelpath)
-
+  ########### Summary tab #########
+  ########### Quarter Report #########
+  output$summaryquarterplot1 <- renderPlot({
+    
+    ggplot(buget) +
+      geom_bar(aes(x = date, weight = roi)) +
+      geom_line(aes(x = as.numeric(date), y = marketing.budget))+
+      theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"))+
+      ggtitle("ROI & Marketing budget")
+  })
+  
+  output$summaryquarterplot2 <- renderPlot({
+    ggplot(data=buget,aes(x=factor(date),y=roi,fill=channel)) +  
+      geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
+      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
+      ggtitle("Top 5 Channels")
+  })
+  
+  output$summaryquarterplot3 <- renderPlot({
+    ggplot(data=buget,aes(x=factor(date),y=no.of.conversions,group=channel)) +
+      geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("# Of Conversions") + 
+      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
+      ggtitle("No of conversions vs channels")
+  })
+  
+  output$summaryquarterplot4 = renderDataTable(channelpath)
 
  
 

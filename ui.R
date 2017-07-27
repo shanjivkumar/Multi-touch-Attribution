@@ -56,6 +56,7 @@ ui <- dashboardPage(skin = "green",
                                     title = "Summary Dashboard",
                                     # The id lets us use input$tabset1 on the server to find the current tab
                                     id = "tabset1", height = "650px",width = "500px",
+                                    ### Sumary dashboard - Month tab
                                     tabPanel("Month",                                 
                                              fluidRow(
                                       # A static infoBox
@@ -76,7 +77,27 @@ ui <- dashboardPage(skin = "green",
                                       )
                                       
                                     )),
-                                    tabPanel("Month1")))
+                                    ### Sumary dashboard - Quarter tab
+                                    tabPanel("Quarter",                                 
+                                             fluidRow(
+                                               # A static infoBox
+                                               
+                                               box(tags$b("Budget Allocated"),br(), sum(buget$marketing.budget),width = 2, background = "olive"),
+                                               box(tags$b("Budget Used"),br(), 50000,width = 2, background = "olive"),
+                                               box(tags$b("Conversion"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
+                                               box(tags$b("Cost per Conversions"),br(),sum(buget$Cost.per.conversion),width = 2, background = "olive"),
+                                               box(tags$b("Revenue Generated"),br(), sum(buget$roi),width = 2, background = "olive")
+                                             ),
+                                             fluidRow(
+                                               box(plotOutput("summaryquarterplot1", height = 250)),
+                                               box(plotOutput("summaryquarterplot2", height = 250)),
+                                               box(plotOutput("summaryquarterplot3", height = 250)),
+                                               frow1 <- bootstrapPage(
+                                                 column(6,
+                                                        dataTableOutput("summaryquarterplot4", width="100%"))  ##Table we're trying to display##
+                                               )
+                                               
+                                             ))))
                                 #,
                                 #fluidRow(
                                 #  

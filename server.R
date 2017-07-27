@@ -59,6 +59,7 @@ server <- function(input,output){
             xlab="Year")
   })
 
+
   
   output$mytable1 = renderDataTable(buget)
   

@@ -12,25 +12,34 @@ channelpath<-read.csv("Channel path.csv")
 server <- function(input,output){
 
 
-  output$plot2 <- renderPlotly({
-    plot_ly(buget, x = ~roi, y = ~no.of.conversions,type="bar")})
-  
-  output$plot2 <- renderPlotly({
-    plot_ly(buget, x = ~roi, y = ~no.of.conversions,type="bar")})
- 
-  output$plot3 <- renderPlot({
-    ggplot(data=buget,aes(x=factor(date),y=no.of.conversions,group=channel)) +
-      geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("# Of Conversions") + 
-      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-      ggtitle("No of conversions vs channels")
+  output$summarymonthplot1 <- renderPlot({
+    
+    ggplot(buget) +
+      geom_bar(aes(x = date, weight = roi)) +
+      geom_line(aes(x = as.numeric(date), y = marketing.budget))+
+      theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"))+
+      ggtitle("ROI & Marketing budget")
   })
- 
-  output$plot2 <- renderPlot({
+  
+  output$summarymonthplot2 <- renderPlot({
     ggplot(data=buget,aes(x=factor(date),y=roi,fill=channel)) +  
       geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
   })
+  
+  output$summarymonthplot3 <- renderPlot({
+    ggplot(data=buget,aes(x=factor(date),y=no.of.conversions,group=channel)) +
+      geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("# Of Conversions") + 
+      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
+      ggtitle("No of conversions vs channels")
+  })
+  
+  output$summarymonthplot4 = renderDataTable(channelpath)
+
+
+ 
+
  
   output$plot10 <- renderPlot({
     ggplot(data=buget,aes(x=factor(date),y=roi,fill=channel)) +  
@@ -53,16 +62,9 @@ server <- function(input,output){
   
   output$mytable1 = renderDataTable(buget)
   
-  output$mytable2 = renderDataTable(channelpath)
-  
-  output$plot4 <- renderPlot({
 
-    ggplot(buget) +
-      geom_bar(aes(x = date, weight = roi)) +
-      geom_line(aes(x = as.numeric(date), y = marketing.budget))+
-      theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"))+
-      ggtitle("ROI & Marketing budget")
-  })
+  
+
   
   # output$mytable2 = renderDataTable(buget)
   # output$mytable3 = renderDataTable(iris)

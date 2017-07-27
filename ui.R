@@ -67,18 +67,16 @@ ui <- dashboardPage(skin = "green",
                                       box(tags$b("Revenue Generated"),br(), sum(buget$roi),width = 2, background = "olive")
                                     ),
                                     fluidRow(
-                                      box(plotOutput("plot4", height = 250)),
-                                      box(plotOutput("plot2", height = 250)),
-                                      box(plotOutput("plot3", height = 250)),
+                                      box(plotOutput("summarymonthplot1", height = 250)),
+                                      box(plotOutput("summarymonthplot2", height = 250)),
+                                      box(plotOutput("summarymonthplot3", height = 250)),
                                       frow1 <- bootstrapPage(
                                         column(6,
-                                               dataTableOutput("mytable2", width="100%"))  ##Table we're trying to display##
+                                               dataTableOutput("summarymonthplot4", width="100%"))  ##Table we're trying to display##
                                       )
                                       
                                     )),
-                                    tabPanel("Quarter", "Quarter wise content will be displayed here")
-                                  )
-                                )
+                                    tabPanel("Month1")))
                                 #,
                                 #fluidRow(
                                 #  
@@ -141,7 +139,7 @@ ui <- dashboardPage(skin = "green",
                                 #   )
                                 #,tabPanel(
                                 #title = "Sales by Quarter"
-                                #,dataTableOutput("mytable2")
+                                #,dataTableOutput("summarymonthplot4")
                                 #)
                                 # ,tabPanel(
                                 #  title = "Prior Year Sales"

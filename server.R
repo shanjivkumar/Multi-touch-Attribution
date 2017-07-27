@@ -39,9 +39,7 @@ server <- function(input,output){
       ggtitle("Top 5 Channels")
   })
   
-<<<<<<< HEAD
- 
-=======
+
   ##Sample try
   output$phonePlot <- renderPlot({
     
@@ -52,7 +50,7 @@ server <- function(input,output){
             xlab="Year")
   })
 
->>>>>>> b66ff0f98a23caa6d6795339a26bab7449703108
+
   
   output$mytable1 = renderDataTable(buget)
   

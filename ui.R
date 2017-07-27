@@ -54,12 +54,11 @@ ui <- dashboardPage(skin = "green",
                                 fluidRow(
                                   # A static infoBox
                                   
-                                  box(tags$b("Budget Allocated"),br(), buget$marketing.budget,width = 2, background = "olive"),
+                                  box(tags$b("Budget Allocated"),br(), sum(buget$marketing.budget),width = 2, background = "olive"),
                                   box(tags$b("Budget Used"),br(), 50000,width = 2, background = "olive"),
-                                  box(tags$b("Conversion"),br(),buget$no.of.conversions,width = 2, background = "olive"),
-                                  box(tags$b("Cost per Conversions"),br(),buget$Cost.per.conversion,width = 2, background = "olive"),
-                                  box(tags$b("Revenue Generated"),br(), buget$roi,width = 2, background = "olive"),
-                                  box(tags$b("Revenue Generated"),br(), buget$roi,width = 2, background = "olive")
+                                  box(tags$b("Conversion"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
+                                  box(tags$b("Cost per Conversions"),br(),sum(buget$Cost.per.conversion),width = 2, background = "olive"),
+                                  box(tags$b("Revenue Generated"),br(), sum(buget$roi),width = 2, background = "olive")
                                 ),
                                 fluidRow(
                                   box(plotOutput("plot4", height = 250)),

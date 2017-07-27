@@ -228,11 +228,9 @@ ui <- dashboardPage(skin = "green",
                                        box(selectInput("objective$channel", label = "Objective",
                                                                      choices = c("Awareness", "Engagement", "ROI"))
                                            ,width = 8,offset =2) ,
-                                       box(selectInput("type$channel", label = "Channel Type",
-                                                       choices = c("Awareness", "Engagement", "ROI"))
+                                       box(selectInput("type$channel", label = "Channel Type",choices = c("Awareness", "Engagement", "ROI"))
                                            ,width = 8,offset =2) ,
-                                       box(selectInput("kpi$channel", label = "KPI",
-                                                       choices = c("Awareness", "Engagement", "ROI"))
+                                       box(selectInput("kpi$channel", label = "KPI",choices = c("Awareness", "Engagement", "ROI"))
                                            ,width = 8,offset =2)
                                        
                                        )

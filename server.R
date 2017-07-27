@@ -48,7 +48,7 @@ server <- function(input,output){
             ylab="Number of Telephones",
             xlab="Year")
   })
-}
+
   
   output$mytable1 = renderDataTable(buget)
   

@@ -240,32 +240,30 @@ ui <- dashboardPage(skin = "green",
                         #--------------------------------------------------Channel report---------------------------------------------------------
                         #------------------------------------------------------------------------------------------------------------------------------------
                         tabItem(tabName = "channelreport",
+                                fluidRow(
+                                  tabBox(
+                                    title = "Channel Performance",
+                                    # The id lets us use input$tabset1 on the server to find the current tab
+                                    id = "tabset1", height = "650px",width = "500px",
+                                    ### Sumary dashboard - Month tab
+                                    tabPanel("Month", 
                                 
-                                column (align='center',width = 3,offset = 9,
-                                        dateRangeInput('dateRange',
-                                               label = tags$b("Date range :  YYYY-MM-DD"),
-                                               start = Sys.Date() - 2, end = Sys.Date() + 2
-                                )),
+                               
                                 
                                 fluidRow(
 
                             
 
                                   column(width = 9, 
-                                         box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly1",height=300))
+                                         box(title="Channel Performance - KPI",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("plotly1",height=300))
                                          
                                   ),
                                   column(align='center',width = 3, br(),
                                          #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                          box(selectInput("Monthlychannel", label = "Month",
                                                                                 choices = c("Awareness", "Engagement", "ROI"))
-                                             ,width = 8,offset =2) ,
-                                         box(selectInput("quarterlychannel", label = "Quarter",
-                                                        choices = c("Awareness", "Engagement", "ROI"))
-                                            ,width = 8,offset =2) ,
-                                         box(selectInput("yearlychannel", label = "Year",
-                                                         choices = c("Awareness", "Engagement", "ROI"))
-                                             ,width = 8,offset =2) 
+                                             ,width = 8,offset =2,background = "green") 
+                                         
                                          
                                          
                                          )),
@@ -284,15 +282,95 @@ ui <- dashboardPage(skin = "green",
                                        box(selectInput("kpi$channel", label = "KPI",choices = c("Awareness", "Engagement", "ROI"))
                                            ,width = 8,offset =2)
                                        
-                                       )
-
+                                       ) )
+                                    ),
+                                tabPanel("Quarter", 
+                                         
+                                         
+                                         
+                                         fluidRow(
+                                           
+                                           
+                                           
+                                           column(width = 9, 
+                                                  box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly11",height=300))
+                                                  
+                                           ),
+                                           column(align='center',width = 3, br(),
+                                                  #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
+                                                  
+                                                  box(selectInput("quarterlychannel", label = "Quarter",
+                                                                  choices = c("Awareness", "Engagement", "ROI"))
+                                                      ,width = 8,offset =2,background = "green") 
+                                                
+                                                  
+                                                  
+                                           )),
+                                         
+                                         fluidRow(
+                                           column(width = 8, 
+                                                  box(title="Channel Performance - Trend",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly12",height=300))
+                                           ),
+                                           column(align='center', width = 4, br(),
+                                                  #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
+                                                  box(selectInput("objective$channel", label = "Objective",
+                                                                  choices = c("Awareness", "Engagement", "ROI"))
+                                                      ,width = 8,offset =2) ,
+                                                  box(selectInput("type$channel", label = "Channel Type",choices = c("Awareness", "Engagement", "ROI"))
+                                                      ,width = 8,offset =2) ,
+                                                  box(selectInput("kpi$channel", label = "KPI",choices = c("Awareness", "Engagement", "ROI"))
+                                                      ,width = 8,offset =2)
+                                                  
+                                           ) )
+                                ),
+                                tabPanel("Year", 
+                                         
+                                         
+                                         
+                                         fluidRow(
+                                           
+                                           
+                                           
+                                           column(width = 9, 
+                                                  box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly13",height=300))
+                                                  
+                                           ),
+                                           column(align='center',width = 3, br(),
+                                                  #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
+                                                  
+                                                  box(selectInput("yearlychannel", label = "Year",
+                                                                  choices = c("Awareness", "Engagement", "ROI"))
+                                                      ,width = 8,offset =2,background = "green") 
+                                                  
+                                                  
+                                           )),
+                                         
+                                         fluidRow(
+                                           column(width = 8, 
+                                                  box(title="Channel Performance - Trend",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly14",height=300))
+                                           ),
+                                           column(align='center', width = 4, br(),
+                                                  #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
+                                                  box(selectInput("objective$channel", label = "Objective",
+                                                                  choices = c("Awareness", "Engagement", "ROI"))
+                                                      ,width = 8,offset =2) ,
+                                                  box(selectInput("type$channel", label = "Channel Type",choices = c("Awareness", "Engagement", "ROI"))
+                                                      ,width = 8,offset =2) ,
+                                                  box(selectInput("kpi$channel", label = "KPI",choices = c("Awareness", "Engagement", "ROI"))
+                                                      ,width = 8,offset =2)
+                                                  
+                                           ) )
+                                )
+                                
+                                
                                 #
                                 #------------------------------------------------------------------------------------------------------------------------------------
                                 #------------------------------------------------------------------------------------------------------------------------------------
-                        )
+                        
                       )
                     )
             )  
+    )
+  )    
 )
-
 

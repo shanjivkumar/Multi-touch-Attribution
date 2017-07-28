@@ -24,6 +24,7 @@ server <- function(input,output){
       ggtitle("ROI & Marketing budget")
   })
   
+  
   output$summarymonthplot2 <- renderPlot({
     ggplot(data=buget,aes(x=factor(date),y=roi,fill=channel)) +  
       geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 

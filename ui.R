@@ -5,6 +5,10 @@ library(shinythemes)
 library(DT)
 library(ggplot2)
 library(plotly)
+library(dplyr)
+library(zoo)
+
+
 buget<-read.csv("Budget.csv")
 channelpath<-read.csv("Channel path.csv")
 
@@ -56,6 +60,7 @@ ui <- dashboardPage(skin = "green",
                                     title = "Summary Dashboard",
                                     # The id lets us use input$tabset1 on the server to find the current tab
                                     id = "tabset1", height = "650px",width = "500px",
+                                    ### Sumary dashboard - Month tab
                                     tabPanel("Month",                                 
                                              fluidRow(
                                       # A static infoBox
@@ -67,18 +72,56 @@ ui <- dashboardPage(skin = "green",
                                       box(tags$b("Revenue Generated"),br(), sum(buget$roi),width = 2, background = "olive")
                                     ),
                                     fluidRow(
-                                      box(plotOutput("plot4", height = 250)),
-                                      box(plotOutput("plot2", height = 250)),
-                                      box(plotOutput("plot3", height = 250)),
+                                      box(plotOutput("summarymonthplot1", height = 250)),
+                                      box(plotOutput("summarymonthplot2", height = 250)),
+                                      box(plotOutput("summarymonthplot3", height = 250)),
                                       frow1 <- bootstrapPage(
                                         column(6,
-                                               dataTableOutput("mytable2", width="100%"))  ##Table we're trying to display##
+                                               dataTableOutput("summarymonthplot4", width="100%"))  ##Table we're trying to display##
                                       )
                                       
                                     )),
-                                    tabPanel("Quarter", "Quarter wise content will be displayed here")
-                                  )
-                                )
+                                    ### Sumary dashboard - Quarter tab
+                                    tabPanel("Quarter",  
+                                             fluidRow(
+                                               # A static infoBox
+                                               box(tags$b("Budget Allocated"),br(), sum(buget$marketing.budget),width = 2, background = "olive"),
+                                               box(tags$b("Budget Used"),br(), 50000,width = 2, background = "olive"),
+                                               box(tags$b("Conversion"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
+                                               box(tags$b("Cost per Conversions"),br(),sum(buget$Cost.per.conversion),width = 2, background = "olive"),
+                                               box(tags$b("Revenue Generated"),br(), sum(buget$roi),width = 2, background = "olive")
+                                             ),
+                                             fluidRow(
+                                               box(plotOutput("summaryquarterplot1", height = 250)),
+                                               box(plotOutput("summaryquarterplot2", height = 250)),
+                                               box(plotOutput("summaryquarterplot3", height = 250)),
+                                               frow1 <- bootstrapPage(
+                                                 column(6,
+                                                        dataTableOutput("summaryquarterplot4", width="100%"))  ##Table we're trying to display##
+                                               )
+                                               
+                                             )),
+                                    tabPanel("Year",                                 
+                                             fluidRow(
+                                               # A static infoBox
+                                               
+                                               box(tags$b("Budget Allocated"),br(), sum(buget$marketing.budget),width = 2, background = "olive"),
+                                               box(tags$b("Budget Used"),br(), 50000,width = 2, background = "olive"),
+                                               box(tags$b("Conversion"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
+                                               box(tags$b("Cost per Conversions"),br(),sum(buget$Cost.per.conversion),width = 2, background = "olive"),
+                                               box(tags$b("Revenue Generated"),br(), sum(buget$roi),width = 2, background = "olive")
+                                             ),
+                                             fluidRow(
+                                               box(plotOutput("summaryyearplot1", height = 250)),
+                                               box(plotOutput("summaryyearplot2", height = 250)),
+                                               box(plotOutput("summaryyearplot3", height = 250)),
+                                               frow1 <- bootstrapPage(
+                                                 column(6,
+                                                        dataTableOutput("summaryyearplot4", width="100%"))  ##Table we're trying to display##
+                                               )
+                                               
+                                             ))
+                                    ))
                                 #,
                                 #fluidRow(
                                 #  
@@ -141,7 +184,7 @@ ui <- dashboardPage(skin = "green",
                                 #   )
                                 #,tabPanel(
                                 #title = "Sales by Quarter"
-                                #,dataTableOutput("mytable2")
+                                #,dataTableOutput("summarymonthplot4")
                                 #)
                                 # ,tabPanel(
                                 #  title = "Prior Year Sales"
@@ -251,7 +294,5 @@ ui <- dashboardPage(skin = "green",
                     )
             )  
 )
-
-
 
 

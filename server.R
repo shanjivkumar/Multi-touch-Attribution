@@ -18,8 +18,8 @@ server <- function(input,output){
   output$summarymonthplot1 <- renderPlot({
     
     ggplot(buget) +
-      geom_bar(aes(x = date, weight = roi)) +
-      geom_line(aes(x = as.numeric(date), y = marketing.budget))+
+      geom_bar(aes(x = date, weight = (roi))) +
+      geom_line(aes(x = as.numeric(date), y = (marketing.budget)))+
       theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"))+
       ggtitle("ROI & Marketing budget")
   })

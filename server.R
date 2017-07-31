@@ -15,25 +15,23 @@ server <- function(input,output){
 
 ########### Summary tab #########
 ########### Month Report #########
+  buget$date <- strptime(as.character(buget$date), "%d/%m/%Y")
+  buget$month<-as.Date(cut(buget$date,breaks = "month"))
+  
   output$summarymonthplot1 <- renderPlot({
-    
-    ggplot(buget) +
-      geom_bar(aes(x = date, weight = (roi))) +
-      geom_line(aes(x = as.numeric(date), y = (marketing.budget)))+
-      theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"))+
-      ggtitle("ROI & Marketing budget")
+    ggplot(data=buget,aes(month,roi))+stat_summary(fun.y=sum,geom="bar")+stat_summary(fun.y=sum,geom="line")
   })
   
   
   output$summarymonthplot2 <- renderPlot({
-    ggplot(data=buget,aes(x=factor(date),y=roi,fill=channel)) +  
+    ggplot(data=buget,aes(x=(month),y=roi,fill=channel)) +  
       geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
   })
   
   output$summarymonthplot3 <- renderPlot({
-    ggplot(data=buget,aes(x=factor(date),y=no.of.conversions,group=channel)) +
+    ggplot(data=buget,aes(x=(month),y=no.of.conversions,group=channel)) +
       geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("# Of Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("No of conversions vs channels")
@@ -42,25 +40,21 @@ server <- function(input,output){
   output$summarymonthplot4 = renderDataTable(channelpath)
   ########### Summary tab #########
   ########### Quarter Report #########
-  buget$yearquater <- as.yearqtr(buget$date, format = "%d/%m/%y%y")
+  buget$quarter<-as.Date(cut(buget$date,breaks = "quarter"))
+
   output$summaryquarterplot1 <- renderPlot({
-    
-    ggplot(buget) +
-      geom_bar(aes(x = yearquater, weight = roi)) +
-      geom_line(aes(x = as.numeric(yearquater), y = marketing.budget))+
-      theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"))+
-      ggtitle("ROI & Marketing budget")
+    ggplot(data=buget,aes(quarter,roi))+stat_summary(fun.y=sum,geom="bar")+stat_summary(fun.y=sum,geom="line")
   })
   
   output$summaryquarterplot2 <- renderPlot({
-    ggplot(data=buget,aes(x=factor(yearquater),y=roi,fill=channel)) +  
+    ggplot(data=buget,aes(x=(quarter),y=roi,fill=channel)) +  
       geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
   })
   
   output$summaryquarterplot3 <- renderPlot({
-    ggplot(data=buget,aes(x=factor(yearquater),y=no.of.conversions,group=channel)) +
+    ggplot(data=buget,aes(x=(quarter),y=no.of.conversions,group=channel)) +
       geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("# Of Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("No of conversions vs channels")
@@ -69,24 +63,21 @@ server <- function(input,output){
   output$summaryquarterplot4 = renderDataTable(channelpath)
   ########### Summary tab #########
   ########### Year Report #########
+  buget$year<-as.Date(cut(buget$date,breaks = "year"))
+  
   output$summaryyearplot1 <- renderPlot({
-    
-    ggplot(buget) +
-      geom_bar(aes(x = date, weight = roi)) +
-      geom_line(aes(x = as.numeric(date), y = marketing.budget))+
-      theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"))+
-      ggtitle("ROI & Marketing budget")
+    ggplot(data=buget,aes(year,roi))+stat_summary(fun.y=sum,geom="bar")+stat_summary(fun.y=sum,geom="line")
   })
   
   output$summaryyearplot2 <- renderPlot({
-    ggplot(data=buget,aes(x=factor(date),y=roi,fill=channel)) +  
+    ggplot(data=buget,aes(x=(year),y=roi,fill=channel)) +  
       geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
   })
   
   output$summaryyearplot3 <- renderPlot({
-    ggplot(data=buget,aes(x=factor(date),y=no.of.conversions,group=channel)) +
+    ggplot(data=buget,aes(x=(year),y=no.of.conversions,group=channel)) +
       geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("# Of Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("No of conversions vs channels")

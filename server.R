@@ -28,6 +28,7 @@ server <- function(input,output){
       geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
+    
   })
   
   output$summarymonthplot3 <- renderPlot({
@@ -40,21 +41,27 @@ server <- function(input,output){
   output$summarymonthplot4 = renderDataTable(channelpath)
   ########### Summary tab #########
   ########### Quarter Report #########
-  buget$quarter<-as.Date(cut(buget$date,breaks = "quarter"))
-
+  quarter<-quarter(buget$date,with_year = T)
+  buget.new<-data.frame(quarter,buget)
+  summaryquarterplot2<-aggregate(buget.new$roi~buget.new$quarter+buget.new$channel, FUN=sum)
+  summaryquarterplot2
+  names(summaryquarterplot2)<-c("quarter","channel","roi")
+  summaryquarterplot3<-aggregate(buget.new$no.of.conversions~buget.new$quarter+buget.new$channel, FUN=sum)
+  summaryquarterplot3
+  names(summaryquarterplot3)<-c("quarter","channel","no.of.conversions")
   output$summaryquarterplot1 <- renderPlot({
     ggplot(data=buget,aes(quarter,roi))+stat_summary(fun.y=sum,geom="bar")+stat_summary(fun.y=sum,geom="line")
   })
   
   output$summaryquarterplot2 <- renderPlot({
-    ggplot(data=buget,aes(x=(quarter),y=roi,fill=channel)) +  
+    ggplot(data=summaryquarterplot2,aes(x=factor(quarter),y=roi,fill=channel)) + 
       geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
   })
   
   output$summaryquarterplot3 <- renderPlot({
-    ggplot(data=buget,aes(x=(quarter),y=no.of.conversions,group=channel)) +
+    ggplot(data=summaryquarterplot3,aes(x=factor(quarter),y=(no.of.conversions),group=channel)) +
       geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("# Of Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("No of conversions vs channels")

@@ -19,7 +19,11 @@ server <- function(input,output){
   buget$month<-as.Date(cut(buget$date,breaks = "month"))
   
   output$summarymonthplot1 <- renderPlot({
-    ggplot(data=buget,aes(month,roi))+stat_summary(fun.y=sum,geom="bar")+stat_summary(fun.y=sum,geom="line")
+    ggplot(buget) +
+      geom_bar(aes(x = date, weight = (roi))) +
+      geom_line(aes(x = (date), y = (marketing.budget)))+
+      theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"))+
+      ggtitle("ROI & Marketing budget")
   })
   
   
@@ -43,6 +47,9 @@ server <- function(input,output){
   ########### Quarter Report #########
   quarter<-quarter(buget$date,with_year = T)
   buget.new<-data.frame(quarter,buget)
+  summaryquarterplot1<-aggregate(buget.new$roi~buget.new$quarter+buget.new$marketing.budget, FUN=sum)
+  summaryquarterplot1
+  names(summaryquarterplot1)<-c("quarter","marketing.budget","roi")
   summaryquarterplot2<-aggregate(buget.new$roi~buget.new$quarter+buget.new$channel, FUN=sum)
   summaryquarterplot2
   names(summaryquarterplot2)<-c("quarter","channel","roi")
@@ -51,7 +58,11 @@ server <- function(input,output){
   names(summaryquarterplot3)<-c("quarter","channel","no.of.conversions")
   
   output$summaryquarterplot1 <- renderPlot({
-    ggplot(data=buget,aes(quarter,roi))+stat_summary(fun.y=sum,geom="bar")+stat_summary(fun.y=sum,geom="line")
+    ggplot(summaryquarterplot1) +
+      geom_bar(aes(x = quarter, weight = (roi))) +
+      geom_line(aes(x = (quarter), y = (marketing.budget)))+
+      theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"))+
+      ggtitle("ROI & Marketing budget")
   })
   
   output$summaryquarterplot2 <- renderPlot({

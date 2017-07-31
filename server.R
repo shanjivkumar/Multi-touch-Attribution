@@ -49,6 +49,7 @@ server <- function(input,output){
   summaryquarterplot3<-aggregate(buget.new$no.of.conversions~buget.new$quarter+buget.new$channel, FUN=sum)
   summaryquarterplot3
   names(summaryquarterplot3)<-c("quarter","channel","no.of.conversions")
+  
   output$summaryquarterplot1 <- renderPlot({
     ggplot(data=buget,aes(quarter,roi))+stat_summary(fun.y=sum,geom="bar")+stat_summary(fun.y=sum,geom="line")
   })
@@ -70,21 +71,29 @@ server <- function(input,output){
   output$summaryquarterplot4 = renderDataTable(channelpath)
   ########### Summary tab #########
   ########### Year Report #########
-  buget$year<-as.Date(cut(buget$date,breaks = "year"))
+  buget$year<-year(buget$date)
+  yeardate<-year(buget$date)
+  buget.new<-data.frame(yeardate,buget)
+  summaryyearplot2<-aggregate(buget.new$roi~buget.new$yeardate+buget.new$channel, FUN=sum)
+  names(summaryyearplot2)<-c("yeardate","channel","roi")
+  
+  summaryyearplot3<-aggregate(buget.new$no.of.conversions~buget.new$yeardate+buget.new$channel, FUN=sum)
+  summaryyearplot3
+  names(summaryyearplot3)<-c("yeardate","channel","no.of.conversions")
   
   output$summaryyearplot1 <- renderPlot({
     ggplot(data=buget,aes(year,roi))+stat_summary(fun.y=sum,geom="bar")+stat_summary(fun.y=sum,geom="line")
   })
   
   output$summaryyearplot2 <- renderPlot({
-    ggplot(data=buget,aes(x=(year),y=roi,fill=channel)) +  
+    ggplot(data=summaryyearplot2,aes(x=(yeardate),y=roi,fill=channel)) +  
       geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
   })
   
   output$summaryyearplot3 <- renderPlot({
-    ggplot(data=buget,aes(x=(year),y=no.of.conversions,group=channel)) +
+    ggplot(data=summaryyearplot3,aes(x=(yeardate),y=no.of.conversions,group=channel)) +
       geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("# Of Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("No of conversions vs channels")

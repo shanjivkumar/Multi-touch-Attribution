@@ -18,14 +18,36 @@ server <- function(input,output){
   buget$date <- strptime(as.character(buget$date), "%d/%m/%Y")
   buget$month<-as.Date(cut(buget$date,breaks = "month"))
   
+  
+  
+  month<-month(buget$date)
+  year<-year(buget$date)
+  month1<-paste(year,month)
+  buget.new<-data.frame(month1,buget)
+  summarymonthplot1<-aggregate(buget.new$marketing.budget~buget.new$month1, FUN=sum)
+  summarymonthplot1
+  names(summarymonthplot1)<-c("month1","marketing.budget")
+  
+  summarymonthplot1new<-aggregate(buget.new$roi~buget.new$month1, FUN=sum)
+  summarymonthplot1new
+  names(summarymonthplot1new)<-c("month1","roi")
+  
+  finaldataframemonth<-data.frame(summarymonthplot1,summarymonthplot1new$roi)
+  finaldataframemonth
+  names(finaldataframemonth)<-c("month1","marketing.budget","roi")
+  finaldataframemonth
+  
+  
+  
+  
   output$summarymonthplot1 <- renderPlot({
 
-    ggplot(buget, aes(date)) + 
+    ggplot(data=finaldataframemonth,aes(x=factor(month1)))+
       geom_bar(aes(y = roi,fill="roi"), stat="identity") +
       geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
       scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
       scale_fill_manual("",values="red")+
-      theme(legend.key=element_blank(),
+      theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
             legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("ROI & Marketing Budget")
     
@@ -108,7 +130,7 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
   ########### Summary tab #########
   ########### Year Report #########
   buget$year<-year(buget$date)
-  yeardate<-year(buget$date)
+  yeardate<-as.integer(buget$year)
   buget.new<-data.frame(yeardate,buget)
   
   

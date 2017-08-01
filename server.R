@@ -53,31 +53,32 @@ server <- function(input,output){
   ########### Quarter Report #########
   quarter<-quarter(buget$date)
   year<-year(buget$date)
-  buget.new<-data.frame(quarter,buget)
-  summaryquarterplot1<-aggregate(buget.new$marketing.budget~buget.new$quarter, FUN=sum)
+  quarter1<-paste(year," Q",quarter,sep="")
+  buget.new<-data.frame(quarter1,buget)
+  summaryquarterplot1<-aggregate(buget.new$marketing.budget~buget.new$quarter1, FUN=sum)
   summaryquarterplot1
-  names(summaryquarterplot1)<-c("quarter","marketing.budget")
+  names(summaryquarterplot1)<-c("quarter1","marketing.budget")
   
-  summaryquarterplot1new<-aggregate(buget.new$roi~buget.new$quarter, FUN=sum)
+  summaryquarterplot1new<-aggregate(buget.new$roi~buget.new$quarter1, FUN=sum)
   summaryquarterplot1new
-  names(summaryquarterplot1new)<-c("quarter","roi")
+  names(summaryquarterplot1new)<-c("quarter1","roi")
   
   finaldataframe<-data.frame(summaryquarterplot1,summaryquarterplot1new$roi)
   finaldataframe
-  names(finaldataframe)<-c("quarter","marketing.budget","roi")
+  names(finaldataframe)<-c("quarter1","marketing.budget","roi")
   finaldataframe
   
   
-  summaryquarterplot2<-aggregate(buget.new$roi~buget.new$quarter+buget.new$channel, FUN=sum)
+  summaryquarterplot2<-aggregate(buget.new$roi~buget.new$quarter1+buget.new$channel, FUN=sum)
   summaryquarterplot2
-  names(summaryquarterplot2)<-c("quarter","channel","roi")
-  summaryquarterplot3<-aggregate(buget.new$no.of.conversions~buget.new$quarter+buget.new$channel, FUN=sum)
+  names(summaryquarterplot2)<-c("quarter1","channel","roi")
+  summaryquarterplot3<-aggregate(buget.new$no.of.conversions~buget.new$quarter1+buget.new$channel, FUN=sum)
   summaryquarterplot3
-  names(summaryquarterplot3)<-c("quarter","channel","no.of.conversions")
+  names(summaryquarterplot3)<-c("quarter1","channel","no.of.conversions")
  
 
   output$summaryquarterplot1 <- renderPlot({
-ggplot(data=finaldataframe,aes(x=factor(quarter)))+
+ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
       geom_bar(aes(y = roi,fill="roi"), stat="identity") +
       geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
       scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
@@ -90,14 +91,14 @@ ggplot(data=finaldataframe,aes(x=factor(quarter)))+
   })
   
   output$summaryquarterplot2 <- renderPlot({
-    ggplot(data=summaryquarterplot2,aes(x=factor(quarter),y=roi,fill=channel)) + 
+    ggplot(data=summaryquarterplot2,aes(x=factor(quarter1),y=roi,fill=channel)) + 
       geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
   })
   
   output$summaryquarterplot3 <- renderPlot({
-    ggplot(data=summaryquarterplot3,aes(x=factor(quarter),y=(no.of.conversions),group=channel)) +
+    ggplot(data=summaryquarterplot3,aes(x=factor(quarter1),y=(no.of.conversions),group=channel)) +
       geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("# Of Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("No of conversions vs channels")

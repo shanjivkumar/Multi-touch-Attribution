@@ -109,6 +109,22 @@ ggplot(data=finaldataframe,aes(x=factor(quarter)))+
   buget$year<-year(buget$date)
   yeardate<-year(buget$date)
   buget.new<-data.frame(yeardate,buget)
+  
+  
+  summaryyearplot1<-aggregate(buget.new$marketing.budget~buget.new$yeardate, FUN=sum)
+  summaryyearplot1
+  names(summaryyearplot1)<-c("yeardate","marketing.budget")
+  
+  summaryyearplot1new<-aggregate(buget.new$roi~buget.new$yeardate, FUN=sum)
+  summaryyearplot1new
+  names(summaryyearplot1new)<-c("yeardate","roi")
+  
+  finaldataframeyear<-data.frame(summaryyearplot1,summaryyearplot1new$roi)
+  finaldataframeyear
+  names(finaldataframeyear)<-c("yeardate","marketing.budget","roi")
+  finaldataframeyear
+  
+  
   summaryyearplot2<-aggregate(buget.new$roi~buget.new$yeardate+buget.new$channel, FUN=sum)
   names(summaryyearplot2)<-c("yeardate","channel","roi")
   
@@ -117,7 +133,7 @@ ggplot(data=finaldataframe,aes(x=factor(quarter)))+
   names(summaryyearplot3)<-c("yeardate","channel","no.of.conversions")
   
   output$summaryyearplot1 <- renderPlot({
-    ggplot(buget, aes(year)) + 
+    ggplot(finaldataframeyear, aes(yeardate)) + 
       geom_bar(aes(y = roi,fill="roi"), stat="identity") +
       geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
       scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+

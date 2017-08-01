@@ -45,7 +45,8 @@ server <- function(input,output){
   output$summarymonthplot4 = renderDataTable(channelpath)
   ########### Summary tab #########
   ########### Quarter Report #########
-  quarter<-quarter(buget$date,with_year = T)
+  quarter<-quarter(buget$date)
+  year<-year(buget$date)
   buget.new<-data.frame(quarter,buget)
   summaryquarterplot1<-aggregate(buget.new$roi~buget.new$quarter+buget.new$marketing.budget, FUN=sum)
   summaryquarterplot1

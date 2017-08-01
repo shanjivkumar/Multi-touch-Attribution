@@ -49,7 +49,7 @@ server <- function(input,output){
       scale_fill_manual("",values="red")+
       theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
-            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("ROI & Marketing Budget")
+            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("ROI & Marketing Budget")+xlab("Date")+ylab("Value") 
     
     
   })
@@ -105,11 +105,9 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
       geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
       scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
       scale_fill_manual("",values="red")+
-      theme(legend.key=element_blank(),
+      theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
-            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("ROI & Marketing Budget")
-    
-    
+            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("ROI & Marketing Budget")+xlab("Date")+ylab("Value")     
   })
   
   output$summaryquarterplot2 <- renderPlot({
@@ -161,10 +159,9 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
       geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
       scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
       scale_fill_manual("",values="red")+
-      theme(legend.key=element_blank(),
+      theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
-            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("ROI & Marketing Budget")
-    
+            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("ROI & Marketing Budget")+xlab("Date")+ylab("Value")    
   })
   
   output$summaryyearplot2 <- renderPlot({

@@ -11,6 +11,7 @@ library(dplyr)
 buget<-read.csv("Budget.csv")
 channelpath<-read.csv("Channel path.csv")
 attribution<-read.csv("Attribution.csv")
+attribution_type<-read.csv("Attribution-types.csv")
 
 server <- function(input,output){
 
@@ -185,10 +186,10 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
 ############################################################################
 ############################################################################
   output$plot10 <- renderPlot({
-    ggplot(data=buget,aes(x=factor(date),y=roi,fill=channel)) +  
-      geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
-      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-      ggtitle("Top 5 Channels")
+    ggplot(data=Attribution-types,aes(x=(Channel),y=(Percentage_conversion))) +  
+      geom_bar(position = "dodge", stat="identity") + ylab("% Of Conversions") + 
+      xlab("Channel") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
+      ggtitle("Attribution summary")
   })
   
 

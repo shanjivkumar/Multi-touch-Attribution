@@ -247,13 +247,15 @@ ui <- dashboardPage(skin = "green",
                                     id = "tabset1", height = "650px",width = "500px",
                                     ### Sumary dashboard - Month tab
                                     tabPanel("Month", 
-                                
-                               
-                                
+                                             fluidRow(
+                                               box(plotOutput("channelmonthplot1", height = 250))
+
+                                               
+                                             ),
+                                            fluidRow(
+                                            box(plotOutput("channelmonthplot2", height = 250))
+                                            ),
                                 fluidRow(
-
-                            
-
                                   column(width = 9, 
                                          box(title="Channel Performance - KPI",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("plotly1",height=300))
                                          

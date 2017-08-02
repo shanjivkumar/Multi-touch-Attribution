@@ -207,7 +207,47 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
   
 
   
-
+########################################################################
+########################################################################
+########################################################################
+  
+  
+  month<-month(buget$date)
+  year<-year(buget$date)
+  month1<-paste(year,month)
+  buget.new<-data.frame(month1,buget)
+  
+  
+  output$channelmonthplot1 <- renderPlot({
+    
+    ggplot(data=buget.new,aes(x=factor(channel)))+
+      geom_bar(aes(y = roi,fill="roi"), stat="identity") +
+      geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
+      scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
+      scale_fill_manual("",values="red")+
+      theme(legend.position="bottom",legend.key=element_blank(),
+            legend.title=element_blank(),
+            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Channel Performance - KPI comparision")+xlab("Date")+ylab("Value") 
+    
+    
+  })
+  
+  
+  output$channelmonthplot2 <- renderPlot({
+    
+    ggplot(data=buget.new,aes(x=factor(channel)))+
+      geom_bar(aes(y = Visits,fill="Visits"), stat="identity") +
+      geom_line(aes(y = no.of.conversions, group = 1, color = "no.of.conversions")) +
+      scale_colour_manual(" ", values=c("no.of.conversions" = "blue", "Visits" = "red"))+
+      scale_fill_manual("",values="red")+
+      theme(legend.position="bottom",legend.key=element_blank(),
+            legend.title=element_blank(),
+            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Channel Performance - KPI comparision")+xlab("Date")+ylab("Value") 
+    
+    
+  })
+  
+  
   
   # output$mytable2 = renderDataTable(buget)
   # output$mytable3 = renderDataTable(iris)

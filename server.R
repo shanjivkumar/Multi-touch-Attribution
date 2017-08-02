@@ -10,6 +10,7 @@ library(dplyr)
 
 buget<-read.csv("Budget.csv")
 channelpath<-read.csv("Channel path.csv")
+attribution<-read.csv("Attribution.csv")
 
 server <- function(input,output){
 
@@ -203,7 +204,7 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
 
 
   
-  output$mytable1 = renderDataTable(buget)
+  output$mytable1 = renderDataTable(attribution)
   
 
   

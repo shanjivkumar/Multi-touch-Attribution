@@ -155,8 +155,9 @@ ui <- dashboardPage(skin = "green",
                                              selectInput("region", "Region:", choices=colnames(WorldPhones))
                                              #sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = c(25, 75))
                                   ),
-                                  mainPanel(dataTableOutput("mytable1", width="100%"),
-                                  box(plotOutput("plot10", height = 300, width=300))
+                                  mainPanel(
+                                  dataTableOutput("mytable1", width="100%"),
+                                  box(plotOutput("plot10", height = 300, width=800))
                                )                                      
                                  
                         )
@@ -298,7 +299,7 @@ ui <- dashboardPage(skin = "green",
                                                   box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly11",height=300))
                                                   
                                            ),
-                                           column(align='center',width = 3, br(),
+                                           column(align='center',width = 4, br(),
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                                   
                                                   box(selectInput("quarterlychannel", label = "Quarter",

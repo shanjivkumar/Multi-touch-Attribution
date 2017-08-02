@@ -147,9 +147,9 @@ ui <- dashboardPage(skin = "green",
                                               label = tags$b("Date range :  YYYY-MM-DD"),
                                               start = Sys.Date() - 2, end = Sys.Date() + 2
                                              )),
-                                              selectInput("Objective", "Choose an objective:",
-                                              choices = c("Awareness", "Engagement", "ROI")),
-                                              numericInput("obs", "Observations:", 10),
+                                              selectInput("Attribution type", "Choose a type:",
+                                              choices = c("First interaction", "Last interaction", "Multi-touch")),
+                                              #numericInput("obs", "Observations:", 10),
                                              sliderInput("Budget", label = h4("Budget"), min = 0, max = 100000, value = 50),
                                              sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = 75),
                                              selectInput("region", "Region:", choices=colnames(WorldPhones))
@@ -157,7 +157,7 @@ ui <- dashboardPage(skin = "green",
                                   ),
                                   mainPanel(
                                   dataTableOutput("mytable1", width="100%"),
-                                  box(plotOutput("plot10", height = 300, width=800))
+                                  box(plotOutput("plot11"))
                                )                                      
                                  
                         )
@@ -248,15 +248,13 @@ ui <- dashboardPage(skin = "green",
                                     id = "tabset1", height = "650px",width = "500px",
                                     ### Sumary dashboard - Month tab
                                     tabPanel("Month", 
-                                             fluidRow(
-                                               box(plotOutput("channelmonthplot1", height = 250))
-
-                                               
-                                             ),
-                                            fluidRow(
-                                            box(plotOutput("channelmonthplot2", height = 250))
-                                            ),
+                                
+                               
+                                
                                 fluidRow(
+
+                            
+
                                   column(width = 9, 
                                          box(title="Channel Performance - KPI",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("plotly1",height=300))
                                          

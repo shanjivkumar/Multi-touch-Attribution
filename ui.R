@@ -247,15 +247,7 @@ ui <- dashboardPage(skin = "green",
                                     # The id lets us use input$tabset1 on the server to find the current tab
                                     id = "tabset1", height = "650px",width = "500px",
                                     ### Sumary dashboard - Month tab
-                                    tabPanel("Month", 
-                                             fluidRow(
-                                               box(plotOutput("channelmonthplot1", height = 250))
-                                               
-                                               
-                                             ),
-                                             fluidRow(
-                                               box(plotOutput("channelmonthplot2", height = 250))
-                                             ),
+                                    tabPanel("Month",
                                
                                 
                                 fluidRow(
@@ -263,7 +255,7 @@ ui <- dashboardPage(skin = "green",
                             
 
                                   column(width = 9, 
-                                         box(title="Channel Performance - KPI",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("plotly1",height=300))
+                                         box(title="Channel Performance - KPI",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("channelmonthplot1",height=300))
                                          
                                   ),
                                   column(align='center',width = 3, br(),
@@ -304,7 +296,7 @@ ui <- dashboardPage(skin = "green",
                                                   box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly11",height=300))
                                                   
                                            ),
-                                           column(align='center',width = 4, br(),
+                                           column(align='center',width = 3, br(),
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                                   
                                                   box(selectInput("quarterlychannel", label = "Quarter",

@@ -383,19 +383,21 @@ ui <- dashboardPage(skin = "green",
                     
                     fluidRow(
                       tabBox(
-                        title = "Summary Dashboard",
+                        title = "Path Report Dashboard",
                         # The id lets us use input$tabset1 on the server to find the current tab
                         id = "tabset1", height = "650px",width = "500px",
                         ### Sumary dashboard - Month tab
                         tabPanel("Month",                                 
                                  fluidRow(
-                                   box(plotOutput("summarymonthplot12", height = 250)),
-                                   box(plotOutput("summarymonthplot22", height = 250)),
-                                   box(plotOutput("summarymonthplot32", height = 250)),
                                    frow1 <- bootstrapPage(
-                                     column(6,
-                                            dataTableOutput("summarymonthplot42", width="100%"))  ##Table we're trying to display##
-                                   )
+                                     column(8,
+                                            dataTableOutput("summarymonthplot42", width=300))  ##Table we're trying to display##
+                                   ),
+                                   
+                                   column(4,box(plotOutput("summarymonthplot12", width=450,height = 400)))
+                                   #box(plotOutput("summarymonthplot22", height = 250)),
+                                  # box(plotOutput("summarymonthplot32", height = 250))
+                                   
                                    
                                  ))
                       ))

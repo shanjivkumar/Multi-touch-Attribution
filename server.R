@@ -6,12 +6,14 @@ library(datasets)
 library(DT)
 library(plotly)
 library(dplyr)
+#library(scales)
 #library(zoo)
 
 buget<-read.csv("Budget.csv")
 channelpath<-read.csv("Channel path.csv")
 attribution<-read.csv("Attribution.csv")
 attribution_type<-read.csv("Attribution-types.csv")
+pathlength<-read.csv("Path Length.csv")
 
 server <- function(input,output){
 
@@ -248,7 +250,21 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
     
   })
 
+  #############################Path Report###################
+  output$summarymonthplot42 = renderDataTable(pathlength)
+  pathlength$Convesion.percentage<-(pathlength$Conversions/sum(pathlength$Conversions))*100
+  positions <- c("+10","9","8","7","6","5","4","3","2","1")
   
+  output$summarymonthplot12 <- renderPlot({
+    ggplot(data=pathlength,aes(x=(Path.Length.in.Interactions),y=Convesion.percentage)) +scale_x_discrete(limits = positions)+  
+      geom_bar(position = "dodge", stat="identity") + ylab("Conversions Percentage") + 
+      xlab("Path Length in Interactions") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
+      ggtitle("Path Length Report")+coord_flip()
+    
+  })
+  
+  
+
   # output$mytable2 = renderDataTable(buget)
   # output$mytable3 = renderDataTable(iris)
   #

@@ -52,7 +52,6 @@ ui <- dashboardPage(skin = "green",
                       sidebarUserPanel("www.i2decisions.com",image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
                     ),
                     dashboardBody(
-                      ###########################summarydashboard#####################################################################################################################
                       tabItems(
                         # First tab content
                         tabItem(tabName = "sumdashboard",
@@ -136,7 +135,7 @@ ui <- dashboardPage(skin = "green",
                                 #)
                                 
                         ),
-                        ################################################################################################################################################
+                        ###########################attrdashboard#####################################################################################################################
                         
                         tabItem(tabName = "attrdashboard",
                                 
@@ -148,7 +147,7 @@ ui <- dashboardPage(skin = "green",
                                               label = tags$b("Date range :  YYYY-MM-DD"),
                                               start = Sys.Date() - 2, end = Sys.Date() + 2
                                              )),
-                                              selectInput("Attribution type", "Choose a type:",
+                                              selectInput("AttributionType", "Choose a type:",
                                               choices = c("First interaction", "Last interaction", "Multi-touch")),
                                               #numericInput("obs", "Observations:", 10),
                                              sliderInput("Budget", label = h4("Budget"), min = 0, max = 100000, value = 50),
@@ -157,8 +156,9 @@ ui <- dashboardPage(skin = "green",
                                              #sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = c(25, 75))
                                   ),
                                   mainPanel(
-                                  dataTableOutput("mytable1", width="100%"),
-                                  box(plotOutput("plot11"))
+                                    
+                                  fluidRow(dataTableOutput("mytable1", width="100%")),
+                                  fluidRow(plotOutput("plot11", width=800))
                                )                                      
                                  
                         )
@@ -237,9 +237,10 @@ ui <- dashboardPage(skin = "green",
                                 #fluidPage(downloadButton("report", "Generate report"))
                                 #)
                         
-                        ############################################################################################################
+                        ###############-------END of Attributoin dashboard-------------------------#############################################################################################
                         
-                        ###############Channel report#############################################
+                        #--------------------------------------------------Channel report---------------------------------------------------------
+                        #------------------------------------------------------------------------------------------------------------------------------------
                         tabItem(tabName = "channelreport",
                                 fluidRow(
                                   tabBox(
@@ -247,7 +248,15 @@ ui <- dashboardPage(skin = "green",
                                     # The id lets us use input$tabset1 on the server to find the current tab
                                     id = "tabset1", height = "650px",width = "500px",
                                     ### Sumary dashboard - Month tab
-                                    tabPanel("Month",
+                                    tabPanel("Month", 
+                                             fluidRow(
+                                               box(plotOutput("channelmonthplot1", height = 250))
+                                               
+                                               
+                                             ),
+                                             fluidRow(
+                                               box(plotOutput("channelmonthplot2", height = 250))
+                                             ),
                                
                                 
                                 fluidRow(
@@ -255,7 +264,7 @@ ui <- dashboardPage(skin = "green",
                             
 
                                   column(width = 9, 
-                                         box(title="Channel Performance - KPI",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("channelmonthplot1",height=300))
+                                         box(title="Channel Performance - KPI",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("plotly1",height=300))
                                          
                                   ),
                                   column(align='center',width = 3, br(),
@@ -296,7 +305,7 @@ ui <- dashboardPage(skin = "green",
                                                   box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly11",height=300))
                                                   
                                            ),
-                                           column(align='center',width = 3, br(),
+                                           column(align='center',width = 4, br(),
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                                   
                                                   box(selectInput("quarterlychannel", label = "Quarter",
@@ -369,32 +378,7 @@ ui <- dashboardPage(skin = "green",
                         
                       )
                     )
-            ),
-##########################pathreport#####################################################
-            tabItem(tabName = "pathreport",
-                    
-                    fluidRow(
-                      tabBox(
-                        title = "Path Report Dashboard",
-                        # The id lets us use input$tabset1 on the server to find the current tab
-                        id = "tabset1", height = "650px",width = "500px",
-                        ### Sumary dashboard - Month tab
-                        tabPanel("Month",                                 
-                                 mainPanel(fluidRow(
-                                   frow1 <- bootstrapPage(
-                                     column(9,
-                                            dataTableOutput("summarymonthplot42"))  ##Table we're trying to display##
-                                   ),
-                                   
-                                   column(3,plotOutput("summarymonthplot12", width=500,height = 450))
-                                   #box(plotOutput("summarymonthplot22", height = 250)),
-                                  # box(plotOutput("summarymonthplot32", height = 250))
-                                   
-                                   
-                                 )))
-                      ))
-                    
-            )
+            )  
     )
   )    
 )

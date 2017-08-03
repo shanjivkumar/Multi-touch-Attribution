@@ -375,8 +375,7 @@ ui <- dashboardPage(skin = "green",
                     
                     fluidRow(
                       tabBox(
-                        title = "                     Path Report Dashboard
-                        ",
+                        title = "Path Report Dashboard",
                         # The id lets us use input$tabset1 on the server to find the current tab
                         id = "tabset1", height = "650px",width = "500px",
                         ### Sumary dashboard - Month tab

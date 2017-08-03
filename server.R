@@ -198,8 +198,8 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
   output$plot11 <- renderPlot({
     
     # Render a barplot
-    barplot(attribution_type,
-            #[,input$Attribution_type], 
+    barplot(attribution_type
+            [,input$Attribution_type]*1000, 
             main=input$Attribution_type,
             ylab="% Of Conversions",
             xlab="Channel")

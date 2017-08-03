@@ -259,15 +259,15 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
   pathlength1<-pathlength
   pathlength1$Convesion.percentage<-(pathlength1$Conversions/sum(pathlength1$Conversions))*100
   positions <- c("+10","9","8","7","6","5","4","3","2","1")
-  
-  output$summarymonthplot12 <- renderPlot({
-    ggplot(data=pathlength1,aes(x=(Path.Length.in.Interactions),y=Convesion.percentage)) +scale_x_discrete(limits = positions)+  
-      geom_bar(position = "dodge", stat="identity") + ylab("Conversions Percentage") + 
-      xlab("Path Length in Interactions") + theme(legend.position="center" ,plot.title = element_text(size=15, face="bold")) + 
-      ggtitle("                                   
-                                         Path Length Report")+coord_flip()
+  pathlength1$Path.Length.in.Interactions <- factor(pathlength1$Path.Length.in.Interactions, levels = c("10+","9","8","7","6","5","4","3","2","1"))
+
+    output$summarymonthplot12 <- renderPlotly({
+      plot_ly(pathlength1, y = ~Path.Length.in.Interactions, x = ~Convesion.percentage,type = 'bar', orientation = 'h')%>%
+        layout(title="Percentage of Total Conversion")
+    })
     
-  })
+    
+
   
   
 

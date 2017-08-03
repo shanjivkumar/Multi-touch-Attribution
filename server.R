@@ -44,9 +44,9 @@ server <- function(input,output){
   
   
   
-  output$summarymonthplot1 <- renderPlotly({
+  output$summarymonthplot1 <- renderPlot({
 
-    ggplotly(ggplot(data=finaldataframemonth,aes(x=factor(month1)))+
+    ggplot(data=finaldataframemonth,aes(x=factor(month1)))+
       geom_bar(aes(y = roi,fill="roi"), stat="identity") +
       geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
       scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
@@ -54,7 +54,7 @@ server <- function(input,output){
       theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
             legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("ROI & Marketing Budget")+xlab("Date")+ylab("Value") 
-    )
+    
     
   })
   
@@ -200,8 +200,8 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
   output$plot11 <- renderPlot({
     
     # Render a barplot
-    barplot(attribution_type,
-            #[,input$Attribution_type], 
+    barplot(attribution_type
+            [,input$Attribution_type]*1000, 
             main=input$Attribution_type,
             ylab="% Of Conversions",
             xlab="Channel")

@@ -251,15 +251,17 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
   })
 
   #############################Path Report###################
-  output$summarymonthplot42 = renderDataTable(pathlength)
-  pathlength$Convesion.percentage<-(pathlength$Conversions/sum(pathlength$Conversions))*100
+  output$summarymonthplot42 = renderDataTable(pathlength,options = list(dom = 't'))
+  pathlength1<-pathlength
+  pathlength1$Convesion.percentage<-(pathlength1$Conversions/sum(pathlength1$Conversions))*100
   positions <- c("+10","9","8","7","6","5","4","3","2","1")
   
   output$summarymonthplot12 <- renderPlot({
-    ggplot(data=pathlength,aes(x=(Path.Length.in.Interactions),y=Convesion.percentage)) +scale_x_discrete(limits = positions)+  
+    ggplot(data=pathlength1,aes(x=(Path.Length.in.Interactions),y=Convesion.percentage)) +scale_x_discrete(limits = positions)+  
       geom_bar(position = "dodge", stat="identity") + ylab("Conversions Percentage") + 
-      xlab("Path Length in Interactions") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-      ggtitle("Path Length Report")+coord_flip()
+      xlab("Path Length in Interactions") + theme(legend.position="center" ,plot.title = element_text(size=15, face="bold")) + 
+      ggtitle("                                   
+                                         Path Length Report")+coord_flip()
     
   })
   

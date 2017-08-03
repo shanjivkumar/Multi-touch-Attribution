@@ -44,9 +44,9 @@ server <- function(input,output){
   
   
   
-  output$summarymonthplot1 <- renderPlot({
+  output$summarymonthplot1 <- renderPlotly({
 
-    ggplot(data=finaldataframemonth,aes(x=factor(month1)))+
+    ggplotly(ggplot(data=finaldataframemonth,aes(x=factor(month1)))+
       geom_bar(aes(y = roi,fill="roi"), stat="identity") +
       geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
       scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
@@ -54,7 +54,7 @@ server <- function(input,output){
       theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
             legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("ROI & Marketing Budget")+xlab("Date")+ylab("Value") 
-    
+    )
     
   })
   

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #install.packages("shinythemes")
 library(shiny)
 library(shinydashboard)
@@ -276,9 +276,7 @@ ui <- dashboardPage(skin = "green",
                                   ),
                                 column(align='center', width = 4, br(),
                                        #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
-                                       box(selectInput("objective$channel", label = "Objective",
-                                                                     choices = c("Awareness", "Engagement", "ROI"))
-                                           ,width = 8,offset =2) ,
+                                     
                                        box(selectInput("type$channel", label = "Channel Type",choices = c("Awareness", "Engagement", "ROI"))
                                            ,width = 8,offset =2) ,
                                        box(selectInput("kpi$channel", label = "KPI",choices = c("Awareness", "Engagement", "ROI"))
@@ -315,9 +313,8 @@ ui <- dashboardPage(skin = "green",
                                            ),
                                            column(align='center', width = 4, br(),
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
-                                                  box(selectInput("objective$channel", label = "Objective",
-                                                                  choices = c("Awareness", "Engagement", "ROI"))
-                                                      ,width = 8,offset =2) ,
+                                                 
+                                              
                                                   box(selectInput("type$channel", label = "Channel Type",choices = c("Awareness", "Engagement", "ROI"))
                                                       ,width = 8,offset =2) ,
                                                   box(selectInput("kpi$channel", label = "KPI",choices = c("Awareness", "Engagement", "ROI"))
@@ -353,9 +350,7 @@ ui <- dashboardPage(skin = "green",
                                            ),
                                            column(align='center', width = 4, br(),
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
-                                                  box(selectInput("objective$channel", label = "Objective",
-                                                                  choices = c("Awareness", "Engagement", "ROI"))
-                                                      ,width = 8,offset =2) ,
+                                                  
                                                   box(selectInput("type$channel", label = "Channel Type",choices = c("Awareness", "Engagement", "ROI"))
                                                       ,width = 8,offset =2) ,
                                                   box(selectInput("kpi$channel", label = "KPI",choices = c("Awareness", "Engagement", "ROI"))
@@ -401,7 +396,7 @@ ui <- dashboardPage(skin = "green",
   )    
 )
 
-=======
+
 #install.packages("shinythemes")
 library(shiny)
 library(shinydashboard)
@@ -666,8 +661,8 @@ ui <- dashboardPage(skin = "green",
                                   column(align='center',width = 3, br(),
                                          #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                          box(selectInput("Monthlychannel", label = "Month",
-                                                                                choices = c("Awareness", "Engagement", "ROI"))
-                                             ,width = 8,offset =2,background = "green") 
+                                                                                choices = unique(buget$month),multiple = TRUE)
+                                             ,width = 8,offset =2) 
                                          
                                          
                                          
@@ -680,7 +675,7 @@ ui <- dashboardPage(skin = "green",
                                 column(align='center', width = 4, br(),
                                        #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                        box(selectInput("objective$channel", label = "Objective",
-                                                                     choices = c("Awareness", "Engagement", "ROI"))
+                                                                     choices = c("Awareness", "Engagement", "Purchase"))
                                            ,width = 8,offset =2) ,
                                        box(selectInput("type$channel", label = "Channel Type",choices = c("Awareness", "Engagement", "ROI"))
                                            ,width = 8,offset =2) ,
@@ -705,8 +700,8 @@ ui <- dashboardPage(skin = "green",
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                                   
                                                   box(selectInput("quarterlychannel", label = "Quarter",
-                                                                  choices = c("Awareness", "Engagement", "ROI"))
-                                                      ,width = 8,offset =2,background = "green") 
+                                                                  choices = unique(buget$quarter),multiple = TRUE)
+                                                      ,width = 8,offset =2) 
                                                 
                                                   
                                                   
@@ -719,7 +714,7 @@ ui <- dashboardPage(skin = "green",
                                            column(align='center', width = 4, br(),
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                                   box(selectInput("objective$channel", label = "Objective",
-                                                                  choices = c("Awareness", "Engagement", "ROI"))
+                                                                  choices = c("Awareness", "Engagement", "Purchase"))
                                                       ,width = 8,offset =2) ,
                                                   box(selectInput("type$channel", label = "Channel Type",choices = c("Awareness", "Engagement", "ROI"))
                                                       ,width = 8,offset =2) ,
@@ -744,8 +739,8 @@ ui <- dashboardPage(skin = "green",
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                                   
                                                   box(selectInput("yearlychannel", label = "Year",
-                                                                  choices = c("Awareness", "Engagement", "ROI"))
-                                                      ,width = 8,offset =2,background = "green") 
+                                                                  choices = unique(buget$year),multiple = TRUE)
+                                                      ,width = 8,offset =2) 
                                                   
                                                   
                                            )),
@@ -757,7 +752,7 @@ ui <- dashboardPage(skin = "green",
                                            column(align='center', width = 4, br(),
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                                   box(selectInput("objective$channel", label = "Objective",
-                                                                  choices = c("Awareness", "Engagement", "ROI"))
+                                                                  choices = c("Awareness", "Engagement", "Purchase"))
                                                       ,width = 8,offset =2) ,
                                                   box(selectInput("type$channel", label = "Channel Type",choices = c("Awareness", "Engagement", "ROI"))
                                                       ,width = 8,offset =2) ,
@@ -804,4 +799,4 @@ ui <- dashboardPage(skin = "green",
   )    
 )
 
->>>>>>> fd4d4b52bd0cb2e83f6a32d00bf3542711639644
+

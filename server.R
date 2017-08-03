@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 library(shiny)
 library(shinydashboard)
 library(ggplot2)
@@ -276,7 +276,7 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
   # output$mytable3 = renderDataTable(iris)
   #
 }
-=======
+
 library(shiny)
 library(shinydashboard)
 library(ggplot2)
@@ -559,4 +559,4 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
   # output$mytable3 = renderDataTable(iris)
   #
 }
->>>>>>> fd4d4b52bd0cb2e83f6a32d00bf3542711639644
+

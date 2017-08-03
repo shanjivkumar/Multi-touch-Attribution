@@ -52,6 +52,7 @@ ui <- dashboardPage(skin = "green",
                       sidebarUserPanel("www.i2decisions.com",image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
                     ),
                     dashboardBody(
+                      ###########################sumdashboard#####################################################################################################################
                       tabItems(
                         # First tab content
                         tabItem(tabName = "sumdashboard",
@@ -236,10 +237,9 @@ ui <- dashboardPage(skin = "green",
                                 #fluidPage(downloadButton("report", "Generate report"))
                                 #)
                         
-                        ###############-------END of Attributoin dashboard-------------------------#############################################################################################
+                        ############################################################################################################
                         
-                        #--------------------------------------------------Channel report---------------------------------------------------------
-                        #------------------------------------------------------------------------------------------------------------------------------------
+                        ###############Channel report#############################################
                         tabItem(tabName = "channelreport",
                                 fluidRow(
                                   tabBox(
@@ -377,7 +377,30 @@ ui <- dashboardPage(skin = "green",
                         
                       )
                     )
-            )  
+            ),
+##########################pathreport#####################################################
+            tabItem(tabName = "pathreport",
+                    
+                    fluidRow(
+                      tabBox(
+                        title = "Summary Dashboard",
+                        # The id lets us use input$tabset1 on the server to find the current tab
+                        id = "tabset1", height = "650px",width = "500px",
+                        ### Sumary dashboard - Month tab
+                        tabPanel("Month",                                 
+                                 fluidRow(
+                                   box(plotOutput("summarymonthplot12", height = 250)),
+                                   box(plotOutput("summarymonthplot22", height = 250)),
+                                   box(plotOutput("summarymonthplot32", height = 250)),
+                                   frow1 <- bootstrapPage(
+                                     column(6,
+                                            dataTableOutput("summarymonthplot42", width="100%"))  ##Table we're trying to display##
+                                   )
+                                   
+                                 ))
+                      ))
+                    
+            )
     )
   )    
 )

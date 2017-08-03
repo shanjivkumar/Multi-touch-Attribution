@@ -197,15 +197,19 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
 
 
   ##Sample try
+  attribution$RevenueP <- round((attribution$Revenue/sum(attribution$Revenue))*100)
+  new_data<-melt(attribution,id.vars = "Channels",measure.vars=c("Percentage.Conversion","RevenueP"))
+  
   output$plot11 <- renderPlot({
-    
-    # Render a barplot
-    barplot(attribution_type
-            [,input$Attribution_type]*1000, 
-            main=input$Attribution_type,
-            ylab="% Of Conversions",
-            xlab="Channel")
+    ggplot(new_data ,aes(x=Channels,y=value,fill=factor(variable)))+  
+      geom_bar(stat="identity",position="dodge")+ theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"))+
+      xlab("Channels")+ylab("Percentage")
   })
+  
+  
+  output$mytable1 = renderDataTable({attribution})
+  #output$mytable1 = renderDataTable({attribution[,c("Channels","Percentage.Conversion","Revenue","Cost.Conversion","No.of.Conversions")]})
+  
 
 
   

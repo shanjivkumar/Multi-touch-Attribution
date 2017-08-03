@@ -140,29 +140,30 @@ ui <- dashboardPage(skin = "green",
                         
                         tabItem(tabName = "attrdashboard",
                                 
-                               fluidRow(
+                                fluidRow(
                                   
-                                sidebarPanel(width=3,
-                                             column (width = 12,
-                                              dateRangeInput('dateRange',
-                                              label = tags$b("Date range :  YYYY-MM-DD"),
-                                              start = Sys.Date() - 2, end = Sys.Date() + 2
-                                             )),
-                                              selectInput("Attribution type", "Choose a type:",
-                                              choices = c("First interaction", "Last interaction", "Multi-touch")),
-                                              #numericInput("obs", "Observations:", 10),
-                                             sliderInput("Budget", label = h4("Budget"), min = 0, max = 100000, value = 50),
-                                             sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = 75),
-                                             selectInput("region", "Region:", choices=colnames(WorldPhones))
-                                             #sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = c(25, 75))
+                                  sidebarPanel(width=3,
+                                               column (width = 12,
+                                                       dateRangeInput('dateRange',
+                                                                      label = tags$b("Date range :  YYYY-MM-DD"),
+                                                                      start = Sys.Date() - 2, end = Sys.Date() + 2
+                                                       )),
+                                               selectInput("AttributionType", "Choose a type:",
+                                                           choices = c("First interaction", "Last interaction", "Multi-touch")),
+                                               #numericInput("obs", "Observations:", 10),
+                                               sliderInput("Budget", label = h4("Budget"), min = 0, max = 100000, value = 50),
+                                               sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = 75),
+                                               selectInput("region", "Region:", choices=colnames(WorldPhones))
+                                               #sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = c(25, 75))
                                   ),
                                   mainPanel(
-                                  dataTableOutput("mytable1", width="100%"),
-                                  box(plotOutput("plot11"))
-                               )                                      
-                                 
-                        )
-                        
+                                    
+                                    fluidRow(dataTableOutput("mytable1", width="100%")),
+                                    fluidRow(plotOutput("plot11", width=800))
+                                  )                                      
+                                  
+                                )
+                                
                         ),
                                 
                                # frow <- basicPage(

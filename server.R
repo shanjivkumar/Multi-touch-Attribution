@@ -6,13 +6,14 @@ library(datasets)
 library(DT)
 library(plotly)
 library(dplyr)
-library(reshape)
+#library(scales)
 #library(zoo)
 
 buget<-read.csv("Budget.csv")
 channelpath<-read.csv("Channel path.csv")
 attribution<-read.csv("Attribution.csv")
 attribution_type<-read.csv("Attribution-types.csv")
+pathlength<-read.csv("Path Length.csv")
 
 server <- function(input,output){
 
@@ -193,22 +194,22 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
       ggtitle("Attribution summary")
   })
   
-##############################attribution###########################
+
 
   ##Sample try
-
-  attribution$RevenueP <- round((attribution$Revenue/sum(attribution$Revenue))*100)
-  new_data<-melt(attribution,id.vars = "Channels",measure.vars=c("Percentage.Conversion","RevenueP"))
-  
   output$plot11 <- renderPlot({
-    ggplot(new_data ,aes(x=Channels,y=value,fill=factor(variable)))+  
-      geom_bar(stat="identity",position="dodge")+ theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"))+
-      xlab("Channels")+ylab("Percentage")
+    
+    # Render a barplot
+    barplot(attribution_type
+            [,input$Attribution_type]*1000, 
+            main=input$Attribution_type,
+            ylab="% Of Conversions",
+            xlab="Channel")
   })
 
 
-  output$mytable1 = renderDataTable({attribution})
-  #output$mytable1 = renderDataTable({attribution[,c("Channels","Percentage.Conversion","Revenue","Cost.Conversion","No.of.Conversions")]})
+  
+  output$mytable1 = renderDataTable(attribution)
  
   ########################################################################
   ########################################################################
@@ -249,7 +250,23 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
     
   })
 
+  #############################Path Report###################
+  output$summarymonthplot42 = renderDataTable(pathlength,options = list(dom = 't'))
+  pathlength1<-pathlength
+  pathlength1$Convesion.percentage<-(pathlength1$Conversions/sum(pathlength1$Conversions))*100
+  positions <- c("+10","9","8","7","6","5","4","3","2","1")
   
+  output$summarymonthplot12 <- renderPlot({
+    ggplot(data=pathlength1,aes(x=(Path.Length.in.Interactions),y=Convesion.percentage)) +scale_x_discrete(limits = positions)+  
+      geom_bar(position = "dodge", stat="identity") + ylab("Conversions Percentage") + 
+      xlab("Path Length in Interactions") + theme(legend.position="center" ,plot.title = element_text(size=15, face="bold")) + 
+      ggtitle("                                   
+                                         Path Length Report")+coord_flip()
+    
+  })
+  
+  
+
   # output$mytable2 = renderDataTable(buget)
   # output$mytable3 = renderDataTable(iris)
   #

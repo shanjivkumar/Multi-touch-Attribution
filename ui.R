@@ -262,8 +262,8 @@ ui <- dashboardPage(skin = "green",
                                   column(align='center',width = 3, br(),
                                          #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                          box(selectInput("Monthlychannel", label = "Month",
-                                                                                choices = c("Awareness", "Engagement", "ROI"))
-                                             ,width = 8,offset =2,background = "green") 
+                                                                                choices = unique(buget$month), multiple=TRUE,selected=TRUE)
+                                             ,width = 8,offset =2) 
                                          
                                          
                                          
@@ -271,7 +271,7 @@ ui <- dashboardPage(skin = "green",
                                 
                                 fluidRow(
                                   column(width = 8, 
-                                         box(title="Channel Performance - Trend",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly2",height=300))
+                                         box(title="Channel Performance - Trend",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("plotly2",height=300))
                                   ),
                                 column(align='center', width = 4, br(),
                                        #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
@@ -294,15 +294,15 @@ ui <- dashboardPage(skin = "green",
                                            
                                            
                                            column(width = 9, 
-                                                  box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly11",height=300))
+                                                  box(title="Channel Performance - KPI",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("plotly11",height=300))
                                                   
                                            ),
                                            column(align='center',width = 3, br(),
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                                   
                                                   box(selectInput("quarterlychannel", label = "Quarter",
-                                                                  choices = c("Awareness", "Engagement", "ROI"))
-                                                      ,width = 8,offset =2,background = "green") 
+                                                                  choices = unique(buget$quarter),multiple=TRUE)
+                                                      ,width = 8,offset =2) 
                                                 
                                                   
                                                   
@@ -310,7 +310,7 @@ ui <- dashboardPage(skin = "green",
                                          
                                          fluidRow(
                                            column(width = 8, 
-                                                  box(title="Channel Performance - Trend",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly12",height=300))
+                                                  box(title="Channel Performance - Trend",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("plotly12",height=300))
                                            ),
                                            column(align='center', width = 4, br(),
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
@@ -333,22 +333,22 @@ ui <- dashboardPage(skin = "green",
                                            
                                            
                                            column(width = 9, 
-                                                  box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly13",height=300))
+                                                  box(title="Channel Performance - KPI",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("plotly13",height=300))
                                                   
                                            ),
                                            column(align='center',width = 3, br(),
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                                   
                                                   box(selectInput("yearlychannel", label = "Year",
-                                                                  choices = c("Awareness", "Engagement", "ROI"))
-                                                      ,width = 8,offset =2,background = "green") 
+                                                                  choices = unique(buget$year),multiple=TRUE)
+                                                      ,width = 8,offset =2) 
                                                   
                                                   
                                            )),
                                          
                                          fluidRow(
                                            column(width = 8, 
-                                                  box(title="Channel Performance - Trend",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plotly14",height=300))
+                                                  box(title="Channel Performance - Trend",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("plotly14",height=300))
                                            ),
                                            column(align='center', width = 4, br(),
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))

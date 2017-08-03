@@ -73,7 +73,7 @@ ui <- dashboardPage(skin = "green",
                                       box(tags$b("Revenue Generated"),br(), sum(buget$roi),width = 2, background = "olive")
                                     ),
                                     fluidRow(
-                                      box(plotlyOutput("summarymonthplot1", height = 250)),
+                                      box(plotlyOutput("summarymonthplot1", height = 400)),
                                       box(plotOutput("summarymonthplot2", height = 250)),
                                       box(plotOutput("summarymonthplot3", height = 250)),
                                       frow1 <- bootstrapPage(

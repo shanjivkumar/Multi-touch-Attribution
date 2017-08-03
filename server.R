@@ -6,12 +6,14 @@ library(datasets)
 library(DT)
 library(plotly)
 library(dplyr)
+#library(scales)
 #library(zoo)
 
 buget<-read.csv("Budget.csv")
 channelpath<-read.csv("Channel path.csv")
 attribution<-read.csv("Attribution.csv")
 attribution_type<-read.csv("Attribution-types.csv")
+pathlength<-read.csv("Path Length.csv")
 
 server <- function(input,output){
 
@@ -42,9 +44,9 @@ server <- function(input,output){
   
   
   
-  output$summarymonthplot1 <- renderPlot({
+  output$summarymonthplot1 <- renderPlotly({
 
-    ggplot(data=finaldataframemonth,aes(x=factor(month1)))+
+    ggplotly(ggplot(data=finaldataframemonth,aes(x=factor(month1)))+
       geom_bar(aes(y = roi,fill="roi"), stat="identity") +
       geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
       scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
@@ -52,7 +54,7 @@ server <- function(input,output){
       theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
             legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("ROI & Marketing Budget")+xlab("Date")+ylab("Value") 
-    
+    )
     
   })
   
@@ -208,11 +210,63 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
 
   
   output$mytable1 = renderDataTable(attribution)
+ 
+  ########################################################################
+  ########################################################################
+  ######################################################################## 
+
+  month<-month(buget$date)
+  year<-year(buget$date)
+  month1<-paste(year,month)
+  buget.new<-data.frame(month1,buget)
+  
+  
+  output$channelmonthplot1 <- renderPlot({
+    
+    ggplot(data=buget.new,aes(x=factor(channel)))+
+      geom_bar(aes(y = roi,fill="roi"), stat="identity") +
+      geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
+      scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
+      scale_fill_manual("",values="red")+
+      theme(legend.position="bottom",legend.key=element_blank(),
+            legend.title=element_blank(),
+            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Channel Performance - KPI comparision")+xlab("Date")+ylab("Value") 
+    
+    
+  })
+  
+  
+  output$channelmonthplot2 <- renderPlot({
+    
+    ggplot(data=buget.new,aes(x=factor(channel)))+
+      geom_bar(aes(y = Visits,fill="Visits"), stat="identity") +
+      geom_line(aes(y = no.of.conversions, group = 1, color = "no.of.conversions")) +
+      scale_colour_manual(" ", values=c("no.of.conversions" = "blue", "Visits" = "red"))+
+      scale_fill_manual("",values="red")+
+      theme(legend.position="bottom",legend.key=element_blank(),
+            legend.title=element_blank(),
+            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Channel Performance - KPI comparision")+xlab("Date")+ylab("Value") 
+    
+    
+  })
+
+  #############################Path Report###################
+  output$summarymonthplot42 = renderDataTable(pathlength,options = list(dom = 't'))
+  pathlength1<-pathlength
+  pathlength1$Convesion.percentage<-(pathlength1$Conversions/sum(pathlength1$Conversions))*100
+  positions <- c("+10","9","8","7","6","5","4","3","2","1")
+  
+  output$summarymonthplot12 <- renderPlot({
+    ggplot(data=pathlength1,aes(x=(Path.Length.in.Interactions),y=Convesion.percentage)) +scale_x_discrete(limits = positions)+  
+      geom_bar(position = "dodge", stat="identity") + ylab("Conversions Percentage") + 
+      xlab("Path Length in Interactions") + theme(legend.position="center" ,plot.title = element_text(size=15, face="bold")) + 
+      ggtitle("                                   
+                                         Path Length Report")+coord_flip()
+    
+  })
+  
   
 
-  
-
-  
   # output$mytable2 = renderDataTable(buget)
   # output$mytable3 = renderDataTable(iris)
   #

@@ -250,6 +250,8 @@ ui <- dashboardPage(skin = "green",
                                     # The id lets us use input$tabset1 on the server to find the current tab
                                     id = "tabset1", height = "650px",width = "500px",
                                     ### Sumary dashboard - Month tab
+                                    tabsetPanel("Part 1",
+                                      
                                     tabPanel("Month",
                                
                                 
@@ -364,7 +366,7 @@ ui <- dashboardPage(skin = "green",
                                 #
                                 #------------------------------------------------------------------------------------------------------------------------------------
                                 #------------------------------------------------------------------------------------------------------------------------------------
-                        
+                                    )
                       )
                     )
             ),

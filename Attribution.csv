@@ -1,6 +1,16 @@
-Channels,Percentage Conversion,Revenue,Cost/Conversion,No.of Conversions
-Adwords,45,50000,144.93,345
-Social,10,34000,132.13,256
-Display,30,56000,123.13,444
-E-mail,10,3500,77.78,45
-Affiliate marketing,5,1000,17.86,56
+AttributionType,Channel,Percentage_revenue,Percentage_conversion,Revenue,Conversions,Total_Cost,Cost_per_conversion
+First interaction,Social,25,20,3613,229,355,1.55
+First interaction,Display,18,15,2601,172,740,4.3
+First interaction,Affiliate marketing,9,10,1301,115,224,1.95
+First interaction,E-mail,32,40,4624,458,156,0.34
+First interaction,Adwords,16,15,2312,172,680,3.95
+Last interaction,Social,23,25,3324,287,355,1.24
+Last interaction,Display,27,20,3902,229,740,3.23
+Last interaction,Affiliate marketing,14,10,2023,115,224,1.95
+Last interaction,E-mail,24,25,3468,287,156,0.54
+Last interaction,Adwords,12,20,1734,229,680,2.97
+Multi-touch,Social,50,20,7225,229,355,1.55
+Multi-touch,Display,63,25,9104,287,740,2.58
+Multi-touch,Affiliate marketing,25,10,3613,115,224,1.95
+Multi-touch,E-mail,75,30,10838,344,156,0.45
+Multi-touch,Adwords,38,15,5491,172,680,3.95

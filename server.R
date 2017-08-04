@@ -15,6 +15,7 @@ channelpath<-read.csv("Channel path.csv")
 attribution<-read.csv("Attribution.csv")
 attribution_type<-read.csv("Attribution-types.csv")
 pathlength<-read.csv("Path Length.csv")
+attribution<-read.csv("Attribution.csv")
 
 server <- function(input,output){
 
@@ -31,11 +32,11 @@ server <- function(input,output){
   buget.new<-data.frame(month1,buget)
   summarymonthplot1<-aggregate(buget.new$marketing.budget~buget.new$month1, FUN=sum)
   summarymonthplot1
-  names(summarymonthplot1)<-c("month1","marketing.budget")
+  names(summarymonthplot1)<-c("month1","Marketing.Budget")
   
   summarymonthplot1new<-aggregate(buget.new$roi~buget.new$month1, FUN=sum)
   summarymonthplot1new
-  names(summarymonthplot1new)<-c("month1","roi")
+  names(summarymonthplot1new)<-c("month1","ROI")
   
   finaldataframemonth<-data.frame(summarymonthplot1,summarymonthplot1new$roi)
   finaldataframemonth
@@ -476,23 +477,20 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
 
 
   ##Sample try
-  attribution$RevenueP <- round((attribution$Revenue/sum(attribution$Revenue))*100)
-  new_data<-melt(attribution,id.vars = "Channels",measure.vars=c("Percentage.Conversion","RevenueP"))
+  
+  #attribution$RevenueP <- round((attribution$Revenue/sum(attribution$Revenue))*100)
+  #new_data <-attribution[,input$AttributionType]
+  new_data<-melt(attribution,id.vars = c("Channel","AttributionType"),measure.vars=c("Percentage_conversion","Percentage_revenue"))
   
   output$plot11 <- renderPlot({
-    ggplot(new_data ,aes(x=Channels,y=value,fill=factor(variable)))+  
-      geom_bar(stat="identity",position="dodge")+ theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"))+
-      xlab("Channels")+ylab("Percentage")
+    ggplot(new_data ,aes(x=Channel,y=value,fill=factor(variable)))+  
+      geom_bar(data = subset(new_data,AttributionType==input$AttributionType),stat="identity",position="dodge")+ theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"))+
+      xlab("Channel")+ylab("Percentage")+ggtitle(input$AttributionType)+theme(plot.title=element_text(hjust = 0.5))
   })
   
-  
-  output$mytable1 = renderDataTable({attribution})
-  #output$mytable1 = renderDataTable({attribution[,c("Channels","Percentage.Conversion","Revenue","Cost.Conversion","No.of.Conversions")]})
-  
-
-
-  
-  output$mytable1 = renderDataTable(attribution)
+  output$mytable1 = DT::renderDataTable(DT::datatable({ 
+    attribution [attribution$AttributionType== input$AttributionType,c("Channel","Conversions","Percentage_conversion","Revenue","Total_Cost","Cost_per_conversion")]}),options = list(dom = 't'))
+  #output$mytable1 = renderDataTable({attribution[,c("Channel","Percentage.Conversion","Revenue","Cost.Conversion","No.of.Conversions")]})
  
   ########################################################################
   ########################################################################

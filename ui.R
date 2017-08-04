@@ -374,12 +374,13 @@ ui <- dashboardPage(skin = "green",
             tabItem(tabName = "pathreport",
                     
                     fluidRow(
-                      tabBox(
-                        title = "Path Report Dashboard",
+                            title = "Path Report Dashboard",
                         # The id lets us use input$tabset1 on the server to find the current tab
                         id = "tabset1", height = "650px",width = "500px",
                         ### Sumary dashboard - Month tab
-                        tabPanel("Month",                                 
+                        
+                        
+                                                      
                                  mainPanel(fluidRow(
                                    frow1 <- bootstrapPage(
                                      column(9,
@@ -387,13 +388,14 @@ ui <- dashboardPage(skin = "green",
                                    ),
                                    
                                    column(3,plotlyOutput("pathreportplot2", width=500,height = 450)),
-                                   frow1 <- bootstrapPage(
-                                     column(6,
+                                   frow1 <- fluidPage(
+                                     column(12,
                                             dataTableOutput("pathreportplot3", width="100%"))  ##Table we're trying to display##
                                    )
                                    
                                    
-                                 )))
+                                 )
+                        
                       ))
                     
             )

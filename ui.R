@@ -70,8 +70,8 @@ ui <- dashboardPage(skin = "green",
                                       
                                       box(tags$b("Budget Allocated ($)"),br(), sum(buget$marketing.budget),width = 2, background = "olive"),
                                       box(tags$b("Budget Used ($)"),br(), 50000,width = 2, background = "olive"),
-                                      box(tags$b("Conversion"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
-                                      box(tags$b("Cost per Conversions ($)"),br(),sum(buget$Cost.per.conversion),width = 3, background = "olive"),
+                                      box(tags$b("Total Conversions"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
+                                      box(tags$b("Cost per Conversion ($)"),br(),round(mean(buget$Cost.per.conversion), digits=2),width = 3, background = "olive"),
                                       box(tags$b("Revenue Generated ($)"),br(), sum(buget$roi),width = 3, background = "olive")
                                     ),
                                     fluidRow(
@@ -90,8 +90,8 @@ ui <- dashboardPage(skin = "green",
                                                # A static infoBox
                                                box(tags$b("Budget Allocated ($)"),br(), sum(buget$marketing.budget),width = 2, background = "olive"),
                                                box(tags$b("Budget Used ($)"),br(), 50000,width = 2, background = "olive"),
-                                               box(tags$b("Conversion"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
-                                               box(tags$b("Cost per Conversions ($)"),br(),sum(buget$Cost.per.conversion),width = 3, background = "olive"),
+                                               box(tags$b("Total Conversions"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
+                                               box(tags$b("Cost per Conversion ($)"),br(),round(mean(buget$Cost.per.conversion), digits=2),width = 3, background = "olive"),
                                                box(tags$b("Revenue Generated ($)"),br(), sum(buget$roi),width = 3, background = "olive")
                                              ),
                                              fluidRow(
@@ -110,8 +110,8 @@ ui <- dashboardPage(skin = "green",
                                                
                                                box(tags$b("Budget Allocated ($)"),br(), sum(buget$marketing.budget),width = 2, background = "olive"),
                                                box(tags$b("Budget Used ($)"),br(), 50000,width = 2, background = "olive"),
-                                               box(tags$b("Conversion"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
-                                               box(tags$b("Cost per Conversions ($)"),br(),sum(buget$Cost.per.conversion),width = 3, background = "olive"),
+                                               box(tags$b("Total Conversions"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
+                                               box(tags$b("Cost per Conversion ($)"),br(),round(mean(buget$Cost.per.conversion), digits=2),width = 3, background = "olive"),
                                                box(tags$b("Revenue Generated ($)"),br(), sum(buget$roi),width = 3, background = "olive")
                                              ),
                                              fluidRow(

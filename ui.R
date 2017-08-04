@@ -381,16 +381,18 @@ ui <- dashboardPage(skin = "green",
                         
                         
                                                       
-                                 mainPanel(fluidRow(
+                                 mainPanel(
+                                   fluidRow(
                                    frow1 <- bootstrapPage(
-                                     column(9,
-                                            dataTableOutput("pathreportplot1"))  ##Table we're trying to display##
-                                   ),
+                                            column(9,dataTableOutput("pathreportplot1"))  ##Table we're trying to display##
+                                                          ),
                                    
-                                   column(3,plotlyOutput("pathreportplot2", width=500,height = 450)),
-                                   frow1 <- fluidPage(
-                                     column(12,
-                                            dataTableOutput("pathreportplot3", width="100%"))  ##Table we're trying to display##
+                                            column(3,plotlyOutput("pathreportplot2", width=500,height = 450))
+                                          ),
+                                   
+                                            bootstrapPage(
+                                            dataTableOutput("pathreportplot3", width="100%")
+                                            )  ##Table we're trying to display##
                                    )
                                    
                                    
@@ -400,7 +402,5 @@ ui <- dashboardPage(skin = "green",
                     
             )
     )
-  )    
-)
-
+  
 

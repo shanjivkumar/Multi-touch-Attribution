@@ -20,7 +20,7 @@ ui <- dashboardPage(skin = "green",
                       sidebarMenu(
                         menuItem("Summary Dashboard", tabName = "sumdashboard", icon = icon("bar-chart")),
                         menuItem("Attribution Dashboard", tabName = "attrdashboard", icon = icon("list-alt")),
-                        menuItem("Channel Performance", tabName = "channelreport", icon = icon("line-chart")),
+                        #menuItem("Channel Performance", tabName = "channelreport", icon = icon("line-chart")),
                         #menuItem("Campaign Performance", tabName = "campaignreport", icon = icon("pie-chart")),
                         menuItem("Path Report", tabName = "pathreport", icon = icon("arrows-alt"))
                       ),
@@ -154,8 +154,8 @@ ui <- dashboardPage(skin = "green",
                                                            choices = c("First interaction", "Last interaction", "Multi-touch")),
                                                #numericInput("obs", "Observations:", 10),
                                                sliderInput("Budget", label = h5("Budget"), min = 0, max = 100000, value = 50),
-                                               sliderInput("Conversions", label = h5("Conversions"), min = 0, max = 5000, value = 75),
-                                               selectInput("region", "Region:", choices=colnames(WorldPhones))
+                                               sliderInput("Conversions", label = h5("Conversions"), min = 0, max = 5000, value = 75)#,
+                                               #selectInput("region", "Region:", choices=colnames(WorldPhones))
                                                #sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = c(25, 75))
                                   ),
                                   mainPanel(

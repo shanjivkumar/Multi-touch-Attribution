@@ -184,8 +184,8 @@ server <- function(input,output){
   output$summaryyearplot4 = renderDataTable(Channelpath,options=list(dom="t"))
   
   
-  ############################################################################
-  ############################################################################
+  ############################Attribution################################################
+
   output$plot10 <- renderPlot({
     ggplot(data=Attribution-types,aes(x=(Channel),y=(Percentage_conversion))) +  
       geom_bar(position = "dodge", stat="identity") + ylab("% Of Conversions") + 
@@ -211,9 +211,8 @@ server <- function(input,output){
     attribution [attribution$AttributionType== input$AttributionType,c("Channel","Conversions","Percentage_conversion","Revenue","Total_Cost","Cost_per_conversion")]}),options = list(dom = 't'))
   #output$mytable1 = renderDataTable({attribution[,c("Channel","Percentage.Conversion","Revenue","Cost.Conversion","No.of.Conversions")]})
   
-  ########################################################################
-  ########################################################################
-  ######################################################################## 
+  #########################Channel###############################################
+ 
   
   month<-month(buget$date)
   year<-year(buget$date)

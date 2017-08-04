@@ -37,7 +37,7 @@ server <- function(input,output){
   
   finaldataframemonth<-data.frame(summarymonthplot1,summarymonthplot1new$roi)
   finaldataframemonth
-  names(finaldataframemonth)<-c("month1","Marketing_Budget","ROI")
+  names(finaldataframemonth)<-c("month1","Marketing_Budget","Revenue")
   finaldataframemonth
   
   
@@ -46,13 +46,13 @@ server <- function(input,output){
   output$summarymonthplot1 <- renderPlot({
     
     ggplot(data=finaldataframemonth,aes(x=factor(month1)))+
-      geom_bar(aes(y = ROI,fill="ROI"), stat="identity") +
+      geom_bar(aes(y = Revenue,fill="Revenue"), stat="identity") +
       geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
-      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "ROI" = "red"))+
+      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "Revenue" = "red"))+
       scale_fill_manual("",values="red")+
       theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
-            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("ROI & Marketing Budget")+xlab("Date")+ylab("Value") 
+            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Revenue & Marketing Budget")+xlab("Date")+ylab("Value") 
     
     
   })
@@ -61,7 +61,7 @@ server <- function(input,output){
 
   output$summarymonthplot2 <- renderPlot({
     ggplot(data=buget,aes(x=(month),y=roi,fill=Channel)) +  
-      geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
+      geom_bar(position = "dodge", stat="identity") + ylab("Revenue On Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
     
@@ -90,7 +90,7 @@ server <- function(input,output){
   
   finaldataframe<-data.frame(summaryquarterplot1,summaryquarterplot1new$roi)
   finaldataframe
-  names(finaldataframe)<-c("quarter1","Marketing_Budget","ROI")
+  names(finaldataframe)<-c("quarter1","Marketing_Budget","Revenue")
   finaldataframe
   
   
@@ -104,18 +104,18 @@ server <- function(input,output){
   
   output$summaryquarterplot1 <- renderPlot({
     ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
-      geom_bar(aes(y = ROI,fill="ROI"), stat="identity") +
+      geom_bar(aes(y = Revenue,fill="Revenue"), stat="identity") +
       geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
-      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "ROI" = "red"))+
+      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "Revenue" = "red"))+
       scale_fill_manual("",values="red")+
       theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
-            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("ROI & Marketing Budget")+xlab("Date")+ylab("Value")     
+            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Revenue & Marketing Budget")+xlab("Date")+ylab("Value")     
   })
   
   output$summaryquarterplot2 <- renderPlot({
     ggplot(data=summaryquarterplot2,aes(x=factor(quarter1),y=roi,fill=Channel)) + 
-      geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
+      geom_bar(position = "dodge", stat="identity") + ylab("Revenue On Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
   })
@@ -145,7 +145,7 @@ server <- function(input,output){
   
   finaldataframeyear<-data.frame(summaryyearplot1,summaryyearplot1new$roi)
   finaldataframeyear
-  names(finaldataframeyear)<-c("yeardate","Marketing_Budget","ROI")
+  names(finaldataframeyear)<-c("yeardate","Marketing_Budget","Revenue")
   finaldataframeyear
   
   
@@ -158,18 +158,18 @@ server <- function(input,output){
   
   output$summaryyearplot1 <- renderPlot({
     ggplot(finaldataframeyear, aes(yeardate)) + 
-      geom_bar(aes(y = ROI,fill="ROI"), stat="identity") +
+      geom_bar(aes(y = Revenue,fill="Revenue"), stat="identity") +
       geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
-      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "ROI" = "red"))+
+      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "Revenue" = "red"))+
       scale_fill_manual("",values="red")+
       theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
-            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("ROI & Marketing Budget")+xlab("Date")+ylab("Value")    
+            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Revenue & Marketing Budget")+xlab("Date")+ylab("Value")    
   })
   
   output$summaryyearplot2 <- renderPlot({
     ggplot(data=summaryyearplot2,aes(x=(yeardate),y=roi,fill=Channel)) +  
-      geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
+      geom_bar(position = "dodge", stat="identity") + ylab("Revenue On Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
   })

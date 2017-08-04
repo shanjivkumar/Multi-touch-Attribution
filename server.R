@@ -58,6 +58,7 @@ server <- function(input,output){
   })
   
   
+
   output$summarymonthplot2 <- renderPlot({
     ggplot(data=buget,aes(x=(month),y=roi,fill=Channel)) +  
       geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 

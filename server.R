@@ -129,7 +129,7 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
       ggtitle("No of conversions vs channels")
   })
   
-  output$summaryquarterplot4 = renderDataTable(channelpath)
+  output$summaryquarterplot4 = renderDataTable(channelpath,options=list(dom="t"))
   ########### Summary tab #########
   ########### Year Report #########
   buget$year<-year(buget$date)
@@ -183,7 +183,7 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
       ggtitle("No of conversions vs channels")
   })
   
-  output$summaryyearplot4 = renderDataTable(channelpath)
+  output$summaryyearplot4 = renderDataTable(channelpath,options=list(dom="t"))
 
   
 ############################################################################
@@ -353,7 +353,7 @@ server <- function(input,output){
       ggtitle("No of conversions vs channels")
   })
   
-  output$summarymonthplot4 = renderDataTable(channelpath)
+  output$summarymonthplot4 = renderDataTable(channelpath,options=list(dom="t"))
   ########### Summary tab #########
   ########### Quarter Report #########
   quarter<-quarter(buget$date)
@@ -407,7 +407,7 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
       ggtitle("No of conversions vs channels")
   })
   
-  output$summaryquarterplot4 = renderDataTable(channelpath)
+  output$summaryquarterplot4 = renderDataTable(channelpath,options=list(dom="t"))
   ########### Summary tab #########
   ########### Year Report #########
   buget$year<-year(buget$date)
@@ -461,7 +461,7 @@ ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
       ggtitle("No of conversions vs channels")
   })
   
-  output$summaryyearplot4 = renderDataTable(channelpath)
+  output$summaryyearplot4 = renderDataTable(channelpath,options=list(dom="t"))
 
   
 ############################################################################

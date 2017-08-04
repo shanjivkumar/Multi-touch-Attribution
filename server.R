@@ -17,8 +17,7 @@ pathlength<-read.csv("Path Length.csv")
 
 server <- function(input,output){
   
-  ########### Summary tab #########
-  ########### Month Report #########
+  ########### Summary tab - Month Report #########
   buget$date <- strptime(as.character(buget$date), "%d/%m/%Y")
   buget$month<-as.Date(cut(buget$date,breaks = "month"))
   
@@ -75,7 +74,7 @@ server <- function(input,output){
   })
   
   output$summarymonthplot4 = renderDataTable(Channelpath,options=list(dom="t"))
-  ########### Quarter Report #########
+  ###########Summary tab -  Quarter Report #########
   quarter<-quarter(buget$date)
   year<-year(buget$date)
   quarter1<-paste(year," Q",quarter,sep="")
@@ -129,7 +128,7 @@ server <- function(input,output){
   
   output$summaryquarterplot4 = renderDataTable(Channelpath,options=list(dom="t"))
 
-  ########### Year Report #########
+  ###########Summary tab -  Year Report #########
   buget$year<-year(buget$date)
   yeardate<-as.integer(buget$year)
   buget.new<-data.frame(yeardate,buget)
@@ -251,13 +250,13 @@ server <- function(input,output){
   })
   
   #############################Path Report###################
-  output$summarymonthplot42 = renderDataTable(pathlength,options = list(dom = 't'))
+  output$pathreportplot1 = renderDataTable(pathlength,options = list(dom = 't'))
   pathlength1<-pathlength
   pathlength1$Conversion.percentage<-(pathlength1$Conversions/sum(pathlength1$Conversions))*100
   positions <- c("+10","9","8","7","6","5","4","3","2","1")
   pathlength1$Path.Length.in.Interactions <- factor(pathlength1$Path.Length.in.Interactions, levels = c("10+","9","8","7","6","5","4","3","2","1"))
   
-  output$summarymonthplot12 <- renderPlotly({
+  output$pathreportplot2 <- renderPlotly({
     plot_ly(pathlength1, y = ~Path.Length.in.Interactions, x = ~Conversion.percentage,type = 'bar', orientation = 'h')%>%
       layout(title="Percentage of Total Conversion")
     
@@ -269,7 +268,7 @@ server <- function(input,output){
     #             )
 })
   
- 
+  output$pathreportplot3 = renderDataTable(Channelpath,options=list(dom="t"))
   
   
   

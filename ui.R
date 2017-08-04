@@ -381,12 +381,14 @@ ui <- dashboardPage(skin = "green",
                                  mainPanel(fluidRow(
                                    frow1 <- bootstrapPage(
                                      column(9,
-                                            dataTableOutput("summarymonthplot42"))  ##Table we're trying to display##
+                                            dataTableOutput("pathreportplot1"))  ##Table we're trying to display##
                                    ),
                                    
-                                   column(3,plotlyOutput("summarymonthplot12", width=500,height = 450))
-                                   #box(plotOutput("summarymonthplot22", height = 250)),
-                                  # box(plotOutput("summarymonthplot32", height = 250))
+                                   column(3,plotlyOutput("pathreportplot2", width=500,height = 450)),
+                                   frow1 <- bootstrapPage(
+                                     column(6,
+                                            dataTableOutput("pathreportplot3", width="100%"))  ##Table we're trying to display##
+                                   )
                                    
                                    
                                  )))

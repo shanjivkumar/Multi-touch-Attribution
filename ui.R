@@ -69,7 +69,7 @@ ui <- dashboardPage(skin = "green",
                                       # A static infoBox
                                       
                                       box(tags$b("Budget Allocated ($)"),br(), sum(buget$marketing.budget),width = 2, background = "olive"),
-                                      box(tags$b("Budget Used ($)"),br(), 50000,width = 2, background = "olive"),
+                                      box(tags$b("Budget Used ($)"),br(), sum(buget$marketing.budget)*0.8,width = 2, background = "olive"),
                                       box(tags$b("Total Conversions"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
                                       box(tags$b("Cost per Conversion ($)"),br(),round(mean(buget$Cost.per.conversion), digits=2),width = 3, background = "olive"),
                                       box(tags$b("Revenue Generated ($)"),br(), sum(buget$roi),width = 3, background = "olive")
@@ -89,7 +89,7 @@ ui <- dashboardPage(skin = "green",
                                              fluidRow(
                                                # A static infoBox
                                                box(tags$b("Budget Allocated ($)"),br(), sum(buget$marketing.budget),width = 2, background = "olive"),
-                                               box(tags$b("Budget Used ($)"),br(), 50000,width = 2, background = "olive"),
+                                               box(tags$b("Budget Used ($)"),br(), sum(buget$marketing.budget)*0.8,width = 2, background = "olive"),
                                                box(tags$b("Total Conversions"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
                                                box(tags$b("Cost per Conversion ($)"),br(),round(mean(buget$Cost.per.conversion), digits=2),width = 3, background = "olive"),
                                                box(tags$b("Revenue Generated ($)"),br(), sum(buget$roi),width = 3, background = "olive")
@@ -109,7 +109,7 @@ ui <- dashboardPage(skin = "green",
                                                # A static infoBox
                                                
                                                box(tags$b("Budget Allocated ($)"),br(), sum(buget$marketing.budget),width = 2, background = "olive"),
-                                               box(tags$b("Budget Used ($)"),br(), 50000,width = 2, background = "olive"),
+                                               box(tags$b("Budget Used ($)"),br(), sum(buget$marketing.budget)*0.8,width = 2, background = "olive"),
                                                box(tags$b("Total Conversions"),br(),sum(buget$no.of.conversions),width = 2, background = "olive"),
                                                box(tags$b("Cost per Conversion ($)"),br(),round(mean(buget$Cost.per.conversion), digits=2),width = 3, background = "olive"),
                                                box(tags$b("Revenue Generated ($)"),br(), sum(buget$roi),width = 3, background = "olive")

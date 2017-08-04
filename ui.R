@@ -153,14 +153,16 @@ ui <- dashboardPage(skin = "green",
                                                selectInput("AttributionType", "Choose a type:",
                                                            choices = c("First interaction", "Last interaction", "Multi-touch")),
                                                #numericInput("obs", "Observations:", 10),
-                                               sliderInput("Budget", label = h4("Budget"), min = 0, max = 100000, value = 50),
-                                               sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = 75),
+                                               sliderInput("Budget", label = h5("Budget"), min = 0, max = 100000, value = 50),
+                                               sliderInput("Conversions", label = h5("Conversions"), min = 0, max = 5000, value = 75),
                                                selectInput("region", "Region:", choices=colnames(WorldPhones))
                                                #sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = c(25, 75))
                                   ),
                                   mainPanel(
                                     
-                                    fluidRow(dataTableOutput("mytable1", width="100%")),
+                                    fluidRow(dataTableOutput("mytable1", width=800)),
+                                    br(),
+                                    br(),
                                     fluidRow(plotOutput("plot11", width=800))
                                   )                                      
                                   
@@ -274,10 +276,10 @@ ui <- dashboardPage(skin = "green",
                                          )),
                                 
                                 fluidRow(
-                                  column(width = 8, 
+                                  column(width = 9, 
                                          box(title="Channel Performance - Trend",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("plotly2",height=300))
                                   ),
-                                column(align='center', width = 4, br(),
+                                column(align='center', width = 3, br(),
                                        #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                      
                                        box(selectInput("type$channel", label = "Channel Type",choices = c("Awareness", "Engagement", "ROI"))
@@ -311,10 +313,10 @@ ui <- dashboardPage(skin = "green",
                                            )),
                                          
                                          fluidRow(
-                                           column(width = 8, 
+                                           column(width = 9, 
                                                   box(title="Channel Performance - Trend",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("plotly12",height=300))
                                            ),
-                                           column(align='center', width = 4, br(),
+                                           column(align='center', width = 3, br(),
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                                  
                                               
@@ -348,10 +350,10 @@ ui <- dashboardPage(skin = "green",
                                            )),
                                          
                                          fluidRow(
-                                           column(width = 8, 
+                                           column(width = 9, 
                                                   box(title="Channel Performance - Trend",status="primary",solidHeader = FALSE,collapsible = FALSE,width = 12,plotOutput("plotly14",height=300))
                                            ),
-                                           column(align='center', width = 4, br(),
+                                           column(align='center', width = 3, br(),
                                                   #box(title="Channel Performance - KPI",status="primary",solidHeader = TRUE,collapsible = FALSE,width = 12,plotOutput("plot1",height=300))
                                                   
                                                   box(selectInput("type$channel", label = "Channel Type",choices = c("Awareness", "Engagement", "ROI"))

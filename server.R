@@ -208,7 +208,7 @@ server <- function(input,output){
   })
   
   output$mytable1 = DT::renderDataTable(DT::datatable({ 
-    attribution [attribution$AttributionType== input$AttributionType,c("Channel","Conversions","Percentage_conversion","Revenue","Total_Cost","Cost_per_conversion")]}),options = list(dom = 't'))
+    attribution [attribution$AttributionType== input$AttributionType,c("Channel","Conversions","Percentage_conversion","Revenue","Total_Cost","Cost_per_conversion")]},rownames= FALSE,options = list(dom = 't')))
   #output$mytable1 = renderDataTable({attribution[,c("Channel","Percentage.Conversion","Revenue","Cost.Conversion","No.of.Conversions")]})
   
   #########################Channel###############################################

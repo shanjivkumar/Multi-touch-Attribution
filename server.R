@@ -10,15 +10,14 @@ library(dplyr)
 #library(zoo)
 
 buget<-read.csv("Budget.csv")
-channelpath<-read.csv("Channel path.csv")
+Channelpath<-read.csv("Channel path.csv")
 attribution<-read.csv("Attribution.csv")
 attribution_type<-read.csv("Attribution-types.csv")
 pathlength<-read.csv("Path Length.csv")
 
 server <- function(input,output){
   
-  ########### Summary tab #########
-  ########### Month Report #########
+  ########### Summary tab - Month Report #########
   buget$date <- strptime(as.character(buget$date), "%d/%m/%Y")
   buget$month<-as.Date(cut(buget$date,breaks = "month"))
   
@@ -38,7 +37,7 @@ server <- function(input,output){
   
   finaldataframemonth<-data.frame(summarymonthplot1,summarymonthplot1new$roi)
   finaldataframemonth
-  names(finaldataframemonth)<-c("month1","marketing.budget","roi")
+  names(finaldataframemonth)<-c("month1","Marketing_Budget","ROI")
   finaldataframemonth
   
   
@@ -47,9 +46,9 @@ server <- function(input,output){
   output$summarymonthplot1 <- renderPlot({
     
     ggplot(data=finaldataframemonth,aes(x=factor(month1)))+
-      geom_bar(aes(y = roi,fill="roi"), stat="identity") +
-      geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
-      scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
+      geom_bar(aes(y = ROI,fill="ROI"), stat="identity") +
+      geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
+      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "ROI" = "red"))+
       scale_fill_manual("",values="red")+
       theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
@@ -59,8 +58,9 @@ server <- function(input,output){
   })
   
   
+
   output$summarymonthplot2 <- renderPlot({
-    ggplot(data=buget,aes(x=(month),y=roi,fill=channel)) +  
+    ggplot(data=buget,aes(x=(month),y=roi,fill=Channel)) +  
       geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
@@ -68,15 +68,14 @@ server <- function(input,output){
   })
   
   output$summarymonthplot3 <- renderPlot({
-    ggplot(data=buget,aes(x=(month),y=no.of.conversions,group=channel)) +
-      geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("# Of Conversions") + 
+    ggplot(data=buget,aes(x=(month),y=no.of.conversions,group=Channel)) +
+      geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-      ggtitle("No of conversions vs channels")
+      ggtitle("No of Conversions vs Channels")
   })
   
-  output$summarymonthplot4 = renderDataTable(channelpath,options=list(dom="t"))
-  ########### Summary tab #########
-  ########### Quarter Report #########
+  output$summarymonthplot4 = renderDataTable(Channelpath,options=list(dom="t"))
+  ###########Summary tab -  Quarter Report #########
   quarter<-quarter(buget$date)
   year<-year(buget$date)
   quarter1<-paste(year," Q",quarter,sep="")
@@ -91,23 +90,23 @@ server <- function(input,output){
   
   finaldataframe<-data.frame(summaryquarterplot1,summaryquarterplot1new$roi)
   finaldataframe
-  names(finaldataframe)<-c("quarter1","marketing.budget","roi")
+  names(finaldataframe)<-c("quarter1","Marketing_Budget","ROI")
   finaldataframe
   
   
-  summaryquarterplot2<-aggregate(buget.new$roi~buget.new$quarter1+buget.new$channel, FUN=sum)
+  summaryquarterplot2<-aggregate(buget.new$roi~buget.new$quarter1+buget.new$Channel, FUN=sum)
   summaryquarterplot2
-  names(summaryquarterplot2)<-c("quarter1","channel","roi")
-  summaryquarterplot3<-aggregate(buget.new$no.of.conversions~buget.new$quarter1+buget.new$channel, FUN=sum)
+  names(summaryquarterplot2)<-c("quarter1","Channel","roi")
+  summaryquarterplot3<-aggregate(buget.new$no.of.conversions~buget.new$quarter1+buget.new$Channel, FUN=sum)
   summaryquarterplot3
-  names(summaryquarterplot3)<-c("quarter1","channel","no.of.conversions")
+  names(summaryquarterplot3)<-c("quarter1","Channel","no.of.conversions")
   
   
   output$summaryquarterplot1 <- renderPlot({
     ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
-      geom_bar(aes(y = roi,fill="roi"), stat="identity") +
-      geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
-      scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
+      geom_bar(aes(y = ROI,fill="ROI"), stat="identity") +
+      geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
+      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "ROI" = "red"))+
       scale_fill_manual("",values="red")+
       theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
@@ -115,22 +114,22 @@ server <- function(input,output){
   })
   
   output$summaryquarterplot2 <- renderPlot({
-    ggplot(data=summaryquarterplot2,aes(x=factor(quarter1),y=roi,fill=channel)) + 
+    ggplot(data=summaryquarterplot2,aes(x=factor(quarter1),y=roi,fill=Channel)) + 
       geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
   })
   
   output$summaryquarterplot3 <- renderPlot({
-    ggplot(data=summaryquarterplot3,aes(x=factor(quarter1),y=(no.of.conversions),group=channel)) +
-      geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("# Of Conversions") + 
+    ggplot(data=summaryquarterplot3,aes(x=factor(quarter1),y=(no.of.conversions),group=Channel)) +
+      geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-      ggtitle("No of conversions vs channels")
+      ggtitle("No of Conversions vs Channels")
   })
   
-  output$summaryquarterplot4 = renderDataTable(channelpath,options=list(dom="t"))
-  ########### Summary tab #########
-  ########### Year Report #########
+  output$summaryquarterplot4 = renderDataTable(Channelpath,options=list(dom="t"))
+
+  ###########Summary tab -  Year Report #########
   buget$year<-year(buget$date)
   yeardate<-as.integer(buget$year)
   buget.new<-data.frame(yeardate,buget)
@@ -146,22 +145,22 @@ server <- function(input,output){
   
   finaldataframeyear<-data.frame(summaryyearplot1,summaryyearplot1new$roi)
   finaldataframeyear
-  names(finaldataframeyear)<-c("yeardate","marketing.budget","roi")
+  names(finaldataframeyear)<-c("yeardate","Marketing_Budget","ROI")
   finaldataframeyear
   
   
-  summaryyearplot2<-aggregate(buget.new$roi~buget.new$yeardate+buget.new$channel, FUN=sum)
-  names(summaryyearplot2)<-c("yeardate","channel","roi")
+  summaryyearplot2<-aggregate(buget.new$roi~buget.new$yeardate+buget.new$Channel, FUN=sum)
+  names(summaryyearplot2)<-c("yeardate","Channel","roi")
   
-  summaryyearplot3<-aggregate(buget.new$no.of.conversions~buget.new$yeardate+buget.new$channel, FUN=sum)
+  summaryyearplot3<-aggregate(buget.new$no.of.conversions~buget.new$yeardate+buget.new$Channel, FUN=sum)
   summaryyearplot3
-  names(summaryyearplot3)<-c("yeardate","channel","no.of.conversions")
+  names(summaryyearplot3)<-c("yeardate","Channel","no.of.conversions")
   
   output$summaryyearplot1 <- renderPlot({
     ggplot(finaldataframeyear, aes(yeardate)) + 
-      geom_bar(aes(y = roi,fill="roi"), stat="identity") +
-      geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
-      scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
+      geom_bar(aes(y = ROI,fill="ROI"), stat="identity") +
+      geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
+      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "ROI" = "red"))+
       scale_fill_manual("",values="red")+
       theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
@@ -169,20 +168,20 @@ server <- function(input,output){
   })
   
   output$summaryyearplot2 <- renderPlot({
-    ggplot(data=summaryyearplot2,aes(x=(yeardate),y=roi,fill=channel)) +  
+    ggplot(data=summaryyearplot2,aes(x=(yeardate),y=roi,fill=Channel)) +  
       geom_bar(position = "dodge", stat="identity") + ylab("ROI On Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
       ggtitle("Top 5 Channels")
   })
   
   output$summaryyearplot3 <- renderPlot({
-    ggplot(data=summaryyearplot3,aes(x=(yeardate),y=no.of.conversions,group=channel)) +
-      geom_line(aes(color=channel))+geom_point(aes(color=channel))+ ylab("# Of Conversions") + 
+    ggplot(data=summaryyearplot3,aes(x=(yeardate),y=no.of.conversions,group=Channel)) +
+      geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
       xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-      ggtitle("No of conversions vs channels")
+      ggtitle("No of Conversions vs Channels")
   })
   
-  output$summaryyearplot4 = renderDataTable(channelpath,options=list(dom="t"))
+  output$summaryyearplot4 = renderDataTable(Channelpath,options=list(dom="t"))
   
   
   ############################################################################
@@ -222,9 +221,9 @@ server <- function(input,output){
   buget.new<-data.frame(month1,buget)
   
   
-  output$channelmonthplot1 <- renderPlot({
+  output$Channelmonthplot1 <- renderPlot({
     
-    ggplot(data=buget.new,aes(x=factor(channel)))+
+    ggplot(data=buget.new,aes(x=factor(Channel)))+
       geom_bar(aes(y = roi,fill="roi"), stat="identity") +
       geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
       scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
@@ -237,9 +236,9 @@ server <- function(input,output){
   })
   
   
-  output$channelmonthplot2 <- renderPlot({
+  output$Channelmonthplot2 <- renderPlot({
     
-    ggplot(data=buget.new,aes(x=factor(channel)))+
+    ggplot(data=buget.new,aes(x=factor(Channel)))+
       geom_bar(aes(y = Visits,fill="Visits"), stat="identity") +
       geom_line(aes(y = no.of.conversions, group = 1, color = "no.of.conversions")) +
       scale_colour_manual(" ", values=c("no.of.conversions" = "blue", "Visits" = "red"))+
@@ -252,24 +251,25 @@ server <- function(input,output){
   })
   
   #############################Path Report###################
-  output$summarymonthplot42 = renderDataTable(pathlength,options = list(dom = 't'))
+  output$pathreportplot1 = renderDataTable(pathlength,options = list(dom = 't'))
   pathlength1<-pathlength
-  pathlength1$Convesion.percentage<-(pathlength1$Conversions/sum(pathlength1$Conversions))*100
+  pathlength1$Conversion.percentage<-(pathlength1$Conversions/sum(pathlength1$Conversions))*100
   positions <- c("+10","9","8","7","6","5","4","3","2","1")
   pathlength1$Path.Length.in.Interactions <- factor(pathlength1$Path.Length.in.Interactions, levels = c("10+","9","8","7","6","5","4","3","2","1"))
   
-  output$summarymonthplot12 <- renderPlotly({
-    plot_ly(pathlength1, y = ~Path.Length.in.Interactions, x = ~Convesion.percentage,type = 'bar', orientation = 'h')%>%
+  output$pathreportplot2 <- renderPlotly({
+    plot_ly(pathlength1, y = ~Path.Length.in.Interactions, x = ~Conversion.percentage,type = 'bar', orientation = 'h')%>%
       layout(title="Percentage of Total Conversion")
-  })
+    
+    #ggplotly(ggplot(data=pathlength1,aes(x=(Path.Length.in.Interactions),y=Conversion.percentage)) +scale_x_discrete(limits = positions)+  
+    #           geom_bar(position = "dodge", stat="identity") + ylab("Conversions Percentage") + 
+    #           xlab("Path Length in Interactions") + theme(legend.position="center" ,plot.title = element_text(size=15, face="bold")) + 
+    #           ggtitle("                                   
+    #                    Path Length Report")+coord_flip()
+    #             )
+})
   
-  #ggplotly(ggplot(data=pathlength1,aes(x=(Path.Length.in.Interactions),y=Convesion.percentage)) +scale_x_discrete(limits = positions)+  
-  #           geom_bar(position = "dodge", stat="identity") + ylab("Conversions Percentage") + 
-  #           xlab("Path Length in Interactions") + theme(legend.position="center" ,plot.title = element_text(size=15, face="bold")) + 
-  #           ggtitle("                                   
-  #                    Path Length Report")+coord_flip()
-  #             )
-  
+  output$pathreportplot3 = renderDataTable(Channelpath,options=list(dom="t"))
   
   
   

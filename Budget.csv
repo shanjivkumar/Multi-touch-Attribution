@@ -1,4 +1,4 @@
-date,month,quarter,year,roi,marketing budget,channel,no of conversions,Cost per conversion,Visits
+date,month,quarter,year,roi,marketing budget,Channel,no of conversions,Cost per conversion,Visits
 1/1/2017,"January,17","Q1,17",2017,949069,894729,Social,6127,146.03,10120
 1/1/2017,"January,17","Q1,17",2017,900000,850000,Display,6127,148.13,14000
 1/1/2017,"January,17","Q1,17",2017,857356,851917,Adword,5234,162.77,19486

@@ -38,7 +38,7 @@ server <- function(input,output){
   
   finaldataframemonth<-data.frame(summarymonthplot1,summarymonthplot1new$roi)
   finaldataframemonth
-  names(finaldataframemonth)<-c("month1","marketing.budget","roi")
+  names(finaldataframemonth)<-c("month1","Marketing_Budget","ROI")
   finaldataframemonth
   
   
@@ -47,9 +47,9 @@ server <- function(input,output){
   output$summarymonthplot1 <- renderPlot({
     
     ggplot(data=finaldataframemonth,aes(x=factor(month1)))+
-      geom_bar(aes(y = roi,fill="roi"), stat="identity") +
-      geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
-      scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
+      geom_bar(aes(y = ROI,fill="ROI"), stat="identity") +
+      geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
+      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "ROI" = "red"))+
       scale_fill_manual("",values="red")+
       theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
@@ -91,7 +91,7 @@ server <- function(input,output){
   
   finaldataframe<-data.frame(summaryquarterplot1,summaryquarterplot1new$roi)
   finaldataframe
-  names(finaldataframe)<-c("quarter1","marketing.budget","roi")
+  names(finaldataframe)<-c("quarter1","Marketing_Budget","ROI")
   finaldataframe
   
   
@@ -105,9 +105,9 @@ server <- function(input,output){
   
   output$summaryquarterplot1 <- renderPlot({
     ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
-      geom_bar(aes(y = roi,fill="roi"), stat="identity") +
-      geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
-      scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
+      geom_bar(aes(y = ROI,fill="ROI"), stat="identity") +
+      geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
+      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "ROI" = "red"))+
       scale_fill_manual("",values="red")+
       theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),
@@ -146,7 +146,7 @@ server <- function(input,output){
   
   finaldataframeyear<-data.frame(summaryyearplot1,summaryyearplot1new$roi)
   finaldataframeyear
-  names(finaldataframeyear)<-c("yeardate","marketing.budget","roi")
+  names(finaldataframeyear)<-c("yeardate","Marketing_Budget","ROI")
   finaldataframeyear
   
   
@@ -159,9 +159,9 @@ server <- function(input,output){
   
   output$summaryyearplot1 <- renderPlot({
     ggplot(finaldataframeyear, aes(yeardate)) + 
-      geom_bar(aes(y = roi,fill="roi"), stat="identity") +
-      geom_line(aes(y = marketing.budget, group = 1, color = "marketing.budget")) +
-      scale_colour_manual(" ", values=c("marketing.budget" = "blue", "roi" = "red"))+
+      geom_bar(aes(y = ROI,fill="ROI"), stat="identity") +
+      geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
+      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "ROI" = "red"))+
       scale_fill_manual("",values="red")+
       theme(legend.position="bottom",legend.key=element_blank(),
             legend.title=element_blank(),

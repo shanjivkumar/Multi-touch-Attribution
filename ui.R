@@ -12,6 +12,7 @@ library(dplyr)
 
 buget<-read.csv("Budget.csv")
 channelpath<-read.csv("Channel path.csv")
+attribution<-read.csv("Attribution.csv")
 
 ui <- dashboardPage(skin = "green",
                     dashboardHeader(title = "Multi-Touch Attribution"),
@@ -548,7 +549,8 @@ ui <- dashboardPage(skin = "green",
                                                                       start = Sys.Date() - 2, end = Sys.Date() + 2
                                                        )),
                                                selectInput("AttributionType", "Choose a type:",
-                                                           choices = c("First interaction", "Last interaction", "Multi-touch")),
+                                                           unique(as.character(attribution$AttributionType))),
+                                               #choices = c("First interaction", "Last interaction", "Multi-touch")),
                                                #numericInput("obs", "Observations:", 10),
                                                sliderInput("Budget", label = h4("Budget"), min = 0, max = 100000, value = 50),
                                                sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = 75),

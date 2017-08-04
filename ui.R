@@ -384,7 +384,7 @@ ui <- dashboardPage(skin = "green",
                                             dataTableOutput("summarymonthplot42"))  ##Table we're trying to display##
                                    ),
                                    
-                                   column(3,plotOutput("summarymonthplot12", width=500,height = 450))
+                                   column(3,plotlyOutput("summarymonthplot12", width=500,height = 450))
                                    #box(plotOutput("summarymonthplot22", height = 250)),
                                   # box(plotOutput("summarymonthplot32", height = 250))
                                    

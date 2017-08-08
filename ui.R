@@ -76,7 +76,7 @@ ui <- dashboardPage(skin = "green",
                                     ),
                                     fluidRow(
                                       box(plotOutput("summarymonthplot1", height = 250)),
-                                      box(plotOutput("summarymonthplot2", height = 250)),
+                                      box(plotlyOutput("summarymonthplot2", height = 250)),
                                       box(plotlyOutput("summarymonthplot3", height = 420)),
                                       frow1 <- bootstrapPage(
                                         column(6,
@@ -96,7 +96,7 @@ ui <- dashboardPage(skin = "green",
                                              ),
                                              fluidRow(
                                                box(plotOutput("summaryquarterplot1", height = 250)),
-                                               box(plotOutput("summaryquarterplot2", height = 250)),
+                                               box(plotlyOutput("summaryquarterplot2", height = 250)),
                                                box(plotlyOutput("summaryquarterplot3", height = 420)),
                                                frow1 <- bootstrapPage(
                                                  column(6,
@@ -116,7 +116,7 @@ ui <- dashboardPage(skin = "green",
                                              ),
                                              fluidRow(
                                                box(plotOutput("summaryyearplot1", height = 250)),
-                                               box(plotOutput("summaryyearplot2", height = 250)),
+                                               box(plotlyOutput("summaryyearplot2", height = 250)),
                                                box(plotlyOutput("summaryyearplot3", height = 420)),
                                                frow1 <- bootstrapPage(
                                                  column(6,

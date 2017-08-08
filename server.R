@@ -59,11 +59,14 @@ server <- function(input,output){
   
   
 
-  output$summarymonthplot2 <- renderPlot({
-    ggplot(data=buget,aes(x=(month),y=roi,fill=Channel)) +  
-      geom_bar(position = "dodge", stat="identity") + ylab("Revenue On Conversions") + 
-      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-      ggtitle("Top 5 Channels")
+  output$summarymonthplot2 <- renderPlotly({
+    plot_ly(buget, x = ~month, y = ~roi, color = ~Channel,type = 'bar')%>%
+        layout(title = 'Top 5 Channels',xaxis=list(title="Month"),yaxis=list(title="roi"))
+    
+     #   ggplot(data=buget,aes(x=(month),y=roi,fill=Channel)) +  
+  #    geom_bar(position = "dodge", stat="identity") + ylab("Revenue On Conversions") + 
+   #   xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
+    #  ggtitle("Top 5 Channels")
     
   })
   
@@ -117,11 +120,14 @@ server <- function(input,output){
             legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Revenue & Marketing Budget")+xlab("Date")+ylab("Value")     
   })
   
-  output$summaryquarterplot2 <- renderPlot({
-    ggplot(data=summaryquarterplot2,aes(x=factor(quarter1),y=roi,fill=Channel)) + 
-      geom_bar(position = "dodge", stat="identity") + ylab("Revenue On Conversions") + 
-      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-      ggtitle("Top 5 Channels")
+  output$summaryquarterplot2 <- renderPlotly({
+    plot_ly(buget, x = ~quarter1, y = ~roi, color = ~Channel,type = 'bar')%>%
+      layout(title = 'Top 5 Channels',xaxis=list(title="Month"),yaxis=list(title="roi"))
+    
+    #ggplot(data=summaryquarterplot2,aes(x=factor(quarter1),y=roi,fill=Channel)) + 
+     # geom_bar(position = "dodge", stat="identity") + ylab("Revenue On Conversions") + 
+      #xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
+      #ggtitle("Top 5 Channels")
   })
   
   output$summaryquarterplot3 <- renderPlotly({
@@ -174,11 +180,14 @@ server <- function(input,output){
             legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Revenue & Marketing Budget")+xlab("Date")+ylab("Value")    
   })
   
-  output$summaryyearplot2 <- renderPlot({
-    ggplot(data=summaryyearplot2,aes(x=(yeardate),y=roi,fill=Channel)) +  
-      geom_bar(position = "dodge", stat="identity") + ylab("Revenue On Conversions") + 
-      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-      ggtitle("Top 5 Channels")
+  output$summaryyearplot2 <- renderPlotly({
+    plot_ly(buget, x = ~yeardate, y = ~roi, color = ~Channel,type = 'bar')%>%
+      layout(title = 'Top 5 Channels',xaxis=list(title="Month"),yaxis=list(title="roi"))
+    
+    #ggplot(data=summaryyearplot2,aes(x=(yeardate),y=roi,fill=Channel)) +  
+     # geom_bar(position = "dodge", stat="identity") + ylab("Revenue On Conversions") + 
+      #xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
+      #ggtitle("Top 5 Channels")
   })
   
   output$summaryyearplot3 <- renderPlotly({

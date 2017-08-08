@@ -43,16 +43,32 @@ server <- function(input,output){
   
   
   
-  output$summarymonthplot1 <- renderPlot({
+  output$summarymonthplot1 <- renderPlotly({
+    plot_ly(finaldataframemonth)%>%
+      add_trace(x=~month1,y=~Revenue,type="bar",name="Revenue")%>%
+      add_trace(x=~month1,y=~Marketing_Budget,type="scatter",mode="lines",name="Marketing Budget")%>%#,yaxis="y2") %>%
+      layout(title = 'Revenue & Marketing Budget',
+             xaxis = list(title = ""),
+             yaxis=list(title="Value"))%>%
+      layout(legend=list(orientation="h", y = -0.3))
+    #Below code commented is to display dual axis
     
-    ggplot(data=finaldataframemonth,aes(x=factor(month1)))+
-      geom_bar(aes(y = Revenue,fill="Revenue"), stat="identity") +
-      geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
-      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "Revenue" = "red"))+
-      scale_fill_manual("",values="red")+
-      theme(legend.position="bottom",legend.key=element_blank(),
-            legend.title=element_blank(),
-            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Revenue & Marketing Budget")+xlab("Date")+ylab("Value") 
+    
+    #layout(title = 'Revenue & Marketing Budget',
+    #       xaxis = list(title = "Month"),
+    #       yaxis = list(side = 'left', title = 'Revenue', showgrid = FALSE, zeroline = FALSE),
+    #       yaxis2 = list(side = 'right', overlaying = "y", title = 'Marketing Budget', showgrid = FALSE, zeroline = FALSE))
+    
+    #Below codeis to display the above chart using ggplot    
+    
+  #  ggplot(data=finaldataframemonth,aes(x=factor(month1)))+
+   #   geom_bar(aes(y = Revenue,fill="Revenue"), stat="identity") +
+    #  geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
+     # scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "Revenue" = "red"))+
+      #scale_fill_manual("",values="red")+
+      #theme(legend.position="bottom",legend.key=element_blank(),
+       #     legend.title=element_blank(),
+        #    legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Revenue & Marketing Budget")+xlab("Date")+ylab("Value") 
     
     
   })
@@ -62,6 +78,8 @@ server <- function(input,output){
   output$summarymonthplot2 <- renderPlotly({
     plot_ly(buget, x = ~month, y = ~roi, color = ~Channel,type = 'bar')%>%
         layout(title = 'Top 5 Channels',xaxis=list(title="Month"),yaxis=list(title="roi"))
+#Below codeis to display the above chart using ggplot        
+    
     
      #   ggplot(data=buget,aes(x=(month),y=roi,fill=Channel)) +  
   #    geom_bar(position = "dodge", stat="identity") + ylab("Revenue On Conversions") + 
@@ -74,6 +92,8 @@ server <- function(input,output){
     
   plot_ly(buget, x = ~month, y = ~no.of.conversions, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
       layout(title = 'No of Conversions VS Channels',xaxis=list(title="Month"),yaxis=list(title="# of Conversions"))
+#Below codeis to display the above chart using ggplot        
+    
     
  #   ggplot(data=buget,aes(x=(month),y=no.of.conversions,group=Channel)) +
   #    geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
@@ -109,20 +129,38 @@ server <- function(input,output){
   names(summaryquarterplot3)<-c("quarter1","Channel","no.of.conversions")
   
   
-  output$summaryquarterplot1 <- renderPlot({
-    ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
-      geom_bar(aes(y = Revenue,fill="Revenue"), stat="identity") +
-      geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
-      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "Revenue" = "red"))+
-      scale_fill_manual("",values="red")+
-      theme(legend.position="bottom",legend.key=element_blank(),
-            legend.title=element_blank(),
-            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Revenue & Marketing Budget")+xlab("Date")+ylab("Value")     
+  output$summaryquarterplot1 <- renderPlotly({
+     plot_ly(finaldataframe)%>%
+      add_trace(x=~quarter1,y=~Revenue,type="bar",name="Revenue")%>%
+      add_trace(x=~quarter1,y=~Marketing_Budget,type="scatter",mode="lines",name="Marketing Budget")%>%#,yaxis="y2") %>%
+    layout(title = 'Revenue & Marketing Budget',
+           xaxis = list(title = ""),
+           yaxis=list(title="Value"))%>%
+      layout(legend=list(orientation="h"))
+#Below code commented is to display dual axis
+
+        
+      #layout(title = 'Revenue & Marketing Budget',
+      #       xaxis = list(title = "Quarter"),
+      #       yaxis = list(side = 'left', title = 'Revenue', showgrid = FALSE, zeroline = FALSE),
+      #       yaxis2 = list(side = 'right', overlaying = "y", title = 'Marketing Budget', showgrid = FALSE, zeroline = FALSE))
+
+#Below codeis to display the above chart using ggplot    
+     #ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
+     # geom_bar(aes(y = Revenue,fill="Revenue"), stat="identity") +
+      #geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
+      #scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "Revenue" = "red"))+
+      #scale_fill_manual("",values="red")+
+      #theme(legend.position="bottom",legend.key=element_blank(),
+      #      legend.title=element_blank(),
+      #      legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Revenue & Marketing Budget")+xlab("Date")+ylab("Value")     
   })
   
   output$summaryquarterplot2 <- renderPlotly({
     plot_ly(buget, x = ~quarter1, y = ~roi, color = ~Channel,type = 'bar')%>%
-      layout(title = 'Top 5 Channels',xaxis=list(title="Month"),yaxis=list(title="roi"))
+      layout(title = 'Top 5 Channels',xaxis=list(title="Quarter"),yaxis=list(title="roi"))
+#Below codeis to display the above chart using ggplot        
+    
     
     #ggplot(data=summaryquarterplot2,aes(x=factor(quarter1),y=roi,fill=Channel)) + 
      # geom_bar(position = "dodge", stat="identity") + ylab("Revenue On Conversions") + 
@@ -134,6 +172,9 @@ server <- function(input,output){
     
     plot_ly(summaryquarterplot3, x = ~quarter1, y = ~no.of.conversions, color = ~Channel, type = 'scatter', mode = 'lines+markers')%>%
       layout(title = 'No of Conversions VS Channels',xaxis=list(title="Quarter"),yaxis=list(title="# of Conversions"))
+#Below codeis to display the above chart using ggplot        
+    
+    
     #ggplot(data=summaryquarterplot3,aes(x=factor(quarter1),y=(no.of.conversions),group=Channel)) +
     # geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
     # xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
@@ -169,20 +210,41 @@ server <- function(input,output){
   summaryyearplot3
   names(summaryyearplot3)<-c("yeardate","Channel","no.of.conversions")
   
-  output$summaryyearplot1 <- renderPlot({
-    ggplot(finaldataframeyear, aes(yeardate)) + 
-      geom_bar(aes(y = Revenue,fill="Revenue"), stat="identity") +
-      geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
-      scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "Revenue" = "red"))+
-      scale_fill_manual("",values="red")+
-      theme(legend.position="bottom",legend.key=element_blank(),
-            legend.title=element_blank(),
-            legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Revenue & Marketing Budget")+xlab("Date")+ylab("Value")    
+  output$summaryyearplot1 <- renderPlotly({
+    plot_ly(finaldataframeyear)%>%
+      add_trace(x=~yeardate,y=~Revenue,type="bar",name="Revenue")%>%
+      add_trace(x=~yeardate,y=~Marketing_Budget,type="scatter",mode="lines",name="Marketing Budget")%>%#,yaxis="y2") %>%
+      layout(title = 'Revenue & Marketing Budget',
+             xaxis = list(title = ""),
+             yaxis=list(title="Value"))%>%
+      layout(legend=list(orientation="h"))
+    #Below code commented is to display dual axis
+    
+    
+    #layout(title = 'Revenue & Marketing Budget',
+    #       xaxis = list(title = "Month"),
+    #       yaxis = list(side = 'left', title = 'Revenue', showgrid = FALSE, zeroline = FALSE),
+    #       yaxis2 = list(side = 'right', overlaying = "y", title = 'Marketing Budget', showgrid = FALSE, zeroline = FALSE))
+    
+    #Below codeis to display the above chart using ggplot    
+    
+    
+  #     ggplot(finaldataframeyear, aes(yeardate)) + 
+   #   geom_bar(aes(y = Revenue,fill="Revenue"), stat="identity") +
+    #  geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
+     # scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "Revenue" = "red"))+
+      #scale_fill_manual("",values="red")+
+      #theme(legend.position="bottom",legend.key=element_blank(),
+       #     legend.title=element_blank(),
+        #    legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Revenue & Marketing Budget")+xlab("Date")+ylab("Value")    
   })
   
   output$summaryyearplot2 <- renderPlotly({
     plot_ly(buget, x = ~yeardate, y = ~roi, color = ~Channel,type = 'bar')%>%
-      layout(title = 'Top 5 Channels',xaxis=list(title="Month"),yaxis=list(title="roi"))
+      layout(title = 'Top 5 Channels',xaxis=list(title="Year"),yaxis=list(title="roi"))
+#Below codeis to display the above chart using ggplot        
+    
+    
     
     #ggplot(data=summaryyearplot2,aes(x=(yeardate),y=roi,fill=Channel)) +  
      # geom_bar(position = "dodge", stat="identity") + ylab("Revenue On Conversions") + 
@@ -193,6 +255,9 @@ server <- function(input,output){
   output$summaryyearplot3 <- renderPlotly({
     plot_ly(summaryyearplot3, x = ~yeardate, y = ~no.of.conversions, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
       layout(title = 'No of Conversions VS Channels',xaxis=list(title="Year"),yaxis=list(title="# of Conversions"))
+#Below codeis to display the above chart using ggplot        
+    
+    
     
  #   ggplot(data=summaryyearplot3,aes(x=(yeardate),y=no.of.conversions,group=Channel)) +
  #   geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 

@@ -75,7 +75,7 @@ ui <- dashboardPage(skin = "green",
                                       box(tags$b("Revenue Generated ($)"),br(), sum(buget$roi),width = 3, background = "olive")
                                     ),
                                     fluidRow(
-                                      box(plotOutput("summarymonthplot1", height = 250)),
+                                      box(plotlyOutput("summarymonthplot1", height = 250)),
                                       box(plotlyOutput("summarymonthplot2", height = 250)),
                                       box(plotlyOutput("summarymonthplot3", height = 420)),
                                       frow1 <- bootstrapPage(
@@ -95,7 +95,7 @@ ui <- dashboardPage(skin = "green",
                                                box(tags$b("Revenue Generated ($)"),br(), sum(buget$roi),width = 3, background = "olive")
                                              ),
                                              fluidRow(
-                                               box(plotOutput("summaryquarterplot1", height = 250)),
+                                               box(plotlyOutput("summaryquarterplot1", height = 250)),
                                                box(plotlyOutput("summaryquarterplot2", height = 250)),
                                                box(plotlyOutput("summaryquarterplot3", height = 420)),
                                                frow1 <- bootstrapPage(
@@ -115,7 +115,7 @@ ui <- dashboardPage(skin = "green",
                                                box(tags$b("Revenue Generated ($)"),br(), sum(buget$roi),width = 3, background = "olive")
                                              ),
                                              fluidRow(
-                                               box(plotOutput("summaryyearplot1", height = 250)),
+                                               box(plotlyOutput("summaryyearplot1", height = 250)),
                                                box(plotlyOutput("summaryyearplot2", height = 250)),
                                                box(plotlyOutput("summaryyearplot3", height = 420)),
                                                frow1 <- bootstrapPage(

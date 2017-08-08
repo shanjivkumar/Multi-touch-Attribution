@@ -18,7 +18,7 @@ pathlength<-read.csv("Path Length.csv")
 server <- function(input,output){
   
   ########### Summary tab - Month Report #########
-  buget$date <- strptime(as.character(buget$date), "%d/%m/%Y")
+  buget$date <- as.POSIXct(strptime(as.character(buget$date), "%d/%m/%Y"))
   buget$month<-as.Date(cut(buget$date,breaks = "month"))
   
   
@@ -67,11 +67,15 @@ server <- function(input,output){
     
   })
   
-  output$summarymonthplot3 <- renderPlot({
-    ggplot(data=buget,aes(x=(month),y=no.of.conversions,group=Channel)) +
-      geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
-      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-      ggtitle("No of Conversions vs Channels")
+  output$summarymonthplot3 <- renderPlotly({
+    
+  plot_ly(buget, x = ~month, y = ~no.of.conversions, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
+      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Month"),yaxis=list(title="# of Conversions"))
+    
+ #   ggplot(data=buget,aes(x=(month),y=no.of.conversions,group=Channel)) +
+  #    geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
+   #   xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
+    #  ggtitle("No of Conversions vs Channels")
   })
   
   output$summarymonthplot4 = renderDataTable(Channelpath,options=list(dom="t"))
@@ -120,11 +124,14 @@ server <- function(input,output){
       ggtitle("Top 5 Channels")
   })
   
-  output$summaryquarterplot3 <- renderPlot({
-    ggplot(data=summaryquarterplot3,aes(x=factor(quarter1),y=(no.of.conversions),group=Channel)) +
-      geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
-      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-      ggtitle("No of Conversions vs Channels")
+  output$summaryquarterplot3 <- renderPlotly({
+    
+    plot_ly(summaryquarterplot3, x = ~quarter1, y = ~no.of.conversions, color = ~Channel, type = 'scatter', mode = 'lines+markers')%>%
+      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Quarter"),yaxis=list(title="# of Conversions"))
+    #ggplot(data=summaryquarterplot3,aes(x=factor(quarter1),y=(no.of.conversions),group=Channel)) +
+    # geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
+    # xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
+    # ggtitle("No of Conversions vs Channels")
   })
   
   output$summaryquarterplot4 = renderDataTable(Channelpath,options=list(dom="t"))
@@ -174,11 +181,14 @@ server <- function(input,output){
       ggtitle("Top 5 Channels")
   })
   
-  output$summaryyearplot3 <- renderPlot({
-    ggplot(data=summaryyearplot3,aes(x=(yeardate),y=no.of.conversions,group=Channel)) +
-      geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
-      xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-      ggtitle("No of Conversions vs Channels")
+  output$summaryyearplot3 <- renderPlotly({
+    plot_ly(summaryyearplot3, x = ~yeardate, y = ~no.of.conversions, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
+      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Year"),yaxis=list(title="# of Conversions"))
+    
+ #   ggplot(data=summaryyearplot3,aes(x=(yeardate),y=no.of.conversions,group=Channel)) +
+ #   geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
+ #     xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
+ #    ggtitle("No of Conversions vs Channels")
   })
   
   output$summaryyearplot4 = renderDataTable(Channelpath,options=list(dom="t"))

@@ -77,7 +77,7 @@ ui <- dashboardPage(skin = "green",
                                     fluidRow(
                                       box(plotOutput("summarymonthplot1", height = 250)),
                                       box(plotOutput("summarymonthplot2", height = 250)),
-                                      box(plotOutput("summarymonthplot3", height = 420)),
+                                      box(plotlyOutput("summarymonthplot3", height = 420)),
                                       frow1 <- bootstrapPage(
                                         column(6,
                                                dataTableOutput("summarymonthplot4", width="100%"))  ##Table we're trying to display##
@@ -97,7 +97,7 @@ ui <- dashboardPage(skin = "green",
                                              fluidRow(
                                                box(plotOutput("summaryquarterplot1", height = 250)),
                                                box(plotOutput("summaryquarterplot2", height = 250)),
-                                               box(plotOutput("summaryquarterplot3", height = 420)),
+                                               box(plotlyOutput("summaryquarterplot3", height = 420)),
                                                frow1 <- bootstrapPage(
                                                  column(6,
                                                         dataTableOutput("summaryquarterplot4", width="100%"))  ##Table we're trying to display##
@@ -117,7 +117,7 @@ ui <- dashboardPage(skin = "green",
                                              fluidRow(
                                                box(plotOutput("summaryyearplot1", height = 250)),
                                                box(plotOutput("summaryyearplot2", height = 250)),
-                                               box(plotOutput("summaryyearplot3", height = 420)),
+                                               box(plotlyOutput("summaryyearplot3", height = 420)),
                                                frow1 <- bootstrapPage(
                                                  column(6,
                                                         dataTableOutput("summaryyearplot4", width="100%"))  ##Table we're trying to display##

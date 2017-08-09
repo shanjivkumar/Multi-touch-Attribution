@@ -252,26 +252,26 @@ ui <- dashboardPage(skin = "green",
                                     ### Sumary dashboard - Month tab
                                     tabPanel("Month",                                 
                                              fluidRow(
-                                               box(plotlyOutput("channelmonthplot1", height = 250)),
-                                               box(plotlyOutput("channelmonthplot2", height = 250)),
-                                               box(plotlyOutput("channelmonthplot3", height = 420)),
-                                               box(plotlyOutput("channelmonthplot4", height = 420))
+                                               box(plotlyOutput("channelmonthplot1", height = 380)),
+                                               box(plotlyOutput("channelmonthplot2", height = 380)),
+                                               box(plotlyOutput("channelmonthplot3", height = 350)),
+                                               box(plotlyOutput("channelmonthplot4", height = 350))
                                                )),
                                     ### Sumary dashboard - Quarter tab
                                     tabPanel("Quarter",  
                                              
                                              fluidRow(
-                                               box(plotlyOutput("channelquarterplot1", height = 250)),
-                                               box(plotlyOutput("channelquarterplot2", height = 250)),
-                                               box(plotlyOutput("channelquarterplot3", height = 420)),
-                                               box(plotlyOutput("channelquarterplot4", height = 420))
+                                               box(plotlyOutput("channelquarterplot1", height = 380)),
+                                               box(plotlyOutput("channelquarterplot2", height = 380)),
+                                               box(plotlyOutput("channelquarterplot3", height = 350)),
+                                               box(plotlyOutput("channelquarterplot4", height = 350))
                                              )),
                                     tabPanel("Year",                                 
                                              fluidRow(
-                                               box(plotlyOutput("channelyearplot1", height = 250)),
-                                               box(plotlyOutput("channelyearplot2", height = 250)),
-                                               box(plotlyOutput("channelyearplot3", height = 420)),
-                                               box(plotlyOutput("channelyearplot4", height = 420))
+                                               box(plotlyOutput("channelyearplot1", height = 380)),
+                                               box(plotlyOutput("channelyearplot2", height = 380)),
+                                               box(plotlyOutput("channelyearplot3", height = 350)),
+                                               box(plotlyOutput("channelyearplot4", height = 350))
                                              ))
                                   ))
             ),

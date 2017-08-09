@@ -387,16 +387,47 @@ server <- function(input,output){
     #  ggtitle("No of Conversions vs Channels")
   })
   #########################Channel tab - Quarter Report###############################################
-   
+  quarter<-quarter(buget$date)
+  year<-year(buget$date)
+  quarter1<-paste(year," Q",quarter,sep="")
+  buget.new<-data.frame(quarter1,buget)
+  
+  quarterbudget<-aggregate(buget.new$marketing.budget~buget.new$quarter+buget.new$Channel, FUN=sum)
+  quarterbudget
+  names(quarterbudget)<-c("quarter1","Channel","marketing.budget")
+  
+  quarterroi<-aggregate(buget.new$roi~buget.new$quarter+buget.new$Channel, FUN=sum)
+  quarterroi
+  names(quarterroi)<-c("quarter1","Channel","roi")
+  
+  quarternoofconversion<-aggregate(buget.new$no.of.conversions~buget.new$quarter+buget.new$Channel,FUN=sum)
+  quarternoofconversion
+  names(quarternoofconversion)<-c("quarter1","Channel","no of conversion")
+  
+  quartercostperconversion<-aggregate(buget.new$Cost.per.conversion~buget.new$quarter+buget.new$Channel,FUN=sum)
+  quartercostperconversion
+  names(quartercostperconversion)<-c("quarter1","Channel","cost per conversion")
+  
+  quartervisit<-aggregate(buget.new$Visits~buget.new$quarter+buget.new$Channel,FUN=sum)
+  quartervisit
+  names(quartervisit)<-c("quarter1","Channel","Visit")
+  
+  finalquarterdataframe<-data.frame(quarterbudget,quarterroi$roi,quarternoofconversion$`no of conversion`,quartercostperconversion$`cost per conversion`,quartervisit$Visit)
+  finalquarterdataframe
+  names(finalquarterdataframe)<-c("quarter1","Channel","marketing.budget","roi","no.of.conversions","cost.per.conversion","Visits")
+  finalquarterdataframe
+  
+  
+  
 
   output$channelquarterplot1 <- renderPlotly({
-    plot_ly(finaldataframe)%>%
-      add_trace(x=~quarter1,y=~Revenue,type="bar",name="Revenue")%>%
-      add_trace(x=~quarter1,y=~Marketing_Budget,type="scatter",mode="lines",name="Marketing Budget")%>%#,yaxis="y2") %>%
-      layout(title = 'Revenue & Marketing Budget',
+    plot_ly(finalquarterdataframe)%>%
+      add_trace(x=~quarter1,y=~roi,type="bar",name="Revenue",color = ~Channel)%>%
+      #add_trace(x=~quarter1,y=~marketing.budget,type="scatter",mode = 'lines+markers',name="Marketing Budget")%>%#,yaxis="y2") %>%
+      layout(title = 'Revenue',
              xaxis = list(title = ""),
              yaxis=list(title="Value"))%>%
-      layout(legend=list(orientation="h"))
+      layout(legend=list(orientation="h", y = -0.3))
     #Below code commented is to display dual axis
     
     
@@ -404,54 +435,32 @@ server <- function(input,output){
     #       xaxis = list(title = "Quarter"),
     #       yaxis = list(side = 'left', title = 'Revenue', showgrid = FALSE, zeroline = FALSE),
     #       yaxis2 = list(side = 'right', overlaying = "y", title = 'Marketing Budget', showgrid = FALSE, zeroline = FALSE))
-    
-    #Below codeis to display the above chart using ggplot    
-    #ggplot(data=finaldataframe,aes(x=factor(quarter1)))+
-    # geom_bar(aes(y = Revenue,fill="Revenue"), stat="identity") +
-    #geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
-    #scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "Revenue" = "red"))+
-    #scale_fill_manual("",values="red")+
-    #theme(legend.position="bottom",legend.key=element_blank(),
-    #      legend.title=element_blank(),
-    #      legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Revenue & Marketing Budget")+xlab("Date")+ylab("Value")     
   })
+
   
   output$channelquarterplot2 <- renderPlotly({
-    plot_ly(buget, x = ~quarter1, y = ~roi, color = ~Channel,type = 'bar')%>%
-      layout(title = 'Top 5 Channels',xaxis=list(title="Quarter"),yaxis=list(title="roi"))
-    #Below codeis to display the above chart using ggplot        
-    
-    
-    #ggplot(data=summaryquarterplot2,aes(x=factor(quarter1),y=roi,fill=Channel)) + 
-    # geom_bar(position = "dodge", stat="identity") + ylab("Revenue On Conversions") + 
-    #xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-    #ggtitle("Top 5 Channels")
+    plot_ly(finalquarterdataframe)%>%
+      add_trace(x=~quarter1,y=~marketing.budget,type="bar",name="Marketing Budget",color = ~Channel)%>%
+      #add_trace(x=~quarter1,y=~marketing.budget,type="scatter",mode = 'lines+markers',name="Marketing Budget")%>%#,yaxis="y2") %>%
+      layout(title = 'Marketing Budget',
+             xaxis = list(title = ""),
+             yaxis=list(title="Value"))%>%
+      layout(legend=list(orientation="h", y = -0.3))
+
   })
   
   output$channelquarterplot3 <- renderPlotly({
     
-    plot_ly(summaryquarterplot3, x = ~quarter1, y = ~no.of.conversions, color = ~Channel, type = 'scatter', mode = 'lines+markers')%>%
-      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Quarter"),yaxis=list(title="# of Conversions"))
-    #Below codeis to display the above chart using ggplot        
-    
-    
-    #ggplot(data=summaryquarterplot3,aes(x=factor(quarter1),y=(no.of.conversions),group=Channel)) +
-    # geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
-    # xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-    # ggtitle("No of Conversions vs Channels")
+    plot_ly(finalquarterdataframe, x = ~quarter1, y = ~no.of.conversions, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
+      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Month"),yaxis=list(title="# of Conversions"))
+
   })
   
   output$channelquarterplot4 <- renderPlotly({
     
-    plot_ly(summaryquarterplot3, x = ~quarter1, y = ~no.of.conversions, color = ~Channel, type = 'scatter', mode = 'lines+markers')%>%
-      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Quarter"),yaxis=list(title="# of Conversions"))
-    #Below codeis to display the above chart using ggplot        
-    
-    
-    #ggplot(data=summaryquarterplot3,aes(x=factor(quarter1),y=(no.of.conversions),group=Channel)) +
-    # geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
-    # xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-    # ggtitle("No of Conversions vs Channels")
+    plot_ly(finalquarterdataframe, x = ~quarter1, y = ~Visits, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
+      layout(title = 'Visits trend',xaxis=list(title="Month"),yaxis=list(title="# of Visits"))
+
   })
   #########################Channel tab - Year Report###############################################
  

@@ -20,7 +20,7 @@ ui <- dashboardPage(skin = "green",
                       sidebarMenu(
                         menuItem("Summary Dashboard", tabName = "sumdashboard", icon = icon("bar-chart")),
                         menuItem("Attribution Dashboard", tabName = "attrdashboard", icon = icon("list-alt")),
-                        #menuItem("Channel Performance", tabName = "channelreport", icon = icon("line-chart")),
+                        menuItem("Channel Performance", tabName = "channelreport", icon = icon("line-chart")),
                         #menuItem("Campaign Performance", tabName = "campaignreport", icon = icon("pie-chart")),
                         menuItem("Path Report", tabName = "pathreport", icon = icon("arrows-alt"))
                       ),
@@ -54,7 +54,7 @@ ui <- dashboardPage(skin = "green",
                       sidebarUserPanel("www.i2decisions.com",image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
                     ),
                     dashboardBody(
-                      ###########################summarydashboard#####################################################################################################################
+                      ###########################Summary Dashboard#####################################################################################################################
                       tabItems(
                         # First tab content
                         tabItem(tabName = "sumdashboard",
@@ -138,7 +138,7 @@ ui <- dashboardPage(skin = "green",
                                 #)
                                 
                         ),
-                        ################################################################################################################################################
+                        #############################################Attribution Dashboard###################################################################################################
                         
                         tabItem(tabName = "attrdashboard",
                                 
@@ -241,8 +241,6 @@ ui <- dashboardPage(skin = "green",
                                 
                                 #fluidPage(downloadButton("report", "Generate report"))
                                 #)
-                        
-                        ############################################################################################################
                         
                         ###############Channel report#############################################
                         tabItem(tabName = "channelreport",
@@ -366,13 +364,12 @@ ui <- dashboardPage(skin = "green",
                                 
                                 
                                 #
-                                #------------------------------------------------------------------------------------------------------------------------------------
-                                #------------------------------------------------------------------------------------------------------------------------------------
+
                                     )
                       )
                     )
             ),
-##########################pathreport#####################################################
+##########################Path report#####################################################
             tabItem(tabName = "pathreport",
                     
                     fluidRow(

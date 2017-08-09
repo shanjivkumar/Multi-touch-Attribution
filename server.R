@@ -46,7 +46,7 @@ server <- function(input,output){
   output$summarymonthplot1 <- renderPlotly({
     plot_ly(finaldataframemonth)%>%
       add_trace(x=~month1,y=~Revenue,type="bar",name="Revenue")%>%
-      add_trace(x=~month1,y=~Marketing_Budget,type="scatter",mode="lines",name="Marketing Budget")%>%#,yaxis="y2") %>%
+      add_trace(x=~month1,y=~Marketing_Budget,type="scatter",mode="lines",name="Marketing Budget", fill = 'tozeroy')%>%#,yaxis="y2") %>%
       layout(title = 'Revenue & Marketing Budget',
              xaxis = list(title = ""),
              yaxis=list(title="Value"))%>%
@@ -132,7 +132,7 @@ server <- function(input,output){
   output$summaryquarterplot1 <- renderPlotly({
      plot_ly(finaldataframe)%>%
       add_trace(x=~quarter1,y=~Revenue,type="bar",name="Revenue")%>%
-      add_trace(x=~quarter1,y=~Marketing_Budget,type="scatter",mode="lines",name="Marketing Budget")%>%#,yaxis="y2") %>%
+      add_trace(x=~quarter1,y=~Marketing_Budget,type="scatter",mode="lines",name="Marketing Budget", fill = 'tozeroy')%>%#,yaxis="y2") %>%
     layout(title = 'Revenue & Marketing Budget',
            xaxis = list(title = ""),
            yaxis=list(title="Value"))%>%
@@ -213,7 +213,7 @@ server <- function(input,output){
   output$summaryyearplot1 <- renderPlotly({
     plot_ly(finaldataframeyear)%>%
       add_trace(x=~yeardate,y=~Revenue,type="bar",name="Revenue")%>%
-      add_trace(x=~yeardate,y=~Marketing_Budget,type="scatter",mode="lines",name="Marketing Budget")%>%#,yaxis="y2") %>%
+      add_trace(x=~yeardate,y=~Marketing_Budget,type="scatter",mode="lines",name="Marketing Budget", fill = 'tozeroy')%>%#,yaxis="y2") %>%
       layout(title = 'Revenue & Marketing Budget',
              xaxis = list(title = ""),
              yaxis=list(title="Value"))%>%

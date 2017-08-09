@@ -163,7 +163,7 @@ ui <- dashboardPage(skin = "green",
                                     fluidRow(dataTableOutput("mytable1", width=800)),
                                     br(),
                                     br(),
-                                    fluidRow(plotOutput("plot11", width=800))
+                                    fluidRow(plotlyOutput("plot11", width=800))
                                   )                                      
                                   
                                 )

@@ -283,12 +283,12 @@ server <- function(input,output){
   
   #attribution$RevenueP <- round((attribution$Revenue/sum(attribution$Revenue))*100)
   #new_data <-attribution[,input$AttributionType]
-  new_data<-melt(attribution,id.vars = c("Channel","AttributionType"),measure.vars=c("Percentage_conversion","Percentage_revenue"))
+  #new_data<-melt(attribution,id.vars = c("Channel","AttributionType"),measure.vars=c("Percentage_conversion","Percentage_revenue"))
   
-  output$plot11 <- renderPlot({
-    ggplot(new_data ,aes(x=Channel,y=value,fill=factor(variable)))+  
-      geom_bar(data = subset(new_data,AttributionType==input$AttributionType),stat="identity",position="dodge")+ theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold"), legend.title=element_blank())+
-      xlab("Channel")+ylab("Percentage")+ggtitle(input$AttributionType)+theme(plot.title=element_text(hjust = 0.5))+geom_text(data = subset(new_data,AttributionType==input$AttributionType),aes(x=Channel,y=value,group=factor(variable),label=value), position=position_dodge(width=0.9), vjust=-0.25)
+  output$plot11 <- renderPlotly({
+    plot_ly(data = subset(attribution,AttributionType==input$AttributionType), x = ~Channel, y = ~Percentage_revenue, type = 'bar',name = "Revenue Percent") %>%
+      add_trace(y = ~Percentage_conversion, name = 'Conversion Percent') %>%
+      layout(title = subset(attribution,AttributionType==input$AttributionType)[1,"AttributionType"],yaxis = list(title = 'Percentage'), barmode = 'group', legend = list(orientation = "h", anchor = "center", x = 0.56) )
   })
   
   output$mytable1 = DT::renderDataTable(DT::datatable({ 

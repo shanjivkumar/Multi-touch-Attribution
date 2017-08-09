@@ -463,72 +463,71 @@ server <- function(input,output){
 
   })
   #########################Channel tab - Year Report###############################################
- 
+  buget$year<-year(buget$date)
+  yeardate<-as.integer(buget$year)
+  buget.new<-data.frame(yeardate,buget)
+  
+  yearbudget<-aggregate(buget.new$marketing.budget~buget.new$yeardate+buget.new$Channel, FUN=sum)
+  yearbudget
+  names(yearbudget)<-c("yeardate","Channel","marketing.budget")
+  
+  yearroi<-aggregate(buget.new$roi~buget.new$yeardate+buget.new$Channel, FUN=sum)
+  yearroi
+  names(yearroi)<-c("yeardate","Channel","roi")
+  
+  yearnoofconversion<-aggregate(buget.new$no.of.conversions~buget.new$yeardate+buget.new$Channel,FUN=sum)
+  yearnoofconversion
+  names(yearnoofconversion)<-c("yeardate","Channel","no of conversion")
+  
+  yearcostperconversion<-aggregate(buget.new$Cost.per.conversion~buget.new$yeardate+buget.new$Channel,FUN=sum)
+  yearcostperconversion
+  names(yearcostperconversion)<-c("yeardate","Channel","cost per conversion")
+  
+  yearvisit<-aggregate(buget.new$Visits~buget.new$yeardate+buget.new$Channel,FUN=sum)
+  yearvisit
+  names(yearvisit)<-c("yeardate","Channel","Visit")
+  
+  finalyeardataframe<-data.frame(yearbudget,yearroi$roi,yearnoofconversion$`no of conversion`,yearcostperconversion$`cost per conversion`,yearvisit$Visit)
+  finalyeardataframe
+  names(finalyeardataframe)<-c("yeardate","Channel","marketing.budget","roi","no.of.conversions","cost.per.conversion","Visits")
+  finalyeardataframe
+  
+  
+  
   output$channelyearplot1 <- renderPlotly({
-    plot_ly(finaldataframeyear)%>%
-      add_trace(x=~yeardate,y=~Revenue,type="bar",name="Revenue")%>%
-      add_trace(x=~yeardate,y=~Marketing_Budget,type="scatter",mode="lines",name="Marketing Budget")%>%#,yaxis="y2") %>%
-      layout(title = 'Revenue & Marketing Budget',
+    plot_ly(finalyeardataframe)%>%
+      add_trace(x=~yeardate,y=~roi,type="bar",name="Revenue",color = ~Channel)%>%
+      #add_trace(x=~yeardate,y=~marketing.budget,type="scatter",mode = 'lines+markers',name="Marketing Budget")%>%#,yaxis="y2") %>%
+      layout(title = 'Revenue',
              xaxis = list(title = ""),
              yaxis=list(title="Value"))%>%
-      layout(legend=list(orientation="h"))
+      layout(legend=list(orientation="h", y = -0.3))
     #Below code commented is to display dual axis
     
     
     #layout(title = 'Revenue & Marketing Budget',
-    #       xaxis = list(title = "Month"),
+    #       xaxis = list(title = "Quarter"),
     #       yaxis = list(side = 'left', title = 'Revenue', showgrid = FALSE, zeroline = FALSE),
     #       yaxis2 = list(side = 'right', overlaying = "y", title = 'Marketing Budget', showgrid = FALSE, zeroline = FALSE))
-    
-    #Below codeis to display the above chart using ggplot    
-    
-    
-    #     ggplot(finaldataframeyear, aes(yeardate)) + 
-    #   geom_bar(aes(y = Revenue,fill="Revenue"), stat="identity") +
-    #  geom_line(aes(y = Marketing_Budget, group = 1, color = "Marketing_Budget")) +
-    # scale_colour_manual(" ", values=c("Marketing_Budget" = "blue", "Revenue" = "red"))+
-    #scale_fill_manual("",values="red")+
-    #theme(legend.position="bottom",legend.key=element_blank(),
-    #     legend.title=element_blank(),
-    #    legend.box="horizontal",plot.title = element_text(size=15, face="bold"))+ggtitle("Revenue & Marketing Budget")+xlab("Date")+ylab("Value")    
   })
   
   output$channelyearplot2 <- renderPlotly({
-    plot_ly(buget, x = ~yeardate, y = ~roi, color = ~Channel,type = 'bar')%>%
-      layout(title = 'Top 5 Channels',xaxis=list(title="Year"),yaxis=list(title="roi"))
-    #Below codeis to display the above chart using ggplot        
-    
-    
-    
-    #ggplot(data=summaryyearplot2,aes(x=(yeardate),y=roi,fill=Channel)) +  
-    # geom_bar(position = "dodge", stat="identity") + ylab("Revenue On Conversions") + 
-    #xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-    #ggtitle("Top 5 Channels")
+    plot_ly(finalyeardataframe)%>%
+      add_trace(x=~yeardate,y=~marketing.budget,type="bar",name="Marketing Budget",color = ~Channel)%>%
+      #add_trace(x=~yeardate,y=~marketing.budget,type="scatter",mode = 'lines+markers',name="Marketing Budget")%>%#,yaxis="y2") %>%
+      layout(title = 'Marketing Budget',
+             xaxis = list(title = ""),
+             yaxis=list(title="Value"))%>%
+      layout(legend=list(orientation="h", y = -0.3))
   })
   
   output$channelyearplot3 <- renderPlotly({
-    plot_ly(summaryyearplot3, x = ~yeardate, y = ~no.of.conversions, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
-      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Year"),yaxis=list(title="# of Conversions"))
-    #Below codeis to display the above chart using ggplot        
-    
-    
-    
-    #   ggplot(data=summaryyearplot3,aes(x=(yeardate),y=no.of.conversions,group=Channel)) +
-    #   geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
-    #     xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-    #    ggtitle("No of Conversions vs Channels")
+    plot_ly(finalyeardataframe, x = ~yeardate, y = ~no.of.conversions, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
+      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Month"),yaxis=list(title="# of Conversions"))
   })
   output$channelyearplot4 <- renderPlotly({
-    plot_ly(summaryyearplot3, x = ~yeardate, y = ~no.of.conversions, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
-      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Year"),yaxis=list(title="# of Conversions"))
-    #Below codeis to display the above chart using ggplot        
-    
-    
-    
-    #   ggplot(data=summaryyearplot3,aes(x=(yeardate),y=no.of.conversions,group=Channel)) +
-    #   geom_line(aes(color=Channel))+geom_point(aes(color=Channel))+ ylab("# Of Conversions") + 
-    #     xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
-    #    ggtitle("No of Conversions vs Channels")
+    plot_ly(finalyeardataframe, x = ~yeardate, y = ~Visits, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
+      layout(title = 'Visits trend',xaxis=list(title="Month"),yaxis=list(title="# of Visits"))
   })
   
   #############################Path Report###################

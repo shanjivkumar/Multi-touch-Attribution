@@ -363,9 +363,10 @@ server <- function(input,output){
   output$channelmonthplot3 <- renderPlotly({
     
     plot_ly(buget, x = ~month, y = ~Visits, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
-      layout(title = 'Visits trend',xaxis=list(title="Month"),yaxis=list(title="# of Visits"))%>%
+     layout(title = 'Visits trend',xaxis=list(title="Month"),yaxis=list(title="# of Visits"))%>%
       layout(legend=list(orientation="h", y = -0.3))
-    #Below codeis to display the above chart using ggplot        
+    #Below codeis to display the above chart using heatmap
+    #plot_ly(buget,x=~month,y=~Channel,z=~Visits,type="heatmap")
     
     
     #   ggplot(data=buget,aes(x=(month),y=no.of.conversions,group=Channel)) +

@@ -249,29 +249,42 @@ ui <- dashboardPage(skin = "green",
                                     title = "Channel Performance",
                                     # The id lets us use input$tabset1 on the server to find the current tab
                                     id = "tabset1", height = "650px",width = "500px",
-                                    ### Sumary dashboard - Month tab
+                                    ### Channel dashboard - Month tab
                                     tabPanel("Month",                                 
                                              fluidRow(
                                                box(plotlyOutput("channelmonthplot1", height = 380)),
-                                               box(plotlyOutput("channelmonthplot2", height = 380)),
-                                               box(plotlyOutput("channelmonthplot3", height = 350)),
-                                               box(plotlyOutput("channelmonthplot4", height = 350))
-                                               )),
-                                    ### Sumary dashboard - Quarter tab
+                                               box(plotlyOutput("channelmonthplot2", height = 380))),
+                                            
+                                             fluidRow(
+                                               splitLayout(cellWidths = c("33%", "33%","33%"),cellArgs = list(style = "padding: 1px"), plotlyOutput("channelmonthplot3"), plotlyOutput("channelmonthplot4"),plotlyOutput("channelmonthplot5"))
+                                             )
+                                               #fluidPage(
+                                              #column(4,plotlyOutput("channelmonthplot3", height = 350,width = 100),
+                                              #column(2,plotlyOutput("channelmonthplot4", height = 350,width = 100),
+                                              #column(2,plotlyOutput("channelmonthplot5", height = 350,width = 100)
+                                               ),
+                                    ### Channel dashboard - Quarter tab
                                     tabPanel("Quarter",  
                                              
                                              fluidRow(
                                                box(plotlyOutput("channelquarterplot1", height = 380)),
-                                               box(plotlyOutput("channelquarterplot2", height = 380)),
-                                               box(plotlyOutput("channelquarterplot3", height = 350)),
-                                               box(plotlyOutput("channelquarterplot4", height = 350))
-                                             )),
+                                               box(plotlyOutput("channelquarterplot2", height = 380))
+                                               ),
+                                              fluidRow(
+                                                splitLayout(cellWidths=c("33%","33%","33%"),cellArgs = list(style="padding :1px"),plotlyOutput("channelquarterplot3"),plotlyOutput("channelquarterplot4"),plotlyOutput("channelquarterplot5"))
+                                              )
+                                                #box(plotlyOutput("channelquarterplot3", height = 350)),
+                                               #box(plotlyOutput("channelquarterplot4", height = 350))
+                                             ),
+                                    ### Channel dashboard - Year tab
                                     tabPanel("Year",                                 
                                              fluidRow(
                                                box(plotlyOutput("channelyearplot1", height = 380)),
-                                               box(plotlyOutput("channelyearplot2", height = 380)),
-                                               box(plotlyOutput("channelyearplot3", height = 350)),
-                                               box(plotlyOutput("channelyearplot4", height = 350))
+                                               box(plotlyOutput("channelyearplot2", height = 380))),
+                                             fluidRow(
+                                               splitLayout(cellWidths=c("33%","33%","33%"),cellArgs = list(style="padding :1px"),plotlyOutput("channelyearplot3"),plotlyOutput("channelyearplot4"),plotlyOutput("channelyearplot5"))
+                                               #box(plotlyOutput("channelyearplot3", height = 350)),
+                                               #box(plotlyOutput("channelyearplot4", height = 350))
                                              ))
                                   ))
             ),

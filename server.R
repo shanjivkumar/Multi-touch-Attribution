@@ -360,11 +360,11 @@ server <- function(input,output){
     
     
   })
-  
   output$channelmonthplot3 <- renderPlotly({
     
-    plot_ly(buget, x = ~month, y = ~no.of.conversions, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
-      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Month"),yaxis=list(title="# of Conversions"))
+    plot_ly(buget, x = ~month, y = ~Visits, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
+      layout(title = 'Visits trend',xaxis=list(title="Month"),yaxis=list(title="# of Visits"))%>%
+      layout(legend=list(orientation="h", y = -0.3))
     #Below codeis to display the above chart using ggplot        
     
     
@@ -376,8 +376,9 @@ server <- function(input,output){
   
   output$channelmonthplot4 <- renderPlotly({
     
-    plot_ly(buget, x = ~month, y = ~Visits, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
-      layout(title = 'Visits trend',xaxis=list(title="Month"),yaxis=list(title="# of Visits"))
+    plot_ly(buget, x = ~month, y = ~no.of.conversions, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
+      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Month"),yaxis=list(title="# of Conversions"))%>%
+      layout(legend=list(orientation="h",y=-0.3))
     #Below codeis to display the above chart using ggplot        
     
     
@@ -386,6 +387,14 @@ server <- function(input,output){
     #   xlab("Date") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
     #  ggtitle("No of Conversions vs Channels")
   })
+  output$channelmonthplot5 <- renderPlotly({
+    
+    plot_ly(buget, x = ~month, y = ~Cost.per.conversion, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
+      layout(title = 'Cost Per Conversion VS Channels',xaxis=list(title="Month"),yaxis=list(title="Cost Per Conversion"))%>%
+      layout(legend=list(orientation="h",y=-0.3))
+   
+  })
+  
   #########################Channel tab - Quarter Report###############################################
   quarter<-quarter(buget$date)
   year<-year(buget$date)
@@ -449,19 +458,27 @@ server <- function(input,output){
 
   })
   
+    
   output$channelquarterplot3 <- renderPlotly({
     
-    plot_ly(finalquarterdataframe, x = ~quarter1, y = ~no.of.conversions, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
-      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Month"),yaxis=list(title="# of Conversions"))
+    plot_ly(finalquarterdataframe, x = ~quarter1, y = ~Visits, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
+      layout(title = 'Visits trend',xaxis=list(title="Quarter"),yaxis=list(title="# of Visits"))%>%
+      layout(legend=list(orientation="h",y=-0.3))
 
   })
-  
   output$channelquarterplot4 <- renderPlotly({
     
-    plot_ly(finalquarterdataframe, x = ~quarter1, y = ~Visits, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
-      layout(title = 'Visits trend',xaxis=list(title="Month"),yaxis=list(title="# of Visits"))
-
+    plot_ly(finalquarterdataframe, x = ~quarter1, y = ~no.of.conversions, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
+      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Quarter"),yaxis=list(title="# of Conversions"))%>%
+      layout(legend=list(orientation="h",y=-0.3))
+    
   })
+  output$channelquarterplot5<-renderPlotly({
+    plot_ly(finalquarterdataframe,x=~quarter1,y=~cost.per.conversion,color=~Channel,type="scatter",mode="lines+markers")%>%
+      layout(title="Cost Per Conversion VS Channels",xaxis=list(title="Quarter"),yaxis=list(title="Cost Per Conversion"))%>%
+      layout(legend=list(orientation="h",y=-0.3))
+  })
+  
   #########################Channel tab - Year Report###############################################
   buget$year<-year(buget$date)
   yeardate<-as.integer(buget$year)
@@ -522,14 +539,21 @@ server <- function(input,output){
   })
   
   output$channelyearplot3 <- renderPlotly({
-    plot_ly(finalyeardataframe, x = ~yeardate, y = ~no.of.conversions, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
-      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Month"),yaxis=list(title="# of Conversions"))
-  })
-  output$channelyearplot4 <- renderPlotly({
     plot_ly(finalyeardataframe, x = ~yeardate, y = ~Visits, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
-      layout(title = 'Visits trend',xaxis=list(title="Month"),yaxis=list(title="# of Visits"))
+      layout(title = 'Visits trend',xaxis=list(title="Year"),yaxis=list(title="# of Visits"))%>%
+      layout(legend=list(orientation="h",y=-0.3))
   })
   
+  output$channelyearplot4 <- renderPlotly({
+    plot_ly(finalyeardataframe, x = ~yeardate, y = ~no.of.conversions, color = ~Channel,type = 'scatter', mode = 'lines+markers')%>%
+      layout(title = 'No of Conversions VS Channels',xaxis=list(title="Year"),yaxis=list(title="# of Conversions"))%>%
+      layout(legend=list(orientation="h",y=-0.3))
+  })
+ output$channelyearplot5<- renderPlotly({
+   plot_ly(finalyeardataframe,x=~yeardate,y=~cost.per.conversion,color = ~Channel,type = "scatter",mode="lines+markers")%>%
+     layout(title="Cost Per Conversion VS Channels",xaxis=list(title="Year"),yaxis=list(title="Cost Per Conversion"))%>%
+     layout(legend=list(orientation="h",y=-0.3))
+ })   
   #############################Path Report###################
   output$pathreportplot1 = renderDataTable(pathlength,options = list(dom = 't'))
   pathlength1<-pathlength

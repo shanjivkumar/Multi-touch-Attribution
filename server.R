@@ -555,7 +555,34 @@ server <- function(input,output){
      layout(title="Cost Per Conversion VS Channels",xaxis=list(title="Year"),yaxis=list(title="Cost Per Conversion"))%>%
      layout(legend=list(orientation="h",y=-0.3))
  })   
-  #############################Path Report###################
+ #############################Campaign Performance##############
+ 
+ output$plot10 <- renderPlot({
+   ggplot(data=Attribution-types,aes(x=(Channel),y=(Percentage_conversion))) +  
+     geom_bar(position = "dodge", stat="identity") + ylab("% Of Conversions") + 
+     xlab("Channel") + theme(legend.position="bottom" ,plot.title = element_text(size=15, face="bold")) + 
+     ggtitle("Attribution summary")
+ })
+ 
+ 
+ 
+ ##Sample try
+ 
+ #attribution$RevenueP <- round((attribution$Revenue/sum(attribution$Revenue))*100)
+ #new_data <-attribution[,input$AttributionType]
+ #new_data<-melt(attribution,id.vars = c("Channel","AttributionType"),measure.vars=c("Percentage_conversion","Percentage_revenue"))
+ 
+ output$campaignplot1 <- renderPlotly({
+   plot_ly(data = subset(attribution,AttributionType==input$AttributionType), x = ~Channel, y = ~Percentage_revenue, type = 'bar',name = "Revenue Percent") %>%
+     add_trace(y = ~Percentage_conversion, name = 'Conversion Percent') %>%
+     layout(title = subset(attribution,AttributionType==input$AttributionType)[1,"AttributionType"],yaxis = list(title = 'Percentage'), barmode = 'group', legend = list(orientation = "h", anchor = "center", x = 0.56) )
+ })
+ 
+ output$campaigntable1 = DT::renderDataTable(DT::datatable({ 
+   attribution [attribution$AttributionType== input$AttributionType,c("Channel","Conversions","Percentage_conversion","Revenue","Total_Cost","Cost_per_conversion")]},rownames= FALSE,options = list(dom = 't')))
+ #output$mytable1 = renderDataTable({attribution[,c("Channel","Percentage.Conversion","Revenue","Cost.Conversion","No.of.Conversions")]})
+ 
+ #############################Path Report###################
   output$pathreportplot1 = renderDataTable(pathlength,options = list(dom = 't'))
   pathlength1<-pathlength
   pathlength1$Conversion.percentage<-(pathlength1$Conversions/sum(pathlength1$Conversions))*100

@@ -21,7 +21,7 @@ ui <- dashboardPage(skin = "green",
                         menuItem("Summary Dashboard", tabName = "sumdashboard", icon = icon("bar-chart")),
                         menuItem("Attribution Dashboard", tabName = "attrdashboard", icon = icon("list-alt")),
                         menuItem("Channel Performance", tabName = "channelreport", icon = icon("line-chart")),
-                        #menuItem("Campaign Performance", tabName = "campaignreport", icon = icon("pie-chart")),
+                        menuItem("Campaign Performance", tabName = "campaignreport", icon = icon("pie-chart")),
                         menuItem("Path Report", tabName = "pathreport", icon = icon("arrows-alt"))
                       ),
                       br(),
@@ -288,6 +288,37 @@ ui <- dashboardPage(skin = "green",
                                              ))
                                   ))
             ),
+###########################Campaign Performance#####################
+tabItem(tabName = "campaignreport",
+        
+        fluidRow(
+          
+          sidebarPanel(width=3,
+                       column (width = 12,
+                               dateRangeInput('dateRange',
+                                              label = tags$b("Date range :  YYYY-MM-DD"),
+                                              start = Sys.Date() - 2, end = Sys.Date() + 2
+                               )),
+                       selectInput("AttributionType", "Choose a type:",
+                                   choices = c("First interaction", "Last interaction", "Multi-touch")),
+                       #numericInput("obs", "Observations:", 10),
+                       sliderInput("Budget", label = h5("Budget"), min = 0, max = 100000, value = 50),
+                       sliderInput("Conversions", label = h5("Conversions"), min = 0, max = 5000, value = 75)#,
+                       #selectInput("region", "Region:", choices=colnames(WorldPhones))
+                       #sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = c(25, 75))
+          ),
+          mainPanel(
+            
+            fluidRow(dataTableOutput("campaigntable1", width=800)),
+            br(),
+            br(),
+            fluidRow(plotlyOutput("campaignplot1", width=800))
+          )                                      
+          
+        )
+        
+),
+
 ##########################Path report#####################################################
             tabItem(tabName = "pathreport",
                     

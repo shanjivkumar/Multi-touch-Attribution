@@ -299,11 +299,11 @@ tabItem(tabName = "campaignreport",
                                               label = tags$b("Date range :  YYYY-MM-DD"),
                                               start = Sys.Date() - 2, end = Sys.Date() + 2
                                )),
-                       selectInput("AttributionType", "Choose a type:",
-                                   choices = c("First interaction", "Last interaction", "Multi-touch")),
+                       selectInput("CampaignType", "Choose a type:",
+                                   choices = c("Campaign 1", "Campaign 2", "Campaign 3"))#,
                        #numericInput("obs", "Observations:", 10),
-                       sliderInput("Budget", label = h5("Budget"), min = 0, max = 100000, value = 50),
-                       sliderInput("Conversions", label = h5("Conversions"), min = 0, max = 5000, value = 75)#,
+                       #sliderInput("Budget", label = h5("Budget"), min = 0, max = 100000, value = 50),
+                       #sliderInput("Conversions", label = h5("Conversions"), min = 0, max = 5000, value = 75)#,
                        #selectInput("region", "Region:", choices=colnames(WorldPhones))
                        #sliderInput("Conversions", label = h4("Conversions"), min = 0, max = 5000, value = c(25, 75))
           ),

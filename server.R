@@ -574,13 +574,13 @@ server <- function(input,output){
  #new_data<-melt(attribution,id.vars = c("Channel","AttributionType"),measure.vars=c("Percentage_conversion","Percentage_revenue"))
  
  output$campaignplot1 <- renderPlotly({
-   plot_ly(data = subset(campaign,Campaign==input$CampaignType), x = ~Date, y = ~Percentage_revenue, type = 'bar',name = "Revenue Percent") %>%
-     add_trace(y = ~Percentage_conversion, name = 'Conversion Percent') %>%
-     layout(title = subset(campaign,Campaign==input$CampaignType)[1,"Campaign"],yaxis = list(title = 'Percentage'), barmode = 'group', legend = list(orientation = "h", anchor = "center", x = 0.56) )
+   plot_ly(data = subset(campaign,Campaign==input$CampaignType), x = ~Date, y = ~Visits, type = 'bar',name = "Visits") %>%
+     add_trace(y = ~Conversions, name = '# of Conversions') %>%
+     layout(title = subset(campaign,Campaign==input$CampaignType)[1,"Campaign"],yaxis = list(title = 'Value'), barmode = 'group', legend = list(orientation = "h", anchor = "center", x = 0.56) )
  })
  
  output$campaigntable1 = DT::renderDataTable(DT::datatable({ 
-   campaign [campaign$Campaign== input$CampaignType,c("Date","Conversions","Percentage_conversion","Revenue","Total_Cost","Cost_per_conversion")]},rownames= FALSE,options = list(dom = 't')))
+   campaign [campaign$Campaign== input$CampaignType,c("Date","Conversions","Visits","Revenue","Total_Cost","Cost_per_conversion")]},rownames= FALSE,options = list(dom = 't')))
  #output$mytable1 = renderDataTable({campaign[,c("Channel","Percentage.Conversion","Revenue","Cost.Conversion","No.of.Conversions")]})
  
  #############################Path Report###################

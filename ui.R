@@ -29,6 +29,7 @@ ui <- dashboardPage(skin = "green",
                       br(),
                       br(),
                       br(),
+                      
                       br(),
                       br(),
                       br(),
@@ -50,8 +51,11 @@ ui <- dashboardPage(skin = "green",
                       br(),
                       br(),
                       br(),
-                      sidebarUserPanel("Powered By : I2 Decisions", subtitle = NULL, image = NULL),
-                      sidebarUserPanel("www.i2decisions.com",image = "AAEAAQAAAAAAAAjdAAAAJDk0ZjAwNTU5LWVkZmMtNGY4Yy05MzkzLWZmNmMxYWI2YTNlYQ.png")
+                      mainPanel("",img(src = "logo4.png",height=55,
+                                       width=180)
+                                      ),
+                      sidebarUserPanel("www.i2Decisions.com", subtitle = NULL, image = NULL)
+                      
                     ),
                     dashboardBody(
                       ###########################Summary Dashboard#####################################################################################################################
